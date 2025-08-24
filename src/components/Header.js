@@ -23,7 +23,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="w-full top-0 z-50">
+    <header className="w-full h-full top-0 z-50">
       {/* Top Black Bar */}
       <div className="bg-black text-white text-xs flex justify-between items-center px-6 py-2">
         <p>Free Shipping Sitewide on Every Order, Don't Miss Out!!</p>
