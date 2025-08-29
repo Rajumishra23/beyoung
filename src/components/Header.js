@@ -146,7 +146,7 @@ export default function Header() {
               <img
                 src={src}
                 alt={`Banner ${index + 1}`}
-                className="w-[95%] h-full object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
           )
