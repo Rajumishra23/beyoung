@@ -3,7 +3,7 @@ import React from "react";
 export default function TrustHighlights() {
   const highlights = [
   {
-    image: "global.webp", // yaha apni image path de do
+    image: "global.webp",
     title: "Easy Returns",
     subtitle: "and Refunds",
   },

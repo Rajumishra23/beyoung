@@ -10,16 +10,29 @@ import Testimonials from "./components/Testimonials";
 
 import NewArrival from "./components/NewArrival"; // ✅ Corrected spelling
 import Footer from "./components/Footer";
+import ProductVideo from "./components/ProductVideo";
+import "./App.css";
+import MenCategories from "./components/MenCategories";
+import WomenCategories from "./components/WomenCategories";
+import Watches from "./components/watches";
+import Wallet from "./components/Wallet";
+import Glasses from "./components/Glasses";
 
 function App() {
   return (
     <div className="min-h-screen bg-white">
       {/* Navbar */}
       <Header />
+      <ProductVideo />
+      <MenCategories/>
+      <WomenCategories />
+      <Watches/>
+      <Wallet/>
+      <Glasses/>
       <Combo />
-      <Trust />
       <MostWanted />
       <BackToCollege />
+      <Trust />
       <Coupon />
       <Testimonials />
       <NewArrival />   {/* ✅ Corrected spelling */}

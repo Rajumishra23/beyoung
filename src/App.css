@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  display: flex;
+  width: max-content;
+  animation: scroll 20s linear infinite; /* speed adjust karo */
+}
+body {
+  overflow-x: hidden;  /* केवल X-axis वाला scrollbar हटेगा */
+  overflow-y: auto;    /* Y-axis वाला scrollbar बना रहेगा */
+}

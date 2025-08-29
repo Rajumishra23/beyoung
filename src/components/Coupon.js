@@ -1,45 +1,51 @@
+// TrustHighlights.jsx
 import React from "react";
+import CountUp from "react-countup";
 
-export default function CouponCorner() {
-  const coupons = [
+export default function TrustHighlights() {
+  const highlights = [
     {
-      logo: "50.webp",
-      amount: "₹50",
-      platform: "Freecharge UPI",
-      condition: "Minimum shopping of ₹999",
-      bg: "bg-orange-500 ",
+      number: 25,
+      suffix: "K+",
+      subtitle: "Satisfied Clients",
     },
     {
-      logo: "300.webp",
-      amount: "₹300",
-      platform: "Snapmint",
-      condition: "Cashback on Snapmint",
-      bg: "bg-blue-600",
+      number: 36,
+      suffix: "K+",
+      subtitle: "Products Sold",
     },
     {
-      logo: "200.webp",
-      amount: "₹200",
-      platform: "Simpl Pay Later",
-      condition: "On first transaction",
-      bg: "bg-indigo-600",
+      number: 15,
+      suffix: "+",
+      subtitle: "Years Experience",
+    },
+    {
+      number: 100,
+      suffix: "+",
+      subtitle: "Awards Winning",
     },
   ];
 
   return (
-    <section className="bg-gray py-10 px-4 sm:px-6">
-      <h2 className="text-black text-xl font-bold mb-6">🎁 SPECIAL COUPON CORNER</h2>
-      <div className="flex gap-2 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden scrollbar-hide">
-        {coupons.map((item, index) => (
+    <section className="relative py-20 px-6 overflow-hidden bg-gradient-to-r from-black via-gray-900 to-black">
+      {/* Golden waves background animation */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-20 -left-20 w-[600px] h-[600px] bg-gradient-to-r from-yellow-500/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-l from-yellow-400/20 to-transparent rounded-full blur-3xl animate-pulse delay-500"></div>
+      </div>
+
+      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-center text-white">
+        {highlights.map((item, index) => (
           <div
             key={index}
-            className={`min-w-[280px] sm:min-w-[320px] rounded-xl text-white ${item.bg} p-5 flex items-center gap-4 shadow-md`}
+            className="flex flex-col items-center animate-fadeIn"
           >
-            <img src={item.logo} alt={item.platform} className="w-120 h-200 object-contain" />
-            <div>
-              <p className="text-sm">Get Cashback Up To</p>
-              <h3 className="text-2xl font-bold">{item.amount}</h3>
-              <p className="text-xs mt-1">{item.condition}</p>
-            </div>
+            <h3 className="text-5xl font-extrabold bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">
+              <CountUp end={item.number} duration={3} />{item.suffix}
+            </h3>
+            <p className="mt-2 text-lg font-medium text-gray-300">
+              {item.subtitle}
+            </p>
           </div>
         ))}
       </div>

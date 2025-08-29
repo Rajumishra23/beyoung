@@ -16,7 +16,7 @@ export default function MostWantedCategories() {
 
   return (
     <section className="bg-white py-12 px-6">
-      <h2 className="text-center text-2xl font-bold mb-8">MOST WANTED CATEGORIES</h2>
+      <h2 className="text-center text-2xl font-bold mb-8">MOST popular collection</h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
         {categories.map((item, index) => (
           <div key={index} className="group relative cursor-pointer">
