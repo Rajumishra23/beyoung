@@ -69,7 +69,7 @@ export default function Header() {
       </div>
 
       {/* 🔝 Navbar */}
-      <nav className="bg-white sticky top-0 z-50">
+      <nav className="bg-white sticky top-0 z-50 overflow-visible">
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-2">
           {/* Logo */}
           <div className="text-2xl font-bold tracking-wide cursor-pointer">
@@ -82,7 +82,7 @@ export default function Header() {
             {Object.keys(menuItems).map((menu) => (
               <li key={menu} className="group relative cursor-pointer hover:text-pink-600">
                 {menu}
-                <div className="absolute left-0 top-full hidden group-hover:flex bg-white shadow-lg p-6 gap-8 z-50 w-[800px]">
+                <div className="absolute left-0 top-full hidden group-hover:flex bg-white shadow-lg p-6 gap-8 z-50 w-[800px] overflow-visible">
                   {menuItems[menu].map((col, idx) => (
                     <div key={idx} className="flex flex-col min-w-[150px]">
                       <h4 className="font-bold text-pink-600 text-sm mb-2">{col.title}</h4>
@@ -131,12 +131,11 @@ export default function Header() {
           </div>
         </div>
       </nav>
-      
 
-      {/* 🔝 Auto Sliding Banner */}
+      {/* ✅ Auto Sliding Banner */}
       <div
         ref={sliderRef}
-        className="w-[870px] h-[500px] sm:h-[500px] md:h-[350px] lg:h-[400px] flex overflow-x-hidden scroll-smooth bg-gray-100"
+        className="w-full h-[400px] sm:h-[450px] md:h-[500px] flex overflow-x-hidden scroll-smooth"
       >
         {["tatas.webp", "tatas1.webp", "tatas2.webp", "tatas3.webp"].map(
           (src, index) => (
@@ -147,7 +146,7 @@ export default function Header() {
               <img
                 src={src}
                 alt={`Banner ${index + 1}`}
-                className="w-full h-full object-contain rounded-xl shadow-md"
+                className="w-full h-full object-cover"
               />
             </div>
           )
