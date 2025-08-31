@@ -129,7 +129,7 @@ export default function Header() {
 
       {/* Navbar */}
       <nav className="bg-white sticky top-0 z-50 shadow">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-4">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5">
           {/* Logo */}
           <div className="text-2xl font-bold tracking-wide cursor-pointer">
             DEMPSEY
