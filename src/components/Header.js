@@ -65,34 +65,34 @@ export default function Header() {
         <p className="truncate w-[70%] md:w-auto">
           Free Shipping Sitewide on Every Order, Don't Miss Out!!
         </p>
+{/* Search Bar Desktop */}
+<div className="hidden md:flex items-center gap-3 flex-1 max-w-xl mx-6">
+  <label htmlFor="search-input" className="sr-only">Search Products</label>
+  <div className="flex items-center bg-white text-black rounded-md flex-1 max-w-md border border-gray-400 shadow-sm">
+    <input
+      id="search-input"
+      type="text"
+      placeholder={placeholders[placeholderIndex]}
+      className="w-full px-3 py-2 rounded-md outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-300 placeholder-black placeholder-opacity-70 placeholder:text-base placeholder:font-semibold"
+    />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 text-gray-600 mr-3 cursor-pointer"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z"
+      />
+    </svg>
+  </div>
+</div>
 
-        {/* Search Bar Desktop */}
-        <div className="hidden md:flex items-center gap-3 flex-1 max-w-xl mx-6">
-          <label htmlFor="search-input" className="sr-only">Search Products</label>
-          <div className="flex items-center bg-white text-black rounded-md flex-1 max-w-md border border-gray-400 shadow-sm">
-            <input
-              id="search-input"
-              type="text"
-              placeholder={placeholders[placeholderIndex]}
-              className="w-full px-3 py-2 rounded-md outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-300 font-medium"
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-600 mr-3 cursor-pointer"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z"
-              />
-            </svg>
-          </div>
-        </div>
 
         {/* Blog + Auth Links */}
         <div className="hidden md:flex items-center gap-4">
@@ -167,17 +167,28 @@ export default function Header() {
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-white shadow px-6 py-4 space-y-4">
-            {/* Search Bar */}
-            <div className="flex items-center bg-gray-100 rounded-md border border-gray-300 px-2">
-              <input
-                type="text"
-                placeholder={placeholders[placeholderIndex]}
-                className="w-full px-2 py-2 rounded-md outline-none bg-transparent"
-              />
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600 cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z"/>
-              </svg>
-            </div>
+           {/* Search Bar */}
+<div className="flex items-center bg-gray-100 rounded-md border border-gray-300 px-2">
+  <input
+    type="text"
+    placeholder={placeholders[placeholderIndex]}
+    className="w-full px-2 py-2 rounded-md outline-none bg-transparent placeholder-black placeholder-opacity-70 placeholder:text-base placeholder:font-semibold"
+  />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="h-5 w-5 text-gray-600 cursor-pointer"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z"
+    />
+  </svg>
+</div>
 
             {/* Links */}
             {["MEN", "WOMEN", "WATCHES", "NEW ARRIVALS", "COMBOS", "GIFT HAMPERS", "ACCESSORIES"].map((category) => (
