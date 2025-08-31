@@ -88,7 +88,7 @@ const ProductGallery = () => {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                className="w-full h-[300px] object-cover transition-transform duration-300 group-hover:scale-110"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-center py-1 text-sm font-medium">
                 {item.title}

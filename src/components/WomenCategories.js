@@ -38,7 +38,7 @@ export default function WomenClothingSlider() {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white text-lg font-semibold">
                 {item.title}

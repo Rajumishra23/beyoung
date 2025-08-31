@@ -38,7 +38,7 @@ export default function GlassSection() {
               <img
                 src={glass.image}
                 alt={glass.name}
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-800">

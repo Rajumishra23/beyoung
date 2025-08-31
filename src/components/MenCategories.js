@@ -70,7 +70,7 @@ export default function FashionCategories() {
               <img
                 src={cat.image}
                 alt={cat.title}
-                className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-300"
               />
 
               <div className="absolute left-0 bottom-0 w-full p-3 bg-gradient-to-t from-black/70 to-transparent text-white">

@@ -82,7 +82,7 @@ const InstaImageSection = () => {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[140%] object-cover transition-transform duration-300 group-hover:scale-110"
+                className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-110"
               />
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">

@@ -27,3 +27,18 @@ slider-container {
         .animate-scroll {
           animation: scroll 25s linear infinite;
         }
+
+
+
+
+.banner-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.banner-item {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+}
