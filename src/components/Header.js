@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const menuItems = {
   MEN: [
@@ -17,10 +17,33 @@ const menuItems = {
     { title: "Premium", links: ["Fossil", "Casio", "Titan", "Rolex"] },
   ],
 };
-
 export default function Header() {
   const sliderRef = useRef(null);
+  const [placeholderIndex, setPlaceholderIndex] = useState(0);
 
+  const placeholders = [
+    "Search for shirts......",
+    "Search for watches......",
+    "Search for jeans......",
+    "Search for bra......",
+    "Search for kurtas......",
+    "Search for smartwatches......",
+    "Search for Glasses......",
+    "Search for Wallets......",
+    "Search for Belts......",
+    "Search for penties......",
+
+  ];
+
+  // 🔄 Auto-change placeholder text
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // 🔄 Auto sliding banner
   useEffect(() => {
     const slider = sliderRef.current;
     let scrollAmount = 0;
@@ -42,35 +65,57 @@ export default function Header() {
 
   return (
     <header className="w-full top-0 z-50">
-      {/* 🔝 Top Bar */}
-      <div className="bg-white text-black text-[11px] flex justify-between items-center px-4 py-2 border-b border-gray-200">
+      {/* 🔝 Promo Bar */}
+      <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-400 text-white text-[11px] flex justify-between items-center px-4 py-2 shadow-md">
         <p className="truncate w-[30%] md:w-auto">
           Free Shipping Sitewide on Every Order, Don't Miss Out!!
         </p>
 
-        {/* 🔍 Search */}
-        <div className="hidden md:flex items-center bg-white text-black px-3 py-1 rounded-md flex-1 max-w-2xl mx-6">
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z" />
-          </svg>
-          <input
-            type="text"
-            placeholder="Search for cloths, watches and more"
-            className="w-full md:w-80 px-4 py-2 rounded-xl border border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 outline-none shadow-sm transition"
-          />
+        {/* 🔍 Search + Blog Button */}
+        <div className="hidden md:flex items-center gap-3 flex-1 max-w-xl mx-6">
+          {/* Search Bar */}
+          <div className="flex items-center bg-white text-black px-3 py-1 rounded-md flex-1 max-w-sm">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 text-gray-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z"
+              />
+            </svg>
+            <input
+              type="text"
+              placeholder={placeholders[placeholderIndex]}
+              className="w-full md:w-60 px-3 py-2 rounded-xl border border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 outline-none shadow-sm transition"
+            />
+          </div>
+
+          {/* Blog Button */}
+          <a
+            href="#"
+            className="bg-white text-pink-600 font-semibold text-sm px-4 py-2 rounded-md border border-pink-500 hover:bg-pink-600 hover:text-white transition"
+          >
+            Blog
+          </a>
         </div>
 
         {/* 🔗 Auth Links */}
         <div className="space-x-1 md:space-x-2">
-          <a href="#" className="hover:underline">LOG IN</a>
+          <a href="#" className="hover:underline font-bold">LOG IN</a>
           <span>/</span>
-          <a href="#" className="hover:underline">SIGNUP</a>
+          <a href="#" className="hover:underline font-bold">SIGNUP</a>
         </div>
       </div>
 
       {/* 🔝 Navbar */}
-      <nav className="bg-white sticky top-0 z-50 overflow-visible">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-2">
+      <nav className="bg-white sticky top-0 z-50 overflow-visible shadow">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-3">
           {/* Logo */}
           <div className="text-2xl font-bold tracking-wide cursor-pointer">
             DEMPSEY
@@ -123,10 +168,10 @@ export default function Header() {
             {/* Bag */}
             <div className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600 relative">
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13M9 21a1 1 0 100-2 1 1 0 000 2zm6 0a1 1 0 100-2 1 1 0 000 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13M10 21h4a2 2 0 002-2H8a2 2 0 002 2z" />
               </svg>
               <span>Bag</span>
-              <span className="absolute -top-2 right-2 bg-yellow-400 text-black text-xs rounded-full px-1">0</span>
+              <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">2</span>
             </div>
           </div>
         </div>

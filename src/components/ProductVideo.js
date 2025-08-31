@@ -1,14 +1,16 @@
 import React from "react";
+import { FaInstagram } from "react-icons/fa";
 
+// ✅ Updated Instagram link for all items
 const Productdata = [
-  { image: "s1.webp", title: "Look 1" },
-  { image: "s2.webp", title: "Look 2" },
-  { image: "s3.webp", title: "Look 3" },
-  { image: "s4.webp", title: "Look 4" },
-  { image: "wallet3.webp", title: "Look 5" },
-  { image: "shirt1.webp", title: "Look 6" },
-  { image: "watches1.webp", title: "Look 7" },
-  { image: "glasses2.webp", title: "Look 10" },
+  { image: "s1.webp", title: "Look 1", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "s2.webp", title: "Look 2", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "s3.webp", title: "Look 3", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "s4.webp", title: "Look 4", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "wallet3.webp", title: "Look 5", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "shirt1.webp", title: "Look 6", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "watches1.webp", title: "Look 7", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "glasses2.webp", title: "Look 10", link: "https://www.instagram.com/himanshu_anand_08/" },
 ];
 
 const ProductGallery = () => {
@@ -16,7 +18,7 @@ const ProductGallery = () => {
     <section
       className="py-20 relative bg-cover bg-center bg-no-repeat"
       style={{
-        backgroundImage: `url('gallery-bg.webp')`, // Replace with your cloth/watch texture
+        backgroundImage: `url('gallery-bg.webp')`,
       }}
     >
       {/* Overlay for readability */}
@@ -26,35 +28,35 @@ const ProductGallery = () => {
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-gray-900 tracking-tight mb-2 animate-fade-in">
-  One Look. One Legacy.
-</h2>
-<p className="text-base text-gray-700 italic animate-fade-in delay-200">
-  From wallets to wonders — your style, your story.
-</p>
+            One Look. One Legacy.
+          </h2>
+          <p className="text-base text-gray-700 italic animate-fade-in delay-200">
+            From wallets to wonders — your style, your story.
+          </p>
         </div>
 
-        {/* Infinite Scrolling Container */}
+        {/* 🔄 Auto Scrolling Container */}
         <div className="overflow-hidden">
-          <div className="flex gap-8 animate-scroll">
+          <div className="flex gap-6 animate-scroll">
             {Productdata.concat(Productdata).map((item, idx) => (
-              <div
+              <a
                 key={idx}
-                className="flex flex-col items-center shrink-0 cursor-pointer transition-transform hover:scale-105"
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-56 h-64 flex-shrink-0 rounded-xl overflow-hidden cursor-pointer group"
               >
-                <div className="rounded-xl overflow-hidden border border-gray-300 hover:border-[#1e3a8a] transition">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="max-h-60 object-contain"
-                  />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <FaInstagram className="text-white text-3xl mb-2" />
+                  <span className="text-white font-medium">{item.title}</span>
                 </div>
-                <p className="mt-3 text-sm font-semibold text-[#1e3a8a] uppercase whitespace-nowrap">
-                  {item.title}
-                </p>
-              </div>
+              </a>
             ))}
           </div>
         </div>
