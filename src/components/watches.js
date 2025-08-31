@@ -1,63 +1,64 @@
 import React, { useRef } from "react";
 
 const watchCategories = [
-  { title: "Men's Watches", image: "c1.png" },
-  { title: "Women's Watches", image: "watches1.webp" },
-  { title: "Couple Watches", image: "c2.png" },
-  { title: "Smartwatches", image: "c3.png" },
-  { title: "Luxury Watches", image: "c4.png" },
-  { title: "Sports Watches", image: "c5.png" },
+  { brand: "Daniel Hechter", image: "c1.png", discountText: "MIN. 50% OFF" },
+  { brand: "Daniel Hechter", image: "watches1.webp", discountText: "MIN. 30% OFF" },
+  { brand: "EMPERO", image: "c2.png", discountText: "FLAT 50% OFF" },
+  { brand: "Sonata", image: "c3.png", discountText: "UP TO 40% OFF" },
+  { brand: "Daniel Hechter", image: "c4.png", discountText: "FLAT 35% OFF" },
+  { brand: "Rolex", image: "c5.png", discountText: "PREMIUM PICKS" },
 ];
 
 export default function WatchSection() {
   const sliderRef = useRef(null);
 
-  const scrollLeft = () => {
-    sliderRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  };
-
-  const scrollRight = () => {
-    sliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
-  };
+  const scrollLeft = () => sliderRef.current.scrollBy({ left: -200, behavior: "smooth" });
+  const scrollRight = () => sliderRef.current.scrollBy({ left: 200, behavior: "smooth" });
 
   return (
-    <section className="py-12 px-6 bg-white overflow-hidden">
-      <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
+    <section className="py-10 sm:py-12 px-4 sm:px-6 md:px-6 bg-white">
+      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-10 text-gray-800 tracking-wide">
         Timeless Picks for Every Wrist
       </h2>
 
-      <div className="relative max-w-6xl mx-auto overflow-hidden">
+      <div className="relative max-w-7xl mx-auto flex items-center">
+        {/* Left Button */}
+        <button
+          onClick={scrollLeft}
+          className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -left-3 lg:-left-5 z-10 hover:bg-gray-100 transition"
+        >
+          ◀
+        </button>
+
         {/* Slider */}
-        <div ref={sliderRef} className="flex gap-6 animate-scroll">
-          {watchCategories.concat(watchCategories).map((item, idx) => (
+        <div
+          ref={sliderRef}
+          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4"
+        >
+          {watchCategories.map((item, idx) => (
             <div
               key={idx}
-              className="relative rounded-lg overflow-hidden shadow hover:shadow-lg transition group min-w-[250px] max-w-[250px]"
+              className="flex-shrink-0 w-[160px] sm:w-[200px] md:w-[240px] snap-start cursor-pointer group"
             >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-[300px] object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center text-white text-lg font-semibold">
-                {item.title}
+              <div className="relative w-full h-[180px] sm:h-[250px] md:h-[300px] overflow-hidden rounded-md">
+                <img
+                  src={item.image}
+                  alt={item.brand}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="bg-gray-50 border-t border-2 border-white px-3 py-2 text-center">
+                <h3 className="text-xs sm:text-sm font-semibold text-gray-900">{item.brand}</h3>
+                <p className="text-[10px] sm:text-xs text-gray-600 mt-1 font-medium">{item.discountText}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Left Button */}
-        <button
-          onClick={scrollLeft}
-          className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black z-10"
-        >
-          ◀
-        </button>
-
         {/* Right Button */}
         <button
           onClick={scrollRight}
-          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black z-10"
+          className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -right-3 lg:-right-5 z-10 hover:bg-gray-100 transition"
         >
           ▶
         </button>

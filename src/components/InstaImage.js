@@ -3,15 +3,15 @@ import { FaInstagram } from "react-icons/fa";
 
 const InstaImages = [
   { image: "A5.webp", title: "Blue Checkered Shirt", link: "https://www.instagram.com/himanshu_anand_08/" },
-  { image: "women@.webp", title: "womens Look 2", link: "https://www.instagram.com/himanshu_anand_08/" },
-  { image: "women@1.webp", title: "womens Look 3", link: "https://www.instagram.com/himanshu_anand_08/" },
-  { image: "watches.webp", title: "watches Look 4", link: "https://www.instagram.com/himanshu_anand_08/" },
-  { image: "wallet@.webp", title: "bags Look 5", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "women@.webp", title: "Womens Look 2", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "women@1.webp", title: "Womens Look 3", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "watches.webp", title: "Watches Look 4", link: "https://www.instagram.com/himanshu_anand_08/" },
+  { image: "wallet@.webp", title: "Bags Look 5", link: "https://www.instagram.com/himanshu_anand_08/" },
 ];
 
 const InstaImageSection = () => {
   const sliderRef = useRef(null);
-  const speed = 1; // px per frame
+  const speed = 0.5; // px per frame (~30px/sec)
 
   // Train-style continuous auto sliding
   useEffect(() => {
@@ -22,7 +22,7 @@ const InstaImageSection = () => {
     const animate = () => {
       slider.scrollLeft += speed;
       if (slider.scrollLeft >= slider.scrollWidth / 2) {
-        slider.scrollLeft = 0; // infinite loop
+        slider.scrollLeft = 0; // infinite loop reset
       }
       reqId = requestAnimationFrame(animate);
     };
@@ -40,28 +40,28 @@ const InstaImageSection = () => {
   };
 
   return (
-    <section className="py-20 bg-white relative">
+    <section className="py-16 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 tracking-tight mb-2">
-            Instagram Gallery📸
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 tracking-tight mb-2">
+            Instagram Gallery 📸
           </h2>
-          <p className="text-base text-gray-700 italic">
+          <p className="text-sm md:text-base text-gray-700 italic">
             Swipe-worthy looks that speak your vibe.
           </p>
         </div>
 
-        {/* Buttons */}
+        {/* Buttons (desktop only) */}
         <button
           onClick={scrollLeft}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black"
+          className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black transition"
         >
           ◀
         </button>
         <button
           onClick={scrollRight}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black"
+          className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black transition"
         >
           ▶
         </button>
@@ -69,7 +69,7 @@ const InstaImageSection = () => {
         {/* Slider Row */}
         <div
           ref={sliderRef}
-          className="flex gap-6 overflow-x-hidden scrollbar-hide"
+          className="flex gap-4 md:gap-6 overflow-x-hidden no-scrollbar"
         >
           {InstaImages.concat(InstaImages).map((item, idx) => (
             <a
@@ -77,17 +77,19 @@ const InstaImageSection = () => {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-64 h-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer"
+              className="relative w-40 sm:w-56 md:w-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-[400px] object-cover transition-transform duration-300 group-hover:scale-110"
+                className="w-full h-48 sm:h-64 md:h-80 lg:h-[400px] object-cover transition-transform duration-300 group-hover:scale-110"
               />
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <FaInstagram className="text-white text-3xl mb-2" />
-                <span className="text-white font-medium">{item.title}</span>
+                <FaInstagram className="text-white text-2xl md:text-3xl mb-2" />
+                <span className="text-white text-sm md:text-base font-medium">
+                  {item.title}
+                </span>
               </div>
             </a>
           ))}

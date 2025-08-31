@@ -12,24 +12,24 @@ export default function Footer() {
   return (
     <footer className="bg-black text-white px-6 py-12">
       {/* Newsletter */}
-      <div className="flex flex-col md:flex-row items-center justify-between mb-12">
-        <p className="text-center md:text-left mb-4 md:mb-0 md:w-2/4">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
+        <p className="text-center md:text-left text-sm md:text-base md:w-2/4">
           Get exclusive deals, style drops & insider access — straight to your inbox.
         </p>
-        <div className="flex w-full md:w-auto">
+        <div className="flex flex-col sm:flex-row w-full md:w-auto">
           <input
             type="email"
             placeholder="Enter your email"
-            className="px-4 py-2 rounded-l-md text-black w-full md:w-64 focus:outline-none"
+            className="px-4 py-2 rounded-t-md sm:rounded-l-md sm:rounded-tr-none text-black w-full md:w-64 focus:outline-none"
           />
-          <button className="bg-yellow-400 text-black font-bold px-4 py-2 rounded-r-md hover:bg-yellow-300 transition">
+          <button className="bg-yellow-400 text-black font-bold px-4 py-2 rounded-b-md sm:rounded-r-md sm:rounded-bl-none hover:bg-yellow-300 transition">
             Subscribe
           </button>
         </div>
       </div>
 
       {/* Footer Links */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-center sm:text-left">
         <div>
           <h4 className="font-bold mb-4">SHOP</h4>
           <ul className="space-y-2 text-sm">
@@ -74,7 +74,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-8 text-center md:text-left">
         {/* Why Choose Us */}
         <div className="space-y-2">
           <h4 className="font-bold text-white">WHY SHOP WITH US?</h4>
@@ -90,7 +90,7 @@ export default function Footer() {
         </div>
 
         {/* Social Icons */}
-        <div className="flex flex-col items-end">
+        <div className="flex flex-col items-center md:items-end">
           <p className="text-sm mb-3">Follow Us</p>
           <div className="flex gap-4 text-white text-xl">
             <FaInstagram />
@@ -104,7 +104,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <p className="text-center text-sm text-gray-500">
+      <p className="text-center text-xs sm:text-sm text-gray-500">
         © 2025 Bigdesign Software technologies. All rights reserved.
       </p>
     </footer>
