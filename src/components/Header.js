@@ -46,7 +46,6 @@ export default function Header() {
   useEffect(() => {
     const slider = sliderRef.current;
     let scrollAmount = 0;
-
     const slideInterval = setInterval(() => {
       if (slider) {
         scrollAmount += slider.offsetWidth;
@@ -58,7 +57,6 @@ export default function Header() {
         }
       }
     }, 3000);
-
     return () => clearInterval(slideInterval);
   }, []);
 
@@ -143,8 +141,8 @@ export default function Header() {
             {Object.keys(menuItems).map((category) => (
               <li key={category} className="group relative cursor-pointer hover:text-pink-600">
                 {category}
-                {/* Dropdown */}
-                <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-48 z-50">
+                {/* Desktop Dropdown */}
+                <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-48 z-50 pointer-events-auto">
                   {menuItems[category].map((section, idx) => (
                     <div key={idx} className="p-3 border-b last:border-b-0">
                       <h4 className="font-semibold text-gray-800">{section.title}</h4>

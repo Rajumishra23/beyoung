@@ -9,11 +9,11 @@ const InstaImages = [
   { image: "wallet@.webp", title: "Bags Look 5", link: "https://www.instagram.com/himanshu_anand_08/" },
 ];
 
-const InstaImageSection = () => {
+const InstaImage = () => {
   const sliderRef = useRef(null);
   const speed = 0.5; // px per frame (~30px/sec)
 
-  // Train-style continuous auto sliding
+  // Auto sliding
   useEffect(() => {
     const slider = sliderRef.current;
     if (!slider) return;
@@ -52,51 +52,54 @@ const InstaImageSection = () => {
           </p>
         </div>
 
-        {/* Buttons (desktop only) */}
-        <button
-          onClick={scrollLeft}
-          className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black transition"
-        >
-          ◀
-        </button>
-        <button
-          onClick={scrollRight}
-          className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black transition"
-        >
-          ▶
-        </button>
+        {/* Slider + Buttons Container */}
+        <div className="relative">
+          {/* Buttons */}
+          <button
+            onClick={scrollLeft}
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black transition"
+          >
+            ◀
+          </button>
+          <button
+            onClick={scrollRight}
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black transition"
+          >
+            ▶
+          </button>
 
-        {/* Slider Row */}
-        <div
-          ref={sliderRef}
-          className="flex gap-4 md:gap-6 overflow-x-hidden no-scrollbar"
-        >
-          {InstaImages.concat(InstaImages).map((item, idx) => (
-            <a
-              key={idx}
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative w-40 sm:w-56 md:w-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer"
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-48 sm:h-64 md:h-80 lg:h-[400px] object-cover transition-transform duration-300 group-hover:scale-110"
-              />
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                <FaInstagram className="text-white text-2xl md:text-3xl mb-2" />
-                <span className="text-white text-sm md:text-base font-medium">
-                  {item.title}
-                </span>
-              </div>
-            </a>
-          ))}
+          {/* Slider Row */}
+          <div
+            ref={sliderRef}
+            className="flex gap-4 md:gap-6 overflow-x-hidden no-scrollbar py-4"
+          >
+            {InstaImages.concat(InstaImages).map((item, idx) => (
+              <a
+                key={idx}
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-40 sm:w-56 md:w-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer"
+              >
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-48 sm:h-64 md:h-80 lg:h-[400px] object-cover transition-transform duration-300 group-hover:scale-110"
+                />
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                  <FaInstagram className="text-white text-2xl md:text-3xl mb-2" />
+                  <span className="text-white text-sm md:text-base font-medium">
+                    {item.title}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 };
 
-export default InstaImageSection;
+export default InstaImage;
