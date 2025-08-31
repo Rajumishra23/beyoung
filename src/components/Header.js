@@ -15,13 +15,16 @@ const menuItems = {
     { title: "MEN'S WATCHES", links: ["Analog", "Digital", "Smartwatches"] },
     { title: "WOMEN'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
   ],
+  ACCESSORIES: [
+    { title: "Items", links: ["Glasses", "Belts", "Bags"] },
+  ],
 };
 
 export default function Header() {
   const sliderRef = useRef(null);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileDropdowns, setMobileDropdowns] = useState({}); // Track mobile dropdown state
+  const [mobileDropdowns, setMobileDropdowns] = useState({});
 
   const placeholders = [
     "Search for shirts...",
@@ -157,7 +160,7 @@ export default function Header() {
             ))}
 
             {/* Other static links */}
-            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS", "ACCESSORIES"].map((category) => (
+            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((category) => (
               <li key={category} className="cursor-pointer hover:text-pink-600">{category}</li>
             ))}
           </ul>
@@ -244,7 +247,7 @@ export default function Header() {
             ))}
 
             {/* Other static links */}
-            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS", "ACCESSORIES"].map((category) => (
+            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((category) => (
               <a key={category} href="#" className="block text-gray-700 font-medium hover:text-pink-600">{category}</a>
             ))}
 
