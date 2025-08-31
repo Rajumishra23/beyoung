@@ -109,7 +109,7 @@ export default function NewArrival() {
               <img
                 src={item.image}
                 alt={item.title}
-                className="relative z-10 w-full h-40 sm:h-52 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
+                className="relative z-10 w-full h-[600px] sm:h-52 md:h-64 object-cover group-hover:scale-105 transition-transform duration-500"
               />
 
               {/* Product Info */}
