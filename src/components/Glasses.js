@@ -19,7 +19,7 @@ export default function GlassSection() {
   };
 
   return (
-    <section className="bg-gray-50 py-16 px-6 md:px-12">
+    <section className="bg-gray-50 py-16 px-6 md:px-12 overflow-hidden">
       <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
         👓 Frame Your Vision
       </h2>

@@ -21,7 +21,7 @@ export default function WatchSection() {
   };
 
   return (
-    <section className="py-12 px-6 bg-white">
+    <section className="py-12 px-6 bg-white overflow-hidden">
       <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
         Timeless Picks for Every Wrist
       </h2>

@@ -44,7 +44,7 @@ const ProductGallery = () => {
 
   return (
     <section
-      className="py-20 relative bg-cover bg-center bg-no-repeat"
+      className="py-20 relative bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{ backgroundImage: `url('gallery-bg.webp')` }}
     >
       {/* Overlay */}
