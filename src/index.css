@@ -19,3 +19,11 @@ code {
 slider-container {
   overflow-x: hidden;   /* scrollbar ko chupane ke liye */
 }
+
+ @keyframes scroll {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); } /* half width since we doubled */
+        }
+        .animate-scroll {
+          animation: scroll 25s linear infinite;
+        }

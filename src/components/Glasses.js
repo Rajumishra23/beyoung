@@ -1,39 +1,35 @@
-// GlassSection.jsx
-import React from "react";
+import React, { useRef } from "react";
 
 const glasses = [
-  {
-    name: "Blue-Light Blockers",
-    image: "glasses.webp",
-    tag: "Screen Warrior",
-  },
-  {
-    name: "Retro Round Frames",
-    image: "glasses1.webp",
-    tag: "Vintage Vibe",
-  },
-  {
-    name: "Matte Black Readers",
-    image: "glasses2.webp",
-    tag: "Minimalist",
-  },
-  {
-    name: "Rhinestone Bling Frames",
-    image: "glasses3.webp",
-    tag: "Bold Personality",
-  },
+  { name: "Blue-Light Blockers", image: "glasses.webp", tag: "Screen Warrior" },
+  { name: "Retro Round Frames", image: "glasses1.webp", tag: "Vintage Vibe" },
+  { name: "Matte Black Readers", image: "glasses2.webp", tag: "Minimalist" },
+  { name: "Rhinestone Bling Frames", image: "glasses3.webp", tag: "Bold Personality" },
 ];
 
 export default function GlassSection() {
+  const sliderRef = useRef(null);
+
+  const scrollLeft = () => {
+    sliderRef.current.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    sliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
+  };
+
   return (
     <section className="bg-gray-50 py-16 px-6 md:px-12">
       <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
         👓 Frame Your Vision
       </h2>
 
-      {/* Infinite Auto Slider */}
-      <div className="overflow-hidden relative max-w-6xl mx-auto">
-        <div className="flex gap-6 animate-scroll">
+      <div className="relative max-w-6xl mx-auto overflow-hidden">
+        {/* Slider Row */}
+        <div
+          ref={sliderRef}
+          className="flex gap-6 animate-scroll overflow-x-auto scrollbar-hide scroll-smooth"
+        >
           {glasses.concat(glasses).map((glass, index) => (
             <div
               key={index}
@@ -53,6 +49,22 @@ export default function GlassSection() {
             </div>
           ))}
         </div>
+
+        {/* Left Button */}
+        <button
+          onClick={scrollLeft}
+          className="absolute left-0 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black"
+        >
+          ◀
+        </button>
+
+        {/* Right Button */}
+        <button
+          onClick={scrollRight}
+          className="absolute right-0 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black"
+        >
+          ▶
+        </button>
       </div>
     </section>
   );

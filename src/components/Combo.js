@@ -1,17 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 export default function ComboSection() {
   const scrollRef = useRef(null);
-
-  const scroll = (direction) => {
-    const container = scrollRef.current;
-    if (container) {
-      container.scrollBy({
-        left: direction === "left" ? -300 : 300,
-        behavior: "smooth",
-      });
-    }
-  };
+  const [isPaused, setIsPaused] = useState(false);
 
   const combos = [
     { image: "combo1.webp" },
@@ -26,34 +17,52 @@ export default function ComboSection() {
     { image: "combo10.webp" },
   ];
 
+  // 🔁 Duplicate array taaki infinite loop effect mile
+  const loopCombos = [...combos, ...combos];
+
+  const handleScroll = (dir) => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    setIsPaused(true); // button press → pause auto slide
+    container.scrollBy({
+      left: dir === "left" ? -300 : 300,
+      behavior: "smooth",
+    });
+
+    // 2s baad wapas chalu ho jaye
+    setTimeout(() => setIsPaused(false), 2000);
+  };
+
   return (
-    <section className="bg-white py-12 px-6">
+    <section className="bg-white py-12 px-6 overflow-hidden">
       {/* Heading */}
       <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold tracking-wide">SUPER SAVING COMBOS</h2>
+        <h2 className="text-2xl font-bold tracking-wide">
+          SUPER SAVING COMBOS
+        </h2>
         <p className="text-sm text-gray-600">Loved by 4+ millions</p>
       </div>
 
-      {/* Combo Cards with Side Buttons */}
-      <div className="relative">
+      {/* 🔄 Infinite Auto Sliding Train with Buttons */}
+      <div className="relative w-full overflow-hidden">
         {/* Left Button */}
         <button
-          onClick={() => scroll("left")}
+          onClick={() => handleScroll("left")}
           className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-3 bg-gray-200 rounded-full hover:bg-gray-300 shadow-md"
         >
           ◀
         </button>
 
-        {/* Scrollable Images */}
+        {/* Train Container */}
         <div
           ref={scrollRef}
-          className="flex gap-6 overflow-x-auto scroll-smooth pb-4 [&::-webkit-scrollbar]:hidden scrollbar-hide">
-
-        
-          {combos.map((combo, index) => (
+          className={`flex gap-6 ${isPaused ? "" : "animate-scroll"}`}
+        >
+          {loopCombos.map((combo, index) => (
             <div
               key={index}
-              className="min-w-[220px] bg-white shadow-md rounded-lg overflow-hidden hover:scale-[1.03] transition-transform duration-300"
+              className="min-w-[220px] bg-white shadow-md rounded-lg overflow-hidden"
             >
               <img
                 src={combo.image}
@@ -66,7 +75,7 @@ export default function ComboSection() {
 
         {/* Right Button */}
         <button
-          onClick={() => scroll("right")}
+          onClick={() => handleScroll("right")}
           className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-3 bg-gray-200 rounded-full hover:bg-gray-300 shadow-md"
         >
           ▶

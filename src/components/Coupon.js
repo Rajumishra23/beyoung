@@ -1,30 +1,20 @@
-// TrustHighlights.jsx
 import React from "react";
 import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 export default function TrustHighlights() {
   const highlights = [
-    {
-      number: 25,
-      suffix: "K+",
-      subtitle: "Satisfied Clients",
-    },
-    {
-      number: 36,
-      suffix: "K+",
-      subtitle: "Products Sold",
-    },
-    {
-      number: 15,
-      suffix: "+",
-      subtitle: "Years Experience",
-    },
-    {
-      number: 100,
-      suffix: "+",
-      subtitle: "Awards Winning",
-    },
+    { number: 25, suffix: "K+", subtitle: "Satisfied Clients" },
+    { number: 36, suffix: "K+", subtitle: "Products Sold" },
+    { number: 15, suffix: "+", subtitle: "Years Experience" },
+    { number: 100, suffix: "+", subtitle: "Awards Winning" },
   ];
+
+  // useInView hook
+  const [ref, inView] = useInView({
+    triggerOnce: true, // ek baar hi animate hoga
+    threshold: 0.3, // 30% of component visible
+  });
 
   return (
     <section className="relative py-20 px-6 overflow-hidden bg-gradient-to-r from-black via-gray-900 to-black">
@@ -34,14 +24,19 @@ export default function TrustHighlights() {
         <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-gradient-to-l from-yellow-400/20 to-transparent rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
-      <div className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-center text-white">
+      <div
+        ref={ref}
+        className="relative max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 text-center text-white"
+      >
         {highlights.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center animate-fadeIn"
-          >
+          <div key={index} className="flex flex-col items-center animate-fadeIn">
             <h3 className="text-5xl font-extrabold bg-gradient-to-r from-yellow-300 to-yellow-500 bg-clip-text text-transparent">
-              <CountUp end={item.number} duration={3} />{item.suffix}
+              {inView ? (
+                <CountUp end={item.number} duration={3} />
+              ) : (
+                0
+              )}
+              {item.suffix}
             </h3>
             <p className="mt-2 text-lg font-medium text-gray-300">
               {item.subtitle}

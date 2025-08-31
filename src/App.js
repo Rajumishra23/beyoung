@@ -17,6 +17,7 @@ import WomenCategories from "./components/WomenCategories";
 import Watches from "./components/watches";
 import Wallet from "./components/Wallet";
 import Glasses from "./components/Glasses";
+import InstaImage from "./components/InstaImage";
 
 function App() {
   return (
@@ -24,18 +25,19 @@ function App() {
       {/* Navbar */}
       <Header />
       <ProductVideo />
+      <Combo />
       <MenCategories/>
       <WomenCategories />
+       <MostWanted />
       <Watches/>
-      <Wallet/>
-      <Glasses/>
-      <Combo />
-      <MostWanted />
       <BackToCollege />
-      <Trust />
+      <Wallet/>
       <Coupon />
+      <Glasses/>    
+      <Trust />
       <Testimonials />
-      <NewArrival />   {/* ✅ Corrected spelling */}
+      <NewArrival />  
+      <InstaImage/>
       <Footer />
 
       {/* Page Content */}

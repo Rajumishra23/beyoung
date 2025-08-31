@@ -11,12 +11,8 @@ const menuItems = {
     { title: "Western Wear", links: ["Dresses", "Tops", "T-Shirts", "Jeans", "Jackets"] },
     { title: "Footwear", links: ["Flats", "Heels", "Boots", "Sports Shoes"] },
   ],
-  WATCHES: [
-    { title: "Men’s Watches", links: ["Analog", "Digital", "Smartwatches"] },
-    { title: "Women’s Watches", links: ["Analog", "Digital", "Smartwatches"] },
-    { title: "Premium", links: ["Fossil", "Casio", "Titan", "Rolex"] },
-  ],
 };
+
 export default function Header() {
   const sliderRef = useRef(null);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -25,14 +21,11 @@ export default function Header() {
     "Search for shirts......",
     "Search for watches......",
     "Search for jeans......",
-    "Search for bra......",
     "Search for kurtas......",
     "Search for smartwatches......",
     "Search for Glasses......",
     "Search for Wallets......",
     "Search for Belts......",
-    "Search for penties......",
-
   ];
 
   // 🔄 Auto-change placeholder text
@@ -71,10 +64,9 @@ export default function Header() {
           Free Shipping Sitewide on Every Order, Don't Miss Out!!
         </p>
 
-        {/* 🔍 Search + Blog Button */}
+        {/* 🔍 Search Bar */}
         <div className="hidden md:flex items-center gap-3 flex-1 max-w-xl mx-6">
-          {/* Search Bar */}
-          <div className="flex items-center bg-white text-black px-3 py-1 rounded-md flex-1 max-w-sm">
+          <div className="flex items-center bg-white text-black px-3 py-1 rounded-md flex-1 max-w-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-4 w-4 text-gray-600"
@@ -92,24 +84,24 @@ export default function Header() {
             <input
               type="text"
               placeholder={placeholders[placeholderIndex]}
-              className="w-full md:w-60 px-3 py-2 rounded-xl border border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 outline-none shadow-sm transition"
+              className="w-full md:w-72 px-3 py-2 rounded-xl border border-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-300 outline-none shadow-sm transition font-bold"
             />
           </div>
+        </div>
 
-          {/* Blog Button */}
+        {/* 🔗 Blog + Auth Links */}
+        <div className="flex items-center gap-4">
           <a
             href="#"
             className="bg-white text-pink-600 font-semibold text-sm px-4 py-2 rounded-md border border-pink-500 hover:bg-pink-600 hover:text-white transition"
           >
             Blog
           </a>
-        </div>
-
-        {/* 🔗 Auth Links */}
-        <div className="space-x-1 md:space-x-2">
-          <a href="#" className="hover:underline font-bold">LOG IN</a>
-          <span>/</span>
-          <a href="#" className="hover:underline font-bold">SIGNUP</a>
+          <div className="space-x-1 md:space-x-2">
+            <a href="#" className="hover:underline font-bold">LOG IN</a>
+            <span>/</span>
+            <a href="#" className="hover:underline font-bold">SIGNUP</a>
+          </div>
         </div>
       </div>
 
@@ -122,26 +114,27 @@ export default function Header() {
             <span className="relative inline-block w-2 h-2 bg-black rounded-full top-[-2px] ml-[1px]"></span>
           </div>
 
-          {/* Navigation */}
+          {/* Navigation (✅ Updated Order) */}
           <ul className="hidden md:flex gap-8 text-sm font-bold tracking-wide text-gray-800">
-            {Object.keys(menuItems).map((menu) => (
-              <li key={menu} className="group relative cursor-pointer hover:text-pink-600">
-                {menu}
-                <div className="absolute left-0 top-full hidden group-hover:flex bg-white shadow-lg p-6 gap-8 z-50 w-[800px] overflow-visible">
-                  {menuItems[menu].map((col, idx) => (
-                    <div key={idx} className="flex flex-col min-w-[150px]">
-                      <h4 className="font-bold text-pink-600 text-sm mb-2">{col.title}</h4>
-                      {col.links.map((link, i) => (
-                        <a key={i} href="#" className="text-gray-700 text-xs py-1 hover:text-pink-500">
-                          {link}
-                        </a>
-                      ))}
-                    </div>
-                  ))}
+            <li className="cursor-pointer hover:text-pink-600">Men</li>
+            <li className="cursor-pointer hover:text-pink-600">Women</li>
+            <li className="cursor-pointer hover:text-pink-600">Kids</li>
+            <li className="cursor-pointer hover:text-pink-600">New Arrivals</li>
+            <li className="cursor-pointer hover:text-pink-600">Combos</li>
+            <li className="cursor-pointer hover:text-pink-600">Gift Hampers</li>
+
+            {/* Accessories Dropdown */}
+            <li className="group relative cursor-pointer hover:text-pink-600">
+              Accessories
+              <div className="absolute left-0 top-full hidden group-hover:flex bg-white shadow-lg p-6 gap-8 z-50">
+                <div className="flex flex-col min-w-[150px]">
+                  <a href="#" className="text-gray-700 text-xs py-1 hover:text-pink-500">Watches</a>
+                  <a href="#" className="text-gray-700 text-xs py-1 hover:text-pink-500">Bags</a>
+                  <a href="#" className="text-gray-700 text-xs py-1 hover:text-pink-500">Belts</a>
                 </div>
-              </li>
-            ))}
-            <li className="cursor-pointer hover:text-pink-600">WALLET</li>
+              </div>
+            </li>
+
             <li className="cursor-pointer hover:text-pink-600">
               Glasses <sup className="text-red-500 text-[10px]">NEW</sup>
             </li>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 const reviews = [
   {
@@ -36,33 +36,37 @@ const reviews = [
 
 const Testimonials = () => {
   const sliderRef = useRef(null);
-  const [startSliding, setStartSliding] = useState(false);
+  const cardWidth = 320; // ek card ki width + gap approx
 
-  // ⏳ 5s ke baad sliding start hogi
+  // Auto slide one by one
   useEffect(() => {
-    const timer = setTimeout(() => setStartSliding(true), 5000);
-    return () => clearTimeout(timer);
+    const slider = sliderRef.current;
+    let index = 0;
+
+    const autoSlide = setInterval(() => {
+      if (!slider) return;
+
+      index++;
+      if (index >= reviews.length) index = 0;
+
+      slider.scrollTo({
+        left: index * cardWidth,
+        behavior: "smooth",
+      });
+    }, 4000); // 4 seconds per slide
+
+    return () => clearInterval(autoSlide);
   }, []);
 
-  // Auto sliding ek ek card ke hisaab se
-  useEffect(() => {
-    if (!startSliding) return;
-
+  const scrollLeft = () => {
     const slider = sliderRef.current;
-    let scrollAmount = 0;
+    slider.scrollBy({ left: -cardWidth, behavior: "smooth" });
+  };
 
-    const slideInterval = setInterval(() => {
-      if (slider) {
-        scrollAmount += 320; // ek card width approx
-        if (scrollAmount >= slider.scrollWidth - slider.offsetWidth) {
-          scrollAmount = 0;
-        }
-        slider.scrollTo({ left: scrollAmount, behavior: "smooth" });
-      }
-    }, 4000);
-
-    return () => clearInterval(slideInterval);
-  }, [startSliding]);
+  const scrollRight = () => {
+    const slider = sliderRef.current;
+    slider.scrollBy({ left: cardWidth, behavior: "smooth" });
+  };
 
   return (
     <section className="bg-white text-black py-16">
@@ -77,49 +81,60 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Reviews Wrapper */}
-        <div
-          ref={sliderRef}
-          className={`w-full scroll-smooth scrollbar-hide ${
-            startSliding
-              ? "flex gap-6 overflow-x-auto" // 👉 Sliding mode
-              : "grid grid-cols-1 sm:grid-cols-2 gap-6" // 👉 Static grid frame
-          }`}
-        >
-          {reviews.map((testimonial, index) => (
-            <div
-              key={index}
-              className="min-w-[300px] flex-shrink-0 flex items-center justify-center"
-            >
+        {/* Slider Wrapper */}
+        <div className="relative">
+          {/* Left Button */}
+          <button
+            onClick={scrollLeft}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black"
+          >
+            ◀
+          </button>
+
+          {/* Slider Row */}
+          <div
+            ref={sliderRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide"
+          >
+            {reviews.map((testimonial, index) => (
               <div
-                className="relative bg-white p-6 w-full max-w-sm rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition text-center"
-                style={{
-                  backgroundImage: `url('bg.webp')`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
+                key={index}
+                className="min-w-[300px] flex-shrink-0 flex items-center justify-center"
               >
-                <div className="absolute inset-0 bg-white/80 rounded-lg z-0"></div>
-                <div className="relative z-10">
-                  <div
-                    className="w-24 h-24 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300"
-                    style={{ backgroundImage: `url(${testimonial.avatar})` }}
-                  ></div>
-                  <p className="text-gray-700 italic mb-4">"{testimonial.review}"</p>
-                  <div className="font-semibold text-gray-900">
-                    {testimonial.name}
-                  </div>
-                  <div className="text-sm text-indigo-600">
-                    {testimonial.post}
-                  </div>
-                  <div className="mt-2 text-yellow-500 text-lg">
-                    {"⭐".repeat(Math.round(testimonial.rating))}
+                <div
+                  className="relative bg-white p-6 w-full max-w-sm rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition text-center"
+                  style={{
+                    backgroundImage: `url('bg.webp')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
+                >
+                  <div className="absolute inset-0 bg-white/80 rounded-lg z-0"></div>
+                  <div className="relative z-10">
+                    <div
+                      className="w-24 h-24 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300"
+                      style={{ backgroundImage: `url(${testimonial.avatar})` }}
+                    ></div>
+                    <p className="text-gray-700 italic mb-4">"{testimonial.review}"</p>
+                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                    <div className="text-sm text-indigo-600">{testimonial.post}</div>
+                    <div className="mt-2 text-yellow-500 text-lg">
+                      {"⭐".repeat(Math.round(testimonial.rating))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Right Button */}
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/50 text-white px-3 py-2 rounded-full hover:bg-black"
+          >
+            ▶
+          </button>
         </div>
       </div>
     </section>
