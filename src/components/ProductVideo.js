@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 
 const Productdata = [
-  { image: "s1.webp", title: "Comfy Casual Shoes", oldPrice: "2799", price: "899" },
+  { image: "s1.webp", title: "Comfy Casual fashion", oldPrice: "2799", price: "899" },
   { image: "s2.webp", title: "Deodorants", oldPrice: "549", price: "199" },
   { image: "s3.webp", title: "Breezy Flip Flops", oldPrice: "1399", price: "499" },
   { image: "s4.webp", title: "Sharp Formal Shoes", oldPrice: "2799", price: "899" },

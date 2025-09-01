@@ -263,24 +263,30 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Auto Sliding Banner */}
-      <div className="relative w-full overflow-hidden">
+     {/* Auto Sliding Banner */}
+<div className="relative w-full overflow-hidden">
+  <div
+    ref={sliderRef}
+    className="flex w-full aspect-[16/10] overflow-hidden scroll-smooth m-0 p-0 gap-0"
+    style={{
+      scrollSnapType: "x mandatory",
+      WebkitOverflowScrolling: "touch"
+    }}
+  >
+    {["tatas.webp", "tatas1.webp", "tatas2.webp", "tatas3.webp"].map(
+      (src, index) => (
         <div
-          ref={sliderRef}
-          className="flex w-full aspect-[16/9] overflow-hidden scroll-smooth"
+          key={index}
+          className="w-full flex-shrink-0 flex items-center justify-center scroll-snap-align-start m-0 p-0"
         >
-          {["tatas.webp", "tatas1.webp", "tatas2.webp", "tatas3.webp"].map(
-            (src, index) => (
-              <div
-                key={index}
-                className="w-full flex-shrink-0 flex items-center justify-center"
-              >
-                <img
-                  src={src}
-                  alt={`Banner ${index + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+          <img
+            src={src}
+            alt={`Banner ${index + 1}`}
+            className="w-full h-full object-cover block select-none pointer-events-none"
+            draggable="false"
+          />
+        </div>
+
             )
           )}
         </div>
