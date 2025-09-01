@@ -117,14 +117,6 @@ export default function Header() {
             <a href="#" className="hover:underline font-bold">SIGNUP</a>
           </div>
         </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white font-bold"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          ☰
-        </button>
       </div>
 
       {/* Navbar */}
@@ -134,6 +126,14 @@ export default function Header() {
           <div className="text-2xl font-bold tracking-wide cursor-pointer">
             DEMPSEY
             <span className="relative inline-block w-2 h-2 bg-black rounded-full top-[-2px] ml-[1px]"></span>
+             {/* Mobile Menu Button */}
+    <button
+      className="md:hidden text-gray-800 font-bold text-2xl"
+      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+    >
+      {mobileMenuOpen ? "×" : "☰"}
+    </button>
+
           </div>
 
           {/* Navigation Desktop */}
@@ -260,14 +260,21 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Auto Sliding Banner */}
-      <div ref={sliderRef} className="w-full h-[220px] sm:h-[300px] md:h-[500px] flex overflow-x-hidden scroll-smooth">
-        {["tatas.webp", "tatas1.webp", "tatas2.webp", "tatas3.webp"].map((src, index) => (
-          <div key={index} className="min-w-full flex items-center justify-center">
-            <img src={src} alt={`Banner ${index + 1}`} className="w-full h-full object-cover"/>
-          </div>
-        ))}
-      </div>
+     {/* Auto Sliding Banner */}
+<div
+  ref={sliderRef}
+  className="w-full aspect-[16/9] flex overflow-x-hidden scroll-smooth"
+>
+  {["tatas.webp", "tatas1.webp", "tatas2.webp", "tatas3.webp"].map((src, index) => (
+    <div key={index} className="min-w-full flex items-center justify-center">
+      <img
+        src={src}
+        alt={`Banner ${index + 1}`}
+        className="w-full h-full object-cover"
+      />
+    </div>
+  ))}
+</div>
     </header>
   );
 }

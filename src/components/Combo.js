@@ -73,12 +73,13 @@ export default function ComboSection() {
         </div>
 
         {/* Right Button (hidden on mobile) */}
-        <button
-          onClick={() => handleScroll("right")}
-          className="hidden sm:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
-        >
-          ▶
-        </button>
+       <button
+  onClick={() => handleScroll("right")}
+  className="flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
+>
+  ▶
+</button>
+
       </div>
 
       {/* Footer Note */}
