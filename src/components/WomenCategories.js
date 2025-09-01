@@ -64,8 +64,16 @@ export default function WomenClothingSlider() {
             </div>
           ))}
         </div>
+{/* Left Button */}
+<button
+  onClick={scrollLeft}
+  className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -left-3 lg:-left-5 z-10 hover:bg-gray-100 transition"
+>
+  ◀
+</button>
 
-      <button
+{/* Right Button */}
+<button
   onClick={scrollRight}
   className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -right-3 lg:-right-5 z-10 hover:bg-gray-100 transition"
 >

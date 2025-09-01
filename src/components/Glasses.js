@@ -95,13 +95,21 @@ export default function GlassSection() {
           ))}
         </div>
 
-        {/* Right Button */}
-        <button
-          onClick={scrollRight}
-          className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -right-5 z-10 hover:bg-gray-100 transition"
-        >
-          ▶
-        </button>
+     {/* Left Button */}
+<button
+  onClick={scrollLeft}
+  className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -left-5 z-10 hover:bg-gray-100 transition"
+>
+  ◀
+</button>
+
+{/* Right Button */}
+<button
+  onClick={scrollRight}
+  className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -right-5 z-10 hover:bg-gray-100 transition"
+>
+  ▶
+</button>
       </div>
     </section>
   );

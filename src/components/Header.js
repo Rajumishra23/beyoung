@@ -69,6 +69,7 @@ export default function Header() {
 
   return (
     <header className="w-full top-0 z-50">
+
       {/* Promo Bar */}
       <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-400 text-white text-[11px] flex justify-between items-center px-4 py-2 shadow-md">
         <p className="truncate w-[70%] md:w-auto">
@@ -122,26 +123,18 @@ export default function Header() {
       {/* Navbar */}
       <nav className="bg-white sticky top-0 z-50 shadow">
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5">
-          {/* Logo */}
-          <div className="text-2xl font-bold tracking-wide cursor-pointer">
-            DEMPSEY
-            <span className="relative inline-block w-2 h-2 bg-black rounded-full top-[-2px] ml-[1px]"></span>
-             {/* Mobile Menu Button */}
-    <button
-      className="md:hidden text-gray-800 font-bold text-2xl"
-      onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-    >
-      {mobileMenuOpen ? "×" : "☰"}
-    </button>
 
+          {/* Logo - Left */}
+          <div className="text-3xl font-bold tracking-wide cursor-pointer flex items-center">
+            DEMPSEY
+            <span className="relative inline-block w-3 h-3 bg-black rounded-full top-[-2px] ml-[2px]"></span>
           </div>
 
-          {/* Navigation Desktop */}
+          {/* Desktop Navigation */}
           <ul className="hidden md:flex gap-8 text-sm font-bold tracking-wide text-gray-800">
             {Object.keys(menuItems).map((category) => (
               <li key={category} className="group relative cursor-pointer hover:text-pink-600">
                 {category}
-                {/* Desktop Dropdown */}
                 <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-48 z-50 pointer-events-auto">
                   {menuItems[category].map((section, idx) => (
                     <div key={idx} className="p-3 border-b last:border-b-0">
@@ -156,8 +149,6 @@ export default function Header() {
                 </div>
               </li>
             ))}
-
-            {/* Other static links */}
             {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((category) => (
               <li key={category} className="cursor-pointer hover:text-pink-600">{category}</li>
             ))}
@@ -190,12 +181,24 @@ export default function Header() {
               <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">2</span>
             </div>
           </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className={`md:hidden font-bold text-3xl transition-colors duration-200 ${
+              mobileMenuOpen ? "text-red-600" : "text-gray-800"
+            }`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? "×" : "☰"}
+          </button>
+
         </div>
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-white shadow px-6 py-4 space-y-4">
-            {/* Search Bar */}
+
+            {/* Mobile Search */}
             <div className="flex items-center bg-gray-100 rounded-md border border-gray-300 px-2">
               <input
                 type="text"
@@ -218,7 +221,7 @@ export default function Header() {
               </svg>
             </div>
 
-            {/* Dropdown Links */}
+            {/* Mobile Menu Items */}
             {Object.keys(menuItems).map((category) => (
               <div key={category}>
                 <button
@@ -260,21 +263,29 @@ export default function Header() {
         )}
       </nav>
 
-     {/* Auto Sliding Banner */}
-<div
-  ref={sliderRef}
-  className="w-full aspect-[16/9] flex overflow-x-hidden scroll-smooth"
->
-  {["tatas.webp", "tatas1.webp", "tatas2.webp", "tatas3.webp"].map((src, index) => (
-    <div key={index} className="min-w-full flex items-center justify-center">
-      <img
-        src={src}
-        alt={`Banner ${index + 1}`}
-        className="w-full h-full object-cover"
-      />
-    </div>
-  ))}
-</div>
+      {/* Auto Sliding Banner */}
+      <div className="relative w-full overflow-hidden">
+        <div
+          ref={sliderRef}
+          className="flex w-full aspect-[16/9] overflow-hidden scroll-smooth"
+        >
+          {["tatas.webp", "tatas1.webp", "tatas2.webp", "tatas3.webp"].map(
+            (src, index) => (
+              <div
+                key={index}
+                className="w-full flex-shrink-0 flex items-center justify-center"
+              >
+                <img
+                  src={src}
+                  alt={`Banner ${index + 1}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )
+          )}
+        </div>
+      </div>
+
     </header>
   );
 }
