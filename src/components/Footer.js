@@ -10,9 +10,14 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white px-6 py-12">
+    <footer className="bg-black text-white px-6 py-10">
+      {/* Title Section */}
+      <div className="text-center md:text-left mb-2">
+        <h2 className="text-2xl font-bold tracking-wide">DEMPSEY</h2>
+      </div>
+
       {/* Newsletter */}
-      <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-10 gap-4">
         <p className="text-center md:text-left text-sm md:text-base md:w-2/4">
           Get exclusive deals, style drops & insider access — straight to your inbox.
         </p>
@@ -29,7 +34,7 @@ export default function Footer() {
       </div>
 
       {/* Footer Links */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12 text-center sm:text-left">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10 text-center sm:text-left">
         <div>
           <h4 className="font-bold mb-4">SHOP</h4>
           <ul className="space-y-2 text-sm">

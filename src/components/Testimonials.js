@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const reviews = [
   {
@@ -36,18 +36,39 @@ const reviews = [
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(3);
 
-  const scrollLeft = () => {
-    setCurrentIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
+  // Responsive logic
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerSlide(1); // mobile
+      } else {
+        setItemsPerSlide(3); // desktop
+      }
+    };
+
+    handleResize(); // run on mount
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const nextSlide = () => {
+    if (currentIndex < reviews.length - itemsPerSlide) {
+      setCurrentIndex((prev) => prev + 1);
+    }
   };
 
-  const scrollRight = () => {
-    setCurrentIndex((prev) => (prev === reviews.length - 1 ? 0 : prev + 1));
+  const prevSlide = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    }
   };
 
   return (
     <section className="bg-white text-black py-12 sm:py-16">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative">
         {/* Heading */}
         <div className="text-center mb-10 px-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-wide mb-3">
@@ -58,70 +79,73 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Slider + Buttons */}
-        <div className="flex items-center justify-center gap-2 sm:gap-4">
-          {/* Left Button */}
-          <button
-            onClick={scrollLeft}
-            className="bg-black/50 text-white px-2 py-1 sm:px-3 sm:py-2 rounded-full hover:bg-black text-xs sm:text-base"
+        {/* Slider Container */}
+        <div className="overflow-hidden relative">
+          <div
+            className="flex transition-transform duration-500"
+            style={{
+              transform: `translateX(-${currentIndex * (100 / itemsPerSlide)}%)`,
+              width: `${(reviews.length / itemsPerSlide) * 100}%`,
+            }}
           >
-            ◀
-          </button>
-
-          {/* Review Container */}
-          <div className="w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-            >
-              {reviews.map((testimonial, index) => (
+            {reviews.map((testimonial, index) => (
+              <div
+                key={index}
+                className={`px-2`}
+                style={{ width: `${100 / itemsPerSlide}%` }}
+              >
                 <div
-                  key={index}
-                  className="w-full flex-shrink-0 flex justify-center"
+                  className="relative bg-white p-6 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition text-center"
+                  style={{
+                    backgroundImage: `url('bg.webp')`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                  }}
                 >
-                  <div
-                    className="relative bg-white p-6 sm:p-8 w-full rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition text-center"
-                    style={{
-                      backgroundImage: `url('bg.webp')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  >
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-white/85 rounded-xl z-0"></div>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-white/85 rounded-xl z-0"></div>
 
-                    {/* Content */}
-                    <div className="relative z-10">
-                      <div
-                        className="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300 shadow"
-                        style={{ backgroundImage: `url(${testimonial.avatar})` }}
-                      ></div>
+                  {/* Content */}
+                  <div className="relative z-10">
+                    <div
+                      className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300 shadow"
+                      style={{
+                        backgroundImage: `url(${testimonial.avatar})`,
+                      }}
+                    ></div>
 
-                      <p className="text-gray-700 italic mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                        "{testimonial.review}"
-                      </p>
+                    <p className="text-gray-700 italic mb-4 leading-relaxed text-sm sm:text-base">
+                      "{testimonial.review}"
+                    </p>
 
-                      <div className="font-semibold text-gray-900 text-base sm:text-lg">
-                        {testimonial.name}
-                      </div>
-                      <div className="text-xs sm:text-sm text-indigo-600 mb-2">
-                        {testimonial.post}
-                      </div>
-                      <div className="mt-2 text-yellow-500 text-sm sm:text-lg">
-                        {"⭐".repeat(Math.round(testimonial.rating))}
-                      </div>
+                    <div className="font-semibold text-gray-900 text-base sm:text-lg">
+                      {testimonial.name}
+                    </div>
+                    <div className="text-xs sm:text-sm text-indigo-600 mb-2">
+                      {testimonial.post}
+                    </div>
+                    <div className="mt-2 text-yellow-500 text-sm sm:text-lg">
+                      {"⭐".repeat(Math.round(testimonial.rating))}
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
-          {/* Right Button */}
+          {/* Controls on sides */}
           <button
-            onClick={scrollRight}
-            className="bg-black/50 text-white px-2 py-1 sm:px-3 sm:py-2 rounded-full hover:bg-black text-xs sm:text-base"
+            onClick={prevSlide}
+            disabled={currentIndex === 0}
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-black/70 text-white shadow-md absolute top-1/2 -translate-y-1/2 -left-3 lg:-left-5 z-10 hover:bg-black transition disabled:opacity-40"
+          >
+            ◀
+          </button>
+          <button
+            onClick={nextSlide}
+            disabled={currentIndex >= reviews.length - itemsPerSlide}
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-black/70 text-white shadow-md absolute top-1/2 -translate-y-1/2 -right-3 lg:-right-5 z-10 hover:bg-black transition disabled:opacity-40"
           >
             ▶
           </button>

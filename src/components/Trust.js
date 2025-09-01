@@ -25,13 +25,13 @@ export default function TrustHighlights() {
         {highlights.map((item, index) => (
           <div
             key={index}
-            className="p-6 bg-white shadow-md rounded-lg transition-transform duration-300 hover:scale-105"
+            className="p-6 bg-white shadow-md rounded-lg border border-gray-200 hover:border-gray-400 transition-transform duration-300 hover:scale-105"
           >
             {item.image && (
               <img
                 src={item.image}
                 alt={item.title}
-                className="h-24 w-24 mx-auto mb-4 object-contain"
+                className="h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 mx-auto mb-4 object-contain"
               />
             )}
             <h3 className="text-lg sm:text-xl font-bold text-gray-900">

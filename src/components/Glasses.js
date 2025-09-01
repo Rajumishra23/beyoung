@@ -3,84 +3,99 @@ import { motion } from "framer-motion";
 
 const glasses = [
   {
-    name: "Blue-Light Blockers",
+    name: "SmartBuy Collection",
+    subName: "Noam CP110",
     image: "glasses.webp",
-    tag: "Screen Warrior",
-    price: "₹1,299",
-    discount: "20% OFF",
+    price: "₹1,750",
+    oldPrice: "₹3,500",
+    discount: "-50%",
   },
   {
-    name: "Retro Round Frames",
+    name: "Vuarnet",
+    subName: "VL1918 RACING REGULAR Polarized 0008 1626",
     image: "glasses1.webp",
-    tag: "Vintage Vibe",
-    price: "₹1,499",
-    discount: "15% OFF",
+    price: "₹11,906",
   },
   {
-    name: "Matte Black Readers",
+    name: "Ralph by Ralph Lauren",
+    subName: "RA7158U 5001",
     image: "glasses2.webp",
-    tag: "Minimalist",
-    price: "₹999",
-    discount: "10% OFF",
+    price: "₹8,834",
   },
   {
-    name: "Rhinestone Bling Frames",
+    name: "Montana Eyewear",
+    subName: "MP198 Polarized MP198",
     image: "glasses3.webp",
-    tag: "Bold Personality",
-    price: "₹1,799",
-    discount: "25% OFF",
+    price: "₹1,836",
   },
 ];
 
 export default function GlassSection() {
   const sliderRef = useRef(null);
 
-  const scrollLeft = () => {
+  const scrollLeft = () =>
     sliderRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  };
-
-  const scrollRight = () => {
+  const scrollRight = () =>
     sliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
-  };
 
   return (
-    <section className="bg-gray-50 py-12 px-4 md:px-12 overflow-hidden">
+    <section className="bg-gray-300 py-12 px-4 md:px-12 overflow-hidden">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
         👓 Frame Your Vision
       </h2>
 
-      <div className="relative max-w-6xl mx-auto flex items-center">
+      <div className="relative max-w-7xl mx-auto flex items-center">
         {/* Slider */}
         <div
           ref={sliderRef}
-          className="flex gap-4 md:gap-6 overflow-x-auto scroll-smooth flex-1 no-scrollbar"
+          className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth flex-1 no-scrollbar"
         >
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
-              className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] bg-white rounded-md overflow-hidden shadow hover:shadow-lg transition"
+              className="
+                min-w-[50%] sm:min-w-[220px] md:min-w-[240px] 
+                bg-white rounded-md overflow-hidden text-center relative
+                border border-gray-200 hover:border-gray-400 
+                shadow-sm hover:shadow-md transition
+              "
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, delay: index * 0.05 }}
             >
+              {/* Discount Badge */}
+              {glass.discount && (
+                <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">
+                  {glass.discount}
+                </span>
+              )}
+
+              {/* Image */}
               <img
                 src={glass.image}
                 alt={glass.name}
-                className="w-full h-[220px] sm:h-[260px] md:h-[300px] object-cover hover:scale-105 transition-transform duration-300"
+                className="w-full h-[160px] sm:h-[200px] md:h-[220px] object-contain mx-auto"
               />
-              <div className="p-3 border-t text-center">
-                <h3 className="text-sm font-semibold text-gray-900">
+
+              {/* Details */}
+              <div className="mt-3 px-2 pb-4">
+                <h3 className="text-sm md:text-base font-semibold text-gray-900">
                   {glass.name}
                 </h3>
-                <p className="text-xs text-gray-500">{glass.tag}</p>
+                <p className="text-xs md:text-sm text-gray-500">
+                  {glass.subName}
+                </p>
+
                 <div className="mt-2 flex items-center justify-center gap-2">
-                  <span className="text-base font-bold text-gray-900">
+                  <span className="text-lg md:text-xl font-bold text-orange-600">
                     {glass.price}
                   </span>
-                  <span className="text-xs font-semibold text-red-500">
-                    {glass.discount}
-                  </span>
+                  {glass.oldPrice && (
+                    <span className="text-sm text-gray-400 line-through">
+                      {glass.oldPrice}
+                    </span>
+                  )}
                 </div>
               </div>
             </motion.div>

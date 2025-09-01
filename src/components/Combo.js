@@ -10,7 +10,7 @@ export default function ComboSection() {
     { image: "combo3.webp" },
     { image: "combo4.webp" },
     { image: "combo5.webp" },
-    { image: "combo6.webp" },
+   
     { image: "combo7.webp" },
     { image: "combo8.webp" },
     { image: "combo9.webp" },

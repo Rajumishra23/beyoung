@@ -50,17 +50,17 @@ export default function NewArrival() {
       {/* Heading */}
       <div className="text-center mb-10">
         <div className="flex items-center justify-center gap-4">
-          <span className="flex-1 max-w-[80px] h-[2px] bg-red-600 relative">
+          <span className="flex-1 max-w-[80px] h-[2px] bg-black-600 relative">
             <span className="absolute -left-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-r-[8px] border-r-red-600"></span>
           </span>
-          <h2 className="text-3xl font-bold tracking-wide text-red-600">
+          <h2 className="text-3xl font-bold tracking-wide text-black-600">
             NEW ARRIVALS
           </h2>
-          <span className="flex-1 max-w-[80px] h-[2px] bg-red-600 relative">
+          <span className="flex-1 max-w-[80px] h-[2px] bg-black-600 relative">
             <span className="absolute -right-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[8px] border-l-red-600"></span>
           </span>
         </div>
-        <p className="mt-2 text-sm font-semibold text-red-600 uppercase tracking-wide">
+        <p className="mt-2 text-sm font-semibold text-white-600 uppercase tracking-wide">
           HI-FASHION EXCLUSIVES FOR MOMENTS YOU'LL REPLAY
         </p>
       </div>
@@ -103,11 +103,14 @@ export default function NewArrival() {
               <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${theme.oval} opacity-50`}></div>
 
               {/* Product Image */}
-              <img
-                src={item.image}
-                alt={item.title}
-                className="relative z-10 w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+<img
+  src={item.image}
+  alt={item.title}
+  className="relative z-10 w-full 
+             h-80 sm:h-96 md:h-[450px] lg:h-[550px] 
+             object-cover group-hover:scale-105 
+             transition-transform duration-500"
+/>
 
               {/* Product Info */}
               <div className="relative z-20 p-4 bg-white">
@@ -124,7 +127,7 @@ export default function NewArrival() {
               </div>
 
               {/* Wishlist Icon */}
-              <button className="absolute top-3 right-3 text-gray-500 hover:text-red-500 z-30">
+              <button className="absolute top-3 right-3 text-gray-500 hover:text-black-500 z-30">
                 <FaHeart />
               </button>
             </div>

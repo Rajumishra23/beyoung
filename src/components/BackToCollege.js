@@ -41,12 +41,11 @@ export default function BackToCollege() {
             key={index}
             className="relative group cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
-            {/* Image */}
             <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-48 sm:h-60 md:h-72 object-cover"
-            />
+  src={item.image}
+  alt={item.title}
+  className="w-full h-64 sm:h-80 md:h-96 lg:h-[500px] object-cover"
+/>
 
             {/* Tag */}
             <div className="absolute bottom-3 left-3 bg-black bg-opacity-70 text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded">

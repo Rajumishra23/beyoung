@@ -20,6 +20,9 @@ const menuItems = {
   ACCESSORIES: [
     { title: "Items", links: ["Glasses", "Belts", "Bags"] },
   ],
+  GIFTHAMPERS: [
+    {title: "Items", links:["Gift for couples", "Gift for her"]}
+  ]
 };
 
 export default function Header() {
@@ -36,6 +39,9 @@ export default function Header() {
     "Search for smartwatches...",
     "Search for wallets...",
     "Search for belts...",
+    "Search for bags...",
+    "Search for Bra...",
+    "Search for penties...",
   ];
 
   useEffect(() => {
@@ -123,8 +129,8 @@ export default function Header() {
       </div>
 
       {/* Navbar */}
-      <nav className="bg-white sticky top-0 z-50 shadow">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5">
+      <nav className="sticky top-0 z-50 bg-white shadow h-16 w-full">
+  <div className="max-w-[1440px] mx-auto flex items-center justify-between px-9 py-5">
 
           {/* Logo - Left */}
           <div className="text-4xl font-bold tracking-wide cursor-pointer flex items-center">
@@ -265,18 +271,18 @@ export default function Header() {
         )}
       </nav>
 {/* Auto Sliding Banner with Framer Motion */}
-<div className="relative w-full overflow-hidden">
+<div className="relative w-full overflow-hidden mt-0 -mt-px">
   <motion.div
     ref={sliderRef}
-    className="flex w-full aspect-[16/10] overflow-hidden m-0 p-0 gap-0"
+    className="flex w-full aspect-[16/12] overflow-hidden m-0 p-0 gap-0"
     style={{
       scrollSnapType: "x mandatory",
       WebkitOverflowScrolling: "touch",
     }}
   >
-    {[
+    {[ 
       { src: "tatas.webp", subtitle: "New Arrivals", title: "Upgrade Your Style Today", btn: "Shop Now" },
-      { src: "tatas1.webp", subtitle: "Hot Picks", title: "Summer Essentials Ready", btn: "Shop Now" },
+      { src: "watchbanner1.webp", subtitle: "Hot Picks", title: "Summer Essentials Ready", btn: "Shop Now" },
       { src: "tatas2.webp", subtitle: "Limited Time", title: "Exclusive Deals Inside", btn: "Shop Now" },
       { src: "tatas3.webp", subtitle: "Fresh Trends", title: "Trendy Collections Now", btn: "Shop Now" },
     ].map((banner, index) => (
@@ -288,7 +294,6 @@ export default function Header() {
         exit={{ opacity: 0 }}
         transition={{ duration: 1, ease: "easeInOut" }}
       >
-        {/* Banner Image */}
         <img
           src={banner.src}
           alt={`Banner ${index + 1}`}
@@ -296,28 +301,24 @@ export default function Header() {
           draggable="false"
         />
 
-       {/* Left Text & Button Overlay */}
-<motion.div
-  className="absolute left-5 md:left-16 top-1/2 transform -translate-y-1/2 flex flex-col gap-2 max-w-md"
-  initial={{ x: -100, opacity: 0 }}
-  animate={{ x: 0, opacity: 1 }}
-  transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
->
-  {/* Subtitle */}
-  <span className="text-sm md:text-base uppercase tracking-wider text-gray-200 bg-black/30 px-2 py-1 rounded drop-shadow-sm">
-    {banner.subtitle}
-  </span>
+        <motion.div
+          className="absolute left-5 md:left-16 top-1/2 transform -translate-y-1/2 flex flex-col gap-2 max-w-md"
+          initial={{ x: -100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
+        >
+          <span className="text-sm md:text-base uppercase tracking-wider text-gray-200 bg-black/30 px-2 py-1 rounded drop-shadow-sm">
+            {banner.subtitle}
+          </span>
 
-  {/* Main Title */}
-  <h2 className="text-2xl md:text-3xl font-extrabold text-white bg-black/30 px-2 py-1 rounded drop-shadow-md leading-snug">
-    {banner.title}
-  </h2>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white bg-black/30 px-2 py-1 rounded drop-shadow-md leading-snug">
+            {banner.title}
+          </h2>
 
-  {/* Button */}
-  <button className="flex items-center gap-2 text-sm md:text-base bg-white text-black px-4 py-1 rounded-full shadow hover:bg-gray-50 font-semibold transition">
-    {banner.btn} →
-  </button>
-</motion.div>
+          <button className="flex items-center gap-2 text-sm md:text-base bg-white text-black px-4 py-1 rounded-full shadow hover:bg-gray-50 font-semibold transition">
+            {banner.btn} →
+          </button>
+        </motion.div>
       </motion.div>
     ))}
   </motion.div>

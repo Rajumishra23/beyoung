@@ -15,7 +15,7 @@ export default function WalletSection() {
   const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: "smooth" });
 
   return (
-    <section className="bg-white py-12 px-4 sm:px-6 md:px-12 overflow-hidden">
+    <section className="bg-gray-300 py-12 px-4 sm:px-6 md:px-12 overflow-hidden">
       <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-6 sm:mb-8">
         Wallets That Speak Style
       </h2>
