@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const categories = [
   { title: "HAWAIIAN FITS", discount: "Up to 60% off", image: "mens.webp" },
@@ -53,9 +54,13 @@ export default function FashionCategories() {
             className="flex gap-4 sm:gap-6 overflow-x-hidden no-scrollbar pb-4"
           >
             {categories.concat(categories).map((cat, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="min-w-[160px] sm:min-w-[200px] md:min-w-[250px] bg-white border-2 border-orange-500 rounded-md shadow-sm flex-shrink-0"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 {/* Image */}
                 <div className="h-40 sm:h-56 md:h-[300px] w-full overflow-hidden">
@@ -75,7 +80,7 @@ export default function FashionCategories() {
                     {cat.discount}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

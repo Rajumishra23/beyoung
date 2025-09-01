@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function ComboSection() {
   const scrollRef = useRef(null);
@@ -39,23 +40,19 @@ export default function ComboSection() {
 
       {/* Gallery with Buttons */}
       <div className="relative w-full overflow-hidden">
-        {/* Left Button (hidden on mobile) */}
-        <button
-          onClick={() => handleScroll("left")}
-          className="hidden sm:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
-        >
-          ◀
-        </button>
-
         {/* Scrollable Container */}
         <div
           ref={scrollRef}
           className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth scrollbar-hide pb-2"
         >
           {combos.map((combo, index) => (
-            <div
+            <motion.div
               key={index}
               className="group min-w-[160px] sm:min-w-[220px] bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-transparent hover:border-orange-400"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.05 }}
             >
               <div className="relative">
                 <img
@@ -68,26 +65,25 @@ export default function ComboSection() {
                   Combo #{index + 1}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-     {/* Left Button (hidden on mobile) */}
-<button
-  onClick={() => handleScroll("left")}
-  className="flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
->
-  ◀
-</button>
+        {/* Left Button */}
+        <button
+          onClick={() => handleScroll("left")}
+          className="flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
+        >
+          ◀
+        </button>
 
-{/* Right Button (hidden on mobile) */}
-<button
-  onClick={() => handleScroll("right")}
-  className="flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
->
-  ▶
-</button>
-
+        {/* Right Button */}
+        <button
+          onClick={() => handleScroll("right")}
+          className="flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
+        >
+          ▶
+        </button>
       </div>
 
       {/* Footer Note */}

@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { motion } from "framer-motion";
 
 const Productdata = [
   { image: "s1.webp", title: "Comfy Casual fashion", oldPrice: "2799", price: "899" },
@@ -48,9 +49,13 @@ const ProductGallery = () => {
             className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
           >
             {Productdata.concat(Productdata).map((item, idx) => (
-              <div
+              <motion.div
                 key={idx}
                 className="w-40 sm:w-48 md:w-56 flex-shrink-0 cursor-pointer group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
               >
                 {/* Image */}
                 <div className="w-full h-48 sm:h-60 md:h-[300px] overflow-hidden rounded-md">
@@ -74,7 +79,7 @@ const ProductGallery = () => {
                     {item.price}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 

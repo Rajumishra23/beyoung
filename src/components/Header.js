@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+
 
 const menuItems = {
   MEN: [
@@ -125,7 +127,7 @@ export default function Header() {
         <div className="max-w-[1440px] mx-auto flex items-center justify-between px-6 py-5">
 
           {/* Logo - Left */}
-          <div className="text-3xl font-bold tracking-wide cursor-pointer flex items-center">
+          <div className="text-4xl font-bold tracking-wide cursor-pointer flex items-center">
             DEMPSEY
             <span className="relative inline-block w-3 h-3 bg-black rounded-full top-[-2px] ml-[2px]"></span>
           </div>
@@ -262,35 +264,64 @@ export default function Header() {
           </div>
         )}
       </nav>
-
-     {/* Auto Sliding Banner */}
+{/* Auto Sliding Banner with Framer Motion */}
 <div className="relative w-full overflow-hidden">
-  <div
+  <motion.div
     ref={sliderRef}
-    className="flex w-full aspect-[16/10] overflow-hidden scroll-smooth m-0 p-0 gap-0"
+    className="flex w-full aspect-[16/10] overflow-hidden m-0 p-0 gap-0"
     style={{
       scrollSnapType: "x mandatory",
-      WebkitOverflowScrolling: "touch"
+      WebkitOverflowScrolling: "touch",
     }}
   >
-    {["tatas.webp", "tatas1.webp", "tatas2.webp", "tatas3.webp"].map(
-      (src, index) => (
-        <div
-          key={index}
-          className="w-full flex-shrink-0 flex items-center justify-center scroll-snap-align-start m-0 p-0"
-        >
-          <img
-            src={src}
-            alt={`Banner ${index + 1}`}
-            className="w-full h-full object-cover block select-none pointer-events-none"
-            draggable="false"
-          />
-        </div>
+    {[
+      { src: "tatas.webp", subtitle: "New Arrivals", title: "Upgrade Your Style Today", btn: "Shop Now" },
+      { src: "tatas1.webp", subtitle: "Hot Picks", title: "Summer Essentials Ready", btn: "Shop Now" },
+      { src: "tatas2.webp", subtitle: "Limited Time", title: "Exclusive Deals Inside", btn: "Shop Now" },
+      { src: "tatas3.webp", subtitle: "Fresh Trends", title: "Trendy Collections Now", btn: "Shop Now" },
+    ].map((banner, index) => (
+      <motion.div
+        key={index}
+        className="w-full flex-shrink-0 relative scroll-snap-align-start"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1, ease: "easeInOut" }}
+      >
+        {/* Banner Image */}
+        <img
+          src={banner.src}
+          alt={`Banner ${index + 1}`}
+          className="w-full h-full object-cover block select-none pointer-events-none"
+          draggable="false"
+        />
 
-            )
-          )}
-        </div>
-      </div>
+       {/* Left Text & Button Overlay */}
+<motion.div
+  className="absolute left-5 md:left-16 top-1/2 transform -translate-y-1/2 flex flex-col gap-2 max-w-md"
+  initial={{ x: -100, opacity: 0 }}
+  animate={{ x: 0, opacity: 1 }}
+  transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
+>
+  {/* Subtitle */}
+  <span className="text-sm md:text-base uppercase tracking-wider text-gray-200 bg-black/30 px-2 py-1 rounded drop-shadow-sm">
+    {banner.subtitle}
+  </span>
+
+  {/* Main Title */}
+  <h2 className="text-2xl md:text-3xl font-extrabold text-white bg-black/30 px-2 py-1 rounded drop-shadow-md leading-snug">
+    {banner.title}
+  </h2>
+
+  {/* Button */}
+  <button className="flex items-center gap-2 text-sm md:text-base bg-white text-black px-4 py-1 rounded-full shadow hover:bg-gray-50 font-semibold transition">
+    {banner.btn} →
+  </button>
+</motion.div>
+      </motion.div>
+    ))}
+  </motion.div>
+</div>
 
     </header>
   );
