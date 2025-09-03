@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const reviews = [
   {
@@ -36,26 +36,9 @@ const reviews = [
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsPerSlide, setItemsPerSlide] = useState(3);
-
-  // Responsive logic
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setItemsPerSlide(1); // mobile
-      } else {
-        setItemsPerSlide(3); // desktop
-      }
-    };
-
-    handleResize(); // run on mount
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const nextSlide = () => {
-    if (currentIndex < reviews.length - itemsPerSlide) {
+    if (currentIndex < reviews.length - 1) {
       setCurrentIndex((prev) => prev + 1);
     }
   };
@@ -65,6 +48,8 @@ const Testimonials = () => {
       setCurrentIndex((prev) => prev - 1);
     }
   };
+
+  const testimonial = reviews[currentIndex];
 
   return (
     <section className="bg-white text-black py-12 sm:py-16">
@@ -79,77 +64,51 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Slider Container */}
-        <div className="overflow-hidden relative">
-          <div
-            className="flex transition-transform duration-500"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / itemsPerSlide)}%)`,
-              width: `${(reviews.length / itemsPerSlide) * 100}%`,
-            }}
-          >
-            {reviews.map((testimonial, index) => (
-              <div
-                key={index}
-                className={`px-2`}
-                style={{ width: `${100 / itemsPerSlide}%` }}
-              >
-                <div
-                  className="relative bg-white p-6 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition text-center"
-                  style={{
-                    backgroundImage: `url('bg.webp')`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                  }}
-                >
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-white/85 rounded-xl z-0"></div>
-
-                  {/* Content */}
-                  <div className="relative z-10">
-                    <div
-                      className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300 shadow"
-                      style={{
-                        backgroundImage: `url(${testimonial.avatar})`,
-                      }}
-                    ></div>
-
-                    <p className="text-gray-700 italic mb-4 leading-relaxed text-sm sm:text-base">
-                      "{testimonial.review}"
-                    </p>
-
-                    <div className="font-semibold text-gray-900 text-base sm:text-lg">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-xs sm:text-sm text-indigo-600 mb-2">
-                      {testimonial.post}
-                    </div>
-                    <div className="mt-2 text-yellow-500 text-sm sm:text-lg">
-                      {"⭐".repeat(Math.round(testimonial.rating))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+        {/* Single Review Card */}
+        <div className="relative bg-white p-6 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition text-center max-w-xl mx-auto"
+          style={{
+            backgroundImage: `url('bg.webp')`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        >
+          <div className="absolute inset-0 bg-white/85 rounded-xl z-0"></div>
+          <div className="relative z-10">
+            <div
+              className="w-20 h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300 shadow"
+              style={{ backgroundImage: `url(${testimonial.avatar})` }}
+            ></div>
+            <p className="text-gray-700 italic mb-4 leading-relaxed text-base">
+              "{testimonial.review}"
+            </p>
+            <div className="font-semibold text-gray-900 text-lg">
+              {testimonial.name}
+            </div>
+            <div className="text-sm text-indigo-600 mb-2">
+              {testimonial.post}
+            </div>
+            <div className="mt-2 text-yellow-500 text-lg">
+              {"⭐".repeat(Math.round(testimonial.rating))}
+            </div>
           </div>
-
-          {/* Controls on sides */}
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-black/70 text-white shadow-md absolute top-1/2 -translate-y-1/2 -left-3 lg:-left-5 z-10 hover:bg-black transition disabled:opacity-40"
-          >
-            ◀
-          </button>
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex >= reviews.length - itemsPerSlide}
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-black/70 text-white shadow-md absolute top-1/2 -translate-y-1/2 -right-3 lg:-right-5 z-10 hover:bg-black transition disabled:opacity-40"
-          >
-            ▶
-          </button>
         </div>
+
+       {/* Controls Positioned Around Card */}
+<button
+  onClick={prevSlide}
+  disabled={currentIndex === 0}
+  className="absolute top-1/2 left-0 -translate-y-1/2 bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40"
+>
+  ◀
+</button>
+<button
+  onClick={nextSlide}
+  disabled={currentIndex >= reviews.length - 1}
+  className="absolute top-1/2 right-0 -translate-y-1/2 bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40"
+>
+  ▶
+</button>
       </div>
     </section>
   );
