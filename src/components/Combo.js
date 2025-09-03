@@ -10,7 +10,6 @@ export default function ComboSection() {
     { image: "combo3.webp" },
     { image: "combo4.webp" },
     { image: "combo5.webp" },
-   
     { image: "combo7.webp" },
     { image: "combo8.webp" },
     { image: "combo9.webp" },
@@ -20,8 +19,13 @@ export default function ComboSection() {
   const handleScroll = (dir) => {
     const container = scrollRef.current;
     if (!container) return;
+
+    // responsive scroll amount
+    const cardWidth =
+      window.innerWidth < 640 ? 160 : window.innerWidth < 1024 ? 220 : 250;
+
     container.scrollBy({
-      left: dir === "left" ? -300 : 300,
+      left: dir === "left" ? -cardWidth : cardWidth,
       behavior: "smooth",
     });
   };
@@ -48,7 +52,7 @@ export default function ComboSection() {
           {combos.map((combo, index) => (
             <motion.div
               key={index}
-              className="group min-w-[160px] sm:min-w-[220px] bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-transparent hover:border-orange-400"
+              className="group min-w-[140px] sm:min-w-[200px] md:min-w-[230px] lg:min-w-[250px] bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-transparent hover:border-orange-400"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -58,7 +62,7 @@ export default function ComboSection() {
                 <img
                   src={combo.image}
                   alt={`combo-${index + 1}`}
-                  className="w-full h-[200px] sm:h-[300px] object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px] object-cover transform group-hover:scale-105 transition-transform duration-500"
                 />
                 {/* Gradient Overlay */}
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/50 to-transparent p-2 text-white text-[10px] sm:text-xs">
@@ -72,7 +76,7 @@ export default function ComboSection() {
         {/* Left Button */}
         <button
           onClick={() => handleScroll("left")}
-          className="flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
+          className="flex absolute -left-3 sm:-left-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
         >
           ◀
         </button>
@@ -80,7 +84,7 @@ export default function ComboSection() {
         {/* Right Button */}
         <button
           onClick={() => handleScroll("right")}
-          className="flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-9 h-9 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
+          className="flex absolute -right-3 sm:-right-4 top-1/2 -translate-y-1/2 z-10 w-8 h-8 sm:w-10 sm:h-10 items-center justify-center rounded-full backdrop-blur-md bg-white/70 shadow-lg hover:bg-white transition"
         >
           ▶
         </button>

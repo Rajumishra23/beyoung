@@ -11,8 +11,17 @@ const wallets = [
 export default function WalletSection() {
   const sliderRef = useRef(null);
 
-  const scrollLeft = () => sliderRef.current.scrollBy({ left: -250, behavior: "smooth" });
-  const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: "smooth" });
+  const getScrollAmount = () => {
+    if (window.innerWidth < 640) return 180; // mobile card width
+    if (window.innerWidth < 1024) return 200; // tablet card width
+    return 220; // desktop card width
+  };
+
+  const scrollLeft = () =>
+    sliderRef.current.scrollBy({ left: -getScrollAmount(), behavior: "smooth" });
+
+  const scrollRight = () =>
+    sliderRef.current.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
 
   return (
     <section className="bg-gray-300 py-12 px-4 sm:px-6 md:px-12 overflow-hidden">
@@ -45,11 +54,17 @@ export default function WalletSection() {
                 className="w-full h-[220px] sm:h-[250px] md:h-[300px] object-cover"
               />
               <div className="p-3 border-t text-center">
-                <h3 className="text-sm sm:text-base font-semibold text-gray-900">{wallet.name}</h3>
+                <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                  {wallet.name}
+                </h3>
                 <p className="text-xs sm:text-sm text-gray-500">{wallet.tag}</p>
                 <div className="mt-2 flex items-center justify-center gap-2">
-                  <span className="text-base sm:text-lg font-bold text-gray-900">{wallet.price}</span>
-                  <span className="text-xs sm:text-sm font-semibold text-red-500">{wallet.discount}</span>
+                  <span className="text-base sm:text-lg font-bold text-gray-900">
+                    {wallet.price}
+                  </span>
+                  <span className="text-xs sm:text-sm font-semibold text-red-500">
+                    {wallet.discount}
+                  </span>
                 </div>
                 <div className="mt-1 text-xs sm:text-sm text-gray-600">
                   ⭐ {wallet.rating} | {wallet.reviews} reviews
@@ -59,22 +74,13 @@ export default function WalletSection() {
           ))}
         </div>
 
-      {/* Left Button */}
-<button
-  onClick={scrollLeft}
-  className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -left-3 lg:-left-5 z-10 hover:bg-gray-100 transition"
->
-  ◀
-</button>
-
-{/* Right Button */}
-<button
-  onClick={scrollRight}
-  className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -right-3 lg:-right-5 z-10 hover:bg-gray-100 transition"
->
-  ▶
-</button>
-
+        {/* Right Button */}
+        <button
+          onClick={scrollRight}
+          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -right-3 lg:-right-5 z-10 hover:bg-gray-100 transition"
+        >
+          ▶
+        </button>
       </div>
     </section>
   );

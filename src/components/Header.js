@@ -157,9 +157,10 @@ export default function Header() {
                 </div>
               </li>
             ))}
-            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((category) => (
-              <li key={category} className="cursor-pointer hover:text-pink-600">{category}</li>
-            ))}
+           {["NEW ARRIVALS", "COMBOS"].map((category) => (
+  <li key={category} className="cursor-pointer hover:text-pink-600">{category}</li>
+))}
+
           </ul>
 
           {/* Icons */}
@@ -282,7 +283,7 @@ export default function Header() {
   >
     {[ 
       { src: "tatas.webp", subtitle: "New Arrivals", title: "Upgrade Your Style Today", btn: "Shop Now" },
-      { src: "watchbanner1.webp", subtitle: "Hot Picks", title: "Summer Essentials Ready", btn: "Shop Now" },
+      { src: "", subtitle: "Hot Picks", title: "Summer Essentials Ready", btn: "Shop Now" },
       { src: "tatas2.webp", subtitle: "Limited Time", title: "Exclusive Deals Inside", btn: "Shop Now" },
       { src: "tatas3.webp", subtitle: "Fresh Trends", title: "Trendy Collections Now", btn: "Shop Now" },
     ].map((banner, index) => (
