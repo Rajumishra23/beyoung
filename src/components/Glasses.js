@@ -44,18 +44,16 @@ export default function GlassSection() {
         👓 Frame Your Vision
       </h2>
 
-      <div className="relative max-w-7xl mx-auto flex items-center overflow-hidden">
+      <div className="relative max-w-7xl mx-auto flex items-center">
         {/* Slider */}
-      <div
-  ref={sliderRef}
-  className="flex gap-4 sm:gap-6 flex-1 overflow-x-auto scrollbar-hide px-0 md:px-0"
->
+        <div
+          ref={sliderRef}
+          className="flex gap-4 sm:gap-6 flex-1 overflow-x-auto scrollbar-hide"
+        >
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
-              className="flex-shrink-0 w-1/2 sm:w-[220px] md:w-[260px] 
-                         bg-white rounded-md overflow-hidden relative 
-                         border border-gray-200 shadow-sm transition"
+              className="flex-shrink-0 w-1/2 sm:w-[220px] md:w-[240px] bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -70,41 +68,39 @@ export default function GlassSection() {
               <img
                 src={glass.image}
                 alt={glass.name}
-                className="w-full h-[220px] sm:h-[260px] md:h-[300px] object-contain mx-auto"
+                className="w-full h-[160px] sm:h-[200px] md:h-[220px] object-contain mx-auto"
               />
 
-              {/* Product Info (compact) */}
-              <div className="mt-2 px-3 pb-3 space-y-1 text-left">
+              {/* Product Info */}
+              <div className="mt-3 px-3 pb-4 space-y-1 text-left">
                 <h3
-                  className="text-sm sm:text-base font-semibold text-black truncate"
+                  className="text-base font-semibold text-black truncate"
                   title={glass.name}
                 >
                   {glass.name}
                 </h3>
 
-                <p className="text-[11px] sm:text-xs text-gray-500 font-medium tracking-wide">
+                <p className="text-xs text-gray-500 font-medium tracking-wide">
                   {glass.subName}
                 </p>
 
-                <div className="flex items-center gap-2 text-xs sm:text-sm">
-                  <span className="font-bold text-orange-600">
-                    {glass.price}
-                  </span>
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="font-bold text-orange-600">{glass.price}</span>
                   {glass.oldPrice && (
-                    <span className="line-through text-gray-400 text-[11px] sm:text-xs">
+                    <span className="line-through text-gray-400 text-xs">
                       {glass.oldPrice}
                     </span>
                   )}
                   {glass.discount && (
-                    <span className="text-green-600 font-medium text-[11px] sm:text-xs">
+                    <span className="text-green-600 font-medium text-xs">
                       {glass.discount} OFF
                     </span>
                   )}
                 </div>
 
-                <div className="text-[11px] sm:text-sm text-yellow-500 font-semibold">
+                <div className="text-sm text-yellow-500 font-semibold">
                   ⭐ {(4.2 + (index % 2) * 0.1).toFixed(1)}
-                  <span className="text-gray-500 text-[10px] sm:text-xs ml-1">
+                  <span className="text-gray-500 text-xs ml-1">
                     ({50 + index * 30} reviews)
                   </span>
                 </div>
@@ -113,26 +109,21 @@ export default function GlassSection() {
           ))}
         </div>
 
-       {/* Left Button */}
-<button
-  onClick={scrollLeft}
-  className="absolute left-2 md:left-0 top-1/2 transform -translate-y-1/2 
-             flex items-center justify-center w-10 h-10 rounded-full bg-white 
-             shadow-md hover:bg-gray-100 transition z-10"
->
-  ◀
-</button>
+        {/* Left Button */}
+        <button
+          onClick={scrollLeft}
+          className="absolute left-0 md:-left-5 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:bg-gray-100 transition z-10"
+        >
+          ◀
+        </button>
 
-{/* Right Button */}
-<button
-  onClick={scrollRight}
-  className="absolute right-2 md:right-0 top-1/2 transform -translate-y-1/2 
-             flex items-center justify-center w-10 h-10 rounded-full bg-white 
-             shadow-md hover:bg-gray-100 transition z-10"
->
-  ▶
-</button>
-
+        {/* Right Button */}
+        <button
+          onClick={scrollRight}
+          className="absolute right-0 md:-right-5 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:bg-gray-100 transition z-10"
+        >
+          ▶
+        </button>
       </div>
     </section>
   );
