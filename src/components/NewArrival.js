@@ -27,12 +27,12 @@ export default function NewArrival() {
   ];
 
   const categoryColors = {
-    "Shirts": { stripe: "rgba(59,130,246,0.3)", oval: "bg-blue-300", heading: "text-blue-700" },
-    "T-shirts": { stripe: "rgba(234,179,8,0.3)", oval: "bg-yellow-300", heading: "text-yellow-700" },
-    "Polo T-shirts": { stripe: "rgba(34,197,94,0.3)", oval: "bg-green-300", heading: "text-green-700" },
-    "Jeans": { stripe: "rgba(99,102,241,0.3)", oval: "bg-indigo-300", heading: "text-indigo-700" },
-    "Cargo Trousers": { stripe: "rgba(236,72,153,0.3)", oval: "bg-pink-300", heading: "text-pink-700" },
-    "View All": { stripe: "rgba(156,163,175,0.3)", oval: "bg-gray-300", heading: "text-gray-700" },
+    "Shirts": { stripe: "rgba(59,130,246,0.3)", oval: "bg-blue-300" },
+    "T-shirts": { stripe: "rgba(234,179,8,0.3)", oval: "bg-yellow-300" },
+    "Polo T-shirts": { stripe: "rgba(34,197,94,0.3)", oval: "bg-green-300" },
+    "Jeans": { stripe: "rgba(99,102,241,0.3)", oval: "bg-indigo-300" },
+    "Cargo Trousers": { stripe: "rgba(236,72,153,0.3)", oval: "bg-pink-300" },
+    "View All": { stripe: "rgba(156,163,175,0.3)", oval: "bg-gray-300" },
   };
 
   const [selectedCategory, setSelectedCategory] = useState("View All");
@@ -49,18 +49,10 @@ export default function NewArrival() {
     <section className="bg-white py-12 px-4 sm:px-6">
       {/* Heading */}
       <div className="text-center mb-10">
-        <div className="flex items-center justify-center gap-4">
-          <span className="flex-1 max-w-[80px] h-[2px] bg-black-600 relative">
-            <span className="absolute -left-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-r-[8px] border-r-red-600"></span>
-          </span>
-          <h2 className="text-3xl font-bold tracking-wide text-black-600">
-            NEW ARRIVALS
-          </h2>
-          <span className="flex-1 max-w-[80px] h-[2px] bg-black-600 relative">
-            <span className="absolute -right-2 top-1/2 -translate-y-1/2 w-0 h-0 border-t-[5px] border-t-transparent border-b-[5px] border-b-transparent border-l-[8px] border-l-red-600"></span>
-          </span>
-        </div>
-        <p className="mt-2 text-sm font-semibold text-white-600 uppercase tracking-wide">
+        <h2 className="text-3xl font-bold tracking-wide text-black">
+          NEW ARRIVALS
+        </h2>
+        <p className="mt-2 text-sm font-semibold text-gray-600 uppercase tracking-wide">
           HI-FASHION EXCLUSIVES FOR MOMENTS YOU'LL REPLAY
         </p>
       </div>
@@ -71,7 +63,7 @@ export default function NewArrival() {
           <button
             key={index}
             onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-1 text-sm font-medium rounded-full border ${
+            className={`px-4 py-1 text-xs font-medium rounded-full border ${
               selectedCategory === cat
                 ? "bg-black text-white"
                 : "bg-gray-100 text-black"
@@ -91,7 +83,7 @@ export default function NewArrival() {
               key={index}
               className="relative group overflow-hidden rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[320px] mx-auto"
             >
-              {/* Striped Background */}
+              {/* Background */}
               <div
                 className="absolute inset-0"
                 style={{
@@ -106,38 +98,51 @@ export default function NewArrival() {
               <img
                 src={item.image}
                 alt={item.title}
-                className="relative z-10 w-full h-56 sm:h-64 md:h-72 lg:h-96 xl:h-[500px] object-cover group-hover:scale-105 transition-transform duration-500"
+                className="relative z-10 w-full h-56 sm:h-64 md:h-72 lg:h-96 object-cover group-hover:scale-105 transition-transform duration-500"
               />
 
-            {/* Product Info shifted downwards (responsive for mobile) */}
-<div className="relative z-20 px-4 py-3 bg-white text-left space-y-1 -mt-2 sm:-mt-6">
-  <h3 className="text-base font-semibold text-black truncate" title={item.title}>
+             {/* Product Info (Smaller Box) */}
+<div className="relative z-20 px-2 py-1 bg-white text-left space-y-0.5 -mt-2 sm:-mt-3">
+  <h3 className="text-[10px] sm:text-xs font-semibold text-black truncate">
     {item.title}
   </h3>
 
-  <p className="text-xs text-gray-500 font-medium tracking-wide">
-    {item.category === "Shirts" ? "Everyday Classic" :
-     item.category === "Polo T-shirts" ? "Smart Casual" :
-     item.category === "Cargo Trousers" ? "Utility Fit" :
-     item.category === "Jeans" ? "Denim Essential" :
-     item.category === "T-shirts" ? "Relaxed Fit" : "Versatile Style"}
+  <p className="text-[8px] sm:text-[10px] text-gray-500 font-medium tracking-wide">
+    {item.category === "Shirts"
+      ? "Everyday Classic"
+      : item.category === "Polo T-shirts"
+      ? "Smart Casual"
+      : item.category === "Cargo Trousers"
+      ? "Utility Fit"
+      : item.category === "Jeans"
+      ? "Denim Essential"
+      : item.category === "T-shirts"
+      ? "Relaxed Fit"
+      : "Versatile Style"}
   </p>
 
-  <div className="flex items-center gap-2 text-sm">
-    <span className="font-bold text-black">₹{getDiscountedPrice(item.price, item.discount)}</span>
-    <span className="line-through text-gray-400 text-xs">₹{item.price}</span>
-    <span className="text-green-600 font-medium text-xs">{item.discount}% OFF</span>
+  <div className="flex items-center gap-1">
+    <span className="text-[10px] font-bold text-black">
+      ₹{getDiscountedPrice(item.price, item.discount)}
+    </span>
+    <span className="line-through text-[8px] text-gray-400">
+      ₹{item.price}
+    </span>
+    <span className="text-[8px] text-green-600 font-medium">
+      {item.discount}% OFF
+    </span>
   </div>
 
-  <div className="text-sm text-yellow-500 font-semibold">
+  <div className="text-[8px] text-yellow-500 font-semibold">
     ⭐ {(4 + (index % 2) + (item.discount % 3) * 0.1).toFixed(1)}
-    <span className="text-gray-500 text-xs ml-1">({100 + index * 17} reviews)</span>
+    <span className="text-gray-500 text-[7px] ml-1">
+      ({100 + index * 17} reviews)
+    </span>
   </div>
 </div>
 
-
-              {/* Wishlist Icon */}
-              <button className="absolute top-3 right-3 text-gray-500 hover:text-black-500 z-30">
+              {/* Wishlist */}
+              <button className="absolute top-3 right-3 text-gray-500 hover:text-black z-30">
                 <FaHeart />
               </button>
             </div>

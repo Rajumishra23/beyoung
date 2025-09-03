@@ -12,9 +12,9 @@ export default function WalletSection() {
   const sliderRef = useRef(null);
 
   const getScrollAmount = () => {
-    if (window.innerWidth < 640) return 180; // Mobile
-    if (window.innerWidth < 1024) return 200; // Tablet
-    return 220; // Desktop
+    if (window.innerWidth < 640) return 220; // Mobile
+    if (window.innerWidth < 1024) return 260; // Tablet
+    return 300; // Desktop
   };
 
   const scrollLeft = () =>
@@ -33,7 +33,7 @@ export default function WalletSection() {
         {/* Left Button */}
         <button
           onClick={scrollLeft}
-          className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -left-3 lg:-left-5 z-10 hover:bg-gray-100 transition"
+          className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-md absolute -left-4 lg:-left-6 z-10 hover:bg-gray-100 transition"
         >
           ◀
         </button>
@@ -41,32 +41,35 @@ export default function WalletSection() {
         {/* Slider */}
         <div
           ref={sliderRef}
-          className="flex gap-4 sm:gap-5 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
+          className="flex gap-5 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
         >
           {wallets.map((wallet, index) => (
             <div
               key={index}
-              className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] bg-white rounded-md overflow-hidden shadow hover:shadow-lg transition flex-shrink-0"
+              className="min-w-[180px] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[300px] 
+                         bg-white rounded-lg overflow-hidden shadow hover:shadow-lg 
+                         transition flex-shrink-0"
             >
               <img
                 src={wallet.image}
                 alt={wallet.name}
-                className="w-full h-[160px] sm:h-[200px] md:h-[220px] lg:h-[240px] object-cover"
+                className="w-full h-[200px] sm:h-[260px] md:h-[300px] lg:h-[340px] object-cover"
               />
-              <div className="p-3 border-t text-center">
-                <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+              {/* Compact Text Box */}
+              <div className="p-2 sm:p-3 border-t text-center">
+                <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
                   {wallet.name}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-500">{wallet.tag}</p>
-                <div className="mt-2 flex items-center justify-center gap-2">
-                  <span className="text-base sm:text-lg font-bold text-gray-900">
+                <p className="text-[10px] sm:text-xs text-gray-500">{wallet.tag}</p>
+                <div className="mt-1 flex items-center justify-center gap-2">
+                  <span className="text-sm sm:text-base font-bold text-gray-900">
                     {wallet.price}
                   </span>
-                  <span className="text-xs sm:text-sm font-semibold text-red-500">
+                  <span className="text-[10px] sm:text-xs font-semibold text-red-500">
                     {wallet.discount}
                   </span>
                 </div>
-                <div className="mt-1 text-xs sm:text-sm text-gray-600">
+                <div className="mt-0.5 text-[10px] sm:text-xs text-gray-600">
                   ⭐ {wallet.rating} | {wallet.reviews} reviews
                 </div>
               </div>
@@ -77,7 +80,7 @@ export default function WalletSection() {
         {/* Right Button */}
         <button
           onClick={scrollRight}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -right-3 lg:-right-5 z-10 hover:bg-gray-100 transition"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-md absolute -right-4 lg:-right-6 z-10 hover:bg-gray-100 transition"
         >
           ▶
         </button>

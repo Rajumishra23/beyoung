@@ -10,7 +10,7 @@ const categories = [
 
 export default function FashionCategories() {
   const scrollRef = useRef(null);
-  const speed = 3; // speed of auto-scroll
+  const speed = 0.5; // smaller = smoother
 
   // Preload images
   useEffect(() => {
@@ -26,15 +26,14 @@ export default function FashionCategories() {
 
     let reqId;
     let paused = false;
-
     const isMobile = window.innerWidth < 768;
 
     const autoScroll = () => {
       if (!paused) {
         slider.scrollLeft += speed;
-        const halfWidth = slider.scrollWidth / 2;
-        if (slider.scrollLeft >= halfWidth) {
-          slider.scrollLeft = 0;
+        // seamless reset
+        if (slider.scrollLeft >= slider.scrollWidth / 2) {
+          slider.scrollLeft -= slider.scrollWidth / 2;
         }
       }
       reqId = requestAnimationFrame(autoScroll);
@@ -42,13 +41,8 @@ export default function FashionCategories() {
 
     reqId = requestAnimationFrame(autoScroll);
 
-    // Mobile touch events
-    const handleTouchStart = () => {
-      if (isMobile) paused = true;
-    };
-    const handleTouchEnd = () => {
-      if (isMobile) paused = false;
-    };
+    const handleTouchStart = () => { if (isMobile) paused = true; };
+    const handleTouchEnd = () => { if (isMobile) paused = false; };
 
     slider.addEventListener("touchstart", handleTouchStart);
     slider.addEventListener("touchend", handleTouchEnd);
@@ -62,7 +56,6 @@ export default function FashionCategories() {
 
   return (
     <section className="bg-white py-12 overflow-hidden">
-      {/* Heading */}
       <div className="text-center mb-10 px-4">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
           <span className="text-black">MEN</span>
@@ -74,20 +67,18 @@ export default function FashionCategories() {
         </p>
       </div>
 
-      {/* Slider + Side Banner */}
       <div className="relative max-w-7xl mx-auto flex">
-        {/* Auto Sliding Cards */}
         <div className="relative flex-1 overflow-hidden">
           <div
             ref={scrollRef}
             className="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar select-none touch-pan-x"
           >
-            {categories.concat(categories).map((cat, index) => (
+            {/* duplicate list for seamless loop */}
+            {[...categories, ...categories].map((cat, index) => (
               <div
                 key={index}
                 className="min-w-[160px] sm:min-w-[200px] md:min-w-[250px] bg-white border-2 border-orange-500 rounded-md shadow-sm flex-shrink-0"
               >
-                {/* Image */}
                 <div className="w-full overflow-hidden h-[250px] sm:h-56 md:h-[300px]">
                   <img
                     src={cat.image}
@@ -96,8 +87,6 @@ export default function FashionCategories() {
                     draggable="false"
                   />
                 </div>
-
-                {/* Text */}
                 <div className="text-center py-3 px-2">
                   <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
                     {cat.title}
@@ -111,7 +100,6 @@ export default function FashionCategories() {
           </div>
         </div>
 
-        {/* Vertical Side Banner (desktop only) */}
         <div className="hidden md:flex items-center justify-center w-12 bg-gray-800 text-white font-bold text-sm tracking-wider">
           <span className="transform -rotate-90 whitespace-nowrap">
             UPTO ₹300 OFF

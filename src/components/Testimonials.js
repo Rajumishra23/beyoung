@@ -76,30 +76,35 @@ const Testimonials = () => {
             }}
           >
             {/* Mobile Layout */}
-            <div className="relative z-10 block sm:hidden text-left flex flex-col gap-3">
-              <div className="flex justify-between items-center text-sm text-white/90">
-                <span className="text-yellow-400 font-semibold">
-                  ⭐ {testimonial.rating.toFixed(1)}
-                </span>
-                <span className="text-xs">{testimonial.date}</span>
-              </div>
+<div className="relative z-10 block sm:hidden text-left flex flex-col gap-3">
+  <div className="flex justify-between items-center text-sm text-white/90">
+    {/* Rating */}
+    <span className="text-yellow-400 font-bold text-base">
+      ⭐ {testimonial.rating.toFixed(1)}
+    </span>
 
-              <p className="text-white italic leading-relaxed text-sm">
-                "{testimonial.review}"
-              </p>
+    {/* Date */}
+    <span className="text-xs font-bold text-white text-base">
+      {testimonial.date}
+    </span>
+  </div>
 
-              <div>
-                <div className="font-semibold text-white text-base">
-                  {testimonial.name}
-                </div>
-                <div className="text-sm text-yellow-300">{testimonial.post}</div>
-              </div>
+  <p className="text-white italic leading-relaxed text-sm">
+    "{testimonial.review}"
+  </p>
 
-              <div
-                className="w-full h-56 sm:h-48 rounded-md bg-cover bg-center border border-white/50 shadow"
-                style={{ backgroundImage: `url(${testimonial.avatar})` }}
-              ></div>
-            </div>
+  <div>
+    <div className="font-semibold text-white text-base">
+      {testimonial.name}
+    </div>
+    <div className="text-sm text-yellow-300">{testimonial.post}</div>
+  </div>
+
+  <div
+    className="w-full h-56 sm:h-48 rounded-md bg-cover bg-center border border-white/50 shadow"
+    style={{ backgroundImage: `url(${testimonial.avatar})` }}
+  ></div>
+</div>
 
             {/* Desktop Layout */}
             <div className="relative z-10 hidden sm:block text-center">

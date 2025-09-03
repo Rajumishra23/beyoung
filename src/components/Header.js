@@ -3,22 +3,53 @@ import { motion } from "framer-motion";
 
 const menuItems = {
   MEN: [
-    { title: "Topwear", links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"] },
-    { title: "Bottomwear", links: ["Jeans", "Casual Trousers", "Shorts", "Joggers"] },
-    { title: "Footwear", links: ["Casual Shoes", "Sneakers", "Sports Shoes", "Formal Shoes"] },
+    {
+      title: "Topwear:",
+      links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"],
+    },
+    {
+      title: "Bottomwear:",
+      links: ["Jeans", "Casual Trousers", "Shorts", "Joggers"],
+    },
+    {
+      title: "Footwear:",
+      links: ["Casual Shoes", "Sneakers", "Sports Shoes", "Formal Shoes"],
+    },
   ],
   WOMEN: [
-    { title: "Indian & Fusion Wear", links: ["Kurtas & Suits", "Sarees", "Lehenga Cholis", "Dupattas"] },
-    { title: "Western Wear", links: ["Dresses", "Tops", "T-Shirts", "Jeans", "Jackets"] },
-    { title: "Footwear", links: ["Flats", "Heels", "Boots", "Sports Shoes"] },
+    { title: "Indian & Fusion Wear:", links: ["Kurtas & Suits", "Sarees", "Lehenga Cholis", "Dupattas"] },
+    { title: "Western Wear:", links: ["Dresses", "Tops", "T-Shirts", "Jeans", "Jackets"] },
+    { title: "Footwear:", links: ["Flats", "Heels", "Boots", "Sports Shoes"] },
+    {
+      title: "Lingerie & Innerwear:",
+      links: [
+        "Bras",
+        "Panties",
+        "Shapewear",
+        "Sleepwear",
+        "Camisoles & Slips",
+        "Bridal Lingerie",
+        "Lounge Bras",
+        "Bodysuits",
+        "Corsets & Bustiers",
+        "Babydolls",
+        "Chemises",
+        "Stockings",
+        "Garter Belts",
+        "Thermals",
+        "Maternity Lingerie",
+        "Seamless Wear",
+        "Activewear Bras",
+      ],
+    },
   ],
   WATCHES: [
-    { title: "MEN'S WATCHES", links: ["Analog", "Digital", "Smartwatches"] },
-    { title: "WOMEN'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
-    { title: "KID'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
+    { title: "MEN'S WATCHES:", links: ["Analog", "Digital", "Smartwatches"] },
+    { title: "WOMEN'S WATCHES:", links: ["Analog", "Smartwatches", "Fitness Bands"] },
+    { title: "KID'S WATCHES:", links: ["Analog", "Smartwatches", "Fitness Bands"] },
   ],
-  ACCESSORIES: [{ title: "Items", links: ["Wallets", "Glasses", "Belts", "Bags"] }],
-  GIFTHAMPERS: [{ title: "Items", links: ["Gift for couples", "Gift for her"] }],
+  ACCESSORIES: [{ title: "Items:", links: ["Wallets", "Glasses", "Belts", "Bags"] }],
+  GIFTHAMPERS: [{ title: "Items:", links: ["Gift for couples", "Gift for her"] }],
 };
 
 export default function Header() {
@@ -36,6 +67,8 @@ export default function Header() {
     "Search for wallets...",
     "Search for belts...",
     "Search for bags...",
+    "Search for bras...",
+    "Search for panties...",
   ];
 
   // Rotating placeholders
@@ -123,15 +156,21 @@ export default function Header() {
           {/* Menu */}
           <ul className="flex gap-8 text-sm font-bold tracking-wide text-gray-800">
             {Object.keys(menuItems).map((category) => (
-              <li key={category} className="group relative cursor-pointer hover:text-pink-600">
+              <li
+                key={category}
+                className="group relative cursor-pointer hover:text-pink-600"
+              >
                 {category}
-                <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-48 z-50">
+                <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-56 z-50">
                   {menuItems[category].map((section, idx) => (
                     <div key={idx} className="p-3 border-b last:border-b-0">
-                      <h4 className="font-semibold">{section.title}</h4>
+                      <h4 className="font-semibold text-black">{section.title}</h4>
                       <ul className="mt-1 space-y-1 text-sm">
                         {section.links.map((link, i) => (
-                          <li key={i} className="hover:text-pink-600 cursor-pointer">
+                          <li
+                            key={i}
+                            className="text-black hover:text-pink-600 cursor-pointer"
+                          >
                             {link}
                           </li>
                         ))}
@@ -169,14 +208,14 @@ export default function Header() {
         <nav className="md:hidden flex items-center justify-between px-4 py-3 relative">
           {/* Hamburger Left */}
           <button
-            className="text-3xl font-bold absolute left-4 top-1/2 -translate-y-1/2"
+            className="text-5xl font-bold absolute left-4 top-1/2 -translate-y-1/2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? "×" : "☰"}
           </button>
 
           {/* Logo Center */}
-          <div className="mx-auto text-2xl font-bold cursor-pointer">DEMPSEY</div>
+          <div className="mx-auto text-4xl font-bold cursor-pointer">DEMPSEY</div>
 
           {/* Cart Right */}
           <div className="absolute right-4 top-1/2 -translate-y-1/2">
@@ -206,7 +245,7 @@ export default function Header() {
             {Object.keys(menuItems).map((category) => (
               <div key={category}>
                 <button
-                  className="w-full flex justify-between items-center text-gray-700 font-medium hover:text-pink-600"
+                  className="w-full flex justify-between items-center text-black font-medium hover:text-pink-600"
                   onClick={() => toggleMobileDropdown(category)}
                 >
                   {category} <span>{mobileDropdowns[category] ? "−" : "+"}</span>
@@ -215,10 +254,13 @@ export default function Header() {
                   <div className="pl-4 mt-2">
                     {menuItems[category].map((section, idx) => (
                       <div key={idx} className="mb-2">
-                        <h4 className="font-semibold">{section.title}</h4>
+                        <h4 className="font-semibold text-black">{section.title}</h4>
                         <ul className="space-y-1 text-sm">
                           {section.links.map((link, i) => (
-                            <li key={i} className="hover:text-pink-600 cursor-pointer">
+                            <li
+                              key={i}
+                              className="text-black hover:text-pink-600 cursor-pointer"
+                            >
                               {link}
                             </li>
                           ))}
@@ -263,7 +305,7 @@ export default function Header() {
 
       {/* Banner */}
       <section className="relative w-full overflow-hidden">
-        <motion.div ref={sliderRef} className="flex w-full aspect-[16/12] overflow-hidden">
+        <motion.div ref={sliderRef} className="flex w-full overflow-hidden">
           {[
             {
               src: "tatas.webp",
@@ -285,12 +327,19 @@ export default function Header() {
             },
           ].map((banner, i) => (
             <motion.div key={i} className="w-full flex-shrink-0 relative">
-              <img src={banner.src} alt="" className="w-full h-full object-cover" />
-              {/* Shift text slightly lower on mobile */}
+              <img
+                src={banner.src}
+                alt=""
+                className="w-full h-[280px] sm:h-[350px] md:h-[520px] object-cover"
+              />
               <div className="absolute left-5 md:left-16 top-[70%] md:top-1/2 -translate-y-1/2 text-white space-y-2">
-                <span className="bg-black/40 px-2 py-1 rounded">{banner.subtitle}</span>
-                <h2 className="text-2xl md:text-3xl font-bold">{banner.title}</h2>
-                <button className="bg-white text-black px-4 py-1 rounded-full">
+                <span className="bg-black/40 px-2 py-1 rounded text-sm md:text-base">
+                  {banner.subtitle}
+                </span>
+                <h2 className="text-2xl md:text-4xl font-semibold md:font-extrabold drop-shadow-lg">
+                  {banner.title}
+                </h2>
+                <button className="bg-white text-black px-4 py-2 rounded-full shadow-md font-semibold hover:bg-gray-100 transition">
                   {banner.btn} →
                 </button>
               </div>

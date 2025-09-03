@@ -12,8 +12,8 @@ const watchCategories = [
 export default function WatchSection() {
   const sliderRef = useRef(null);
 
-  const scrollLeft = () => sliderRef.current.scrollBy({ left: -200, behavior: "smooth" });
-  const scrollRight = () => sliderRef.current.scrollBy({ left: 200, behavior: "smooth" });
+  const scrollLeft = () => sliderRef.current.scrollBy({ left: -250, behavior: "smooth" });
+  const scrollRight = () => sliderRef.current.scrollBy({ left: 250, behavior: "smooth" });
 
   return (
     <section className="py-10 sm:py-12 px-4 sm:px-6 md:px-6 bg-yellow-50">
@@ -26,7 +26,7 @@ export default function WatchSection() {
         {/* Left Button */}
         <button
           onClick={scrollLeft}
-          className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -left-3 lg:-left-5 z-10 hover:bg-gray-100 transition"
+          className="hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-md absolute -left-4 lg:-left-6 z-10 hover:bg-gray-100 transition"
         >
           ◀
         </button>
@@ -34,26 +34,26 @@ export default function WatchSection() {
         {/* Slider */}
         <div
           ref={sliderRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4"
+          className="flex gap-5 sm:gap-7 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4"
         >
           {watchCategories.map((item, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 w-[160px] sm:w-[200px] md:w-[240px] snap-start cursor-pointer group
-                         bg-white rounded-md overflow-hidden 
+              className="flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] snap-start cursor-pointer group
+                         bg-white rounded-lg overflow-hidden 
                          border border-green-500 hover:border-gray-400 
-                         shadow-sm hover:shadow-md transition"
+                         shadow-md hover:shadow-lg transition"
             >
-              <div className="relative w-full h-[180px] sm:h-[250px] md:h-[300px] overflow-hidden">
+              <div className="relative w-full h-[220px] sm:h-[280px] md:h-[340px] overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.brand}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
-              <div className="px-3 py-3 text-center">
-                <h3 className="text-xs sm:text-sm font-semibold text-gray-900">{item.brand}</h3>
-                <p className="text-[10px] sm:text-xs text-gray-600 mt-1 font-medium">{item.discountText}</p>
+              <div className="px-4 py-4 text-center">
+                <h3 className="text-sm sm:text-base font-semibold text-gray-900">{item.brand}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 mt-1 font-medium">{item.discountText}</p>
               </div>
             </div>
           ))}
@@ -62,7 +62,7 @@ export default function WatchSection() {
         {/* Right Button */}
         <button
           onClick={scrollRight}
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md absolute -right-3 lg:-right-5 z-10 hover:bg-gray-100 transition"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-md absolute -right-4 lg:-right-6 z-10 hover:bg-gray-100 transition"
         >
           ▶
         </button>
