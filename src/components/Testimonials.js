@@ -101,7 +101,7 @@ const Testimonials = () => {
               </div>
 
               <div
-                className="w-full h-40 rounded-md bg-cover bg-center border border-gray-300 shadow"
+                className="w-full h-56 sm:h-48 rounded-md bg-cover bg-center border border-gray-300 shadow"
                 style={{ backgroundImage: `url(${testimonial.avatar})` }}
               ></div>
             </div>
@@ -127,18 +127,35 @@ const Testimonials = () => {
         </div>
 
         {/* Controls */}
-        <div className="flex justify-between items-center mt-6 sm:mt-0 sm:absolute sm:top-1/2 sm:left-0 sm:right-0 sm:px-4">
+        <div className="flex justify-between items-center mt-4 sm:mt-0 sm:absolute sm:top-1/2 sm:left-0 sm:right-0 sm:px-4">
+          {/* Mobile buttons outside image */}
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40"
+            className="sm:hidden bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40 -translate-x-4"
           >
             ◀
           </button>
           <button
             onClick={nextSlide}
             disabled={currentIndex >= reviews.length - 1}
-            className="bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40"
+            className="sm:hidden bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40 translate-x-4"
+          >
+            ▶
+          </button>
+
+          {/* Desktop buttons remain same */}
+          <button
+            onClick={prevSlide}
+            disabled={currentIndex === 0}
+            className="hidden sm:flex bg-black/70 text-white rounded-full w-8 h-8 items-center justify-center hover:bg-black transition disabled:opacity-40"
+          >
+            ◀
+          </button>
+          <button
+            onClick={nextSlide}
+            disabled={currentIndex >= reviews.length - 1}
+            className="hidden sm:flex bg-black/70 text-white rounded-full w-8 h-8 items-center justify-center hover:bg-black transition disabled:opacity-40"
           >
             ▶
           </button>

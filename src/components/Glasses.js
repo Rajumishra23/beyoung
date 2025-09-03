@@ -53,7 +53,7 @@ export default function GlassSection() {
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
-              className="min-w-[70%] sm:min-w-[220px] md:min-w-[240px] bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
+              className="flex-shrink-0 w-1/2 sm:w-[220px] md:w-[240px] bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
