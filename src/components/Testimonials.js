@@ -64,51 +64,55 @@ const Testimonials = () => {
           </p>
         </div>
 
-        {/* Single Review Card */}
-        <div className="relative bg-white p-6 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition text-center max-w-xl mx-auto"
-          style={{
-            backgroundImage: `url('bg.webp')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <div className="absolute inset-0 bg-white/85 rounded-xl z-0"></div>
-          <div className="relative z-10">
-            <div
-              className="w-20 h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300 shadow"
-              style={{ backgroundImage: `url(${testimonial.avatar})` }}
-            ></div>
-            <p className="text-gray-700 italic mb-4 leading-relaxed text-base">
-              "{testimonial.review}"
-            </p>
-            <div className="font-semibold text-gray-900 text-lg">
-              {testimonial.name}
-            </div>
-            <div className="text-sm text-indigo-600 mb-2">
-              {testimonial.post}
-            </div>
-            <div className="mt-2 text-yellow-500 text-lg">
-              {"⭐".repeat(Math.round(testimonial.rating))}
+        {/* Review Card */}
+        <div className="overflow-x-auto sm:overflow-visible">
+          <div
+            className="relative bg-white p-6 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition text-center 
+                       w-full max-w-[90%] sm:max-w-[80%] md:max-w-xl mx-auto"
+            style={{
+              backgroundImage: `url('bg.webp')`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            <div className="absolute inset-0 bg-white/85 rounded-xl z-0"></div>
+            <div className="relative z-10">
+              <div
+                className="w-16 sm:w-20 h-16 sm:h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300 shadow"
+                style={{ backgroundImage: `url(${testimonial.avatar})` }}
+              ></div>
+              <p className="text-gray-700 italic mb-4 leading-relaxed text-sm sm:text-base">
+                "{testimonial.review}"
+              </p>
+              <div className="font-semibold text-gray-900 text-base sm:text-lg">
+                {testimonial.name}
+              </div>
+              <div className="text-sm text-indigo-600 mb-2">{testimonial.post}</div>
+              <div className="mt-2 text-yellow-500 text-lg">
+                {"⭐".repeat(Math.round(testimonial.rating))}
+              </div>
             </div>
           </div>
         </div>
 
-       {/* Controls Positioned Around Card */}
-<button
-  onClick={prevSlide}
-  disabled={currentIndex === 0}
-  className="absolute top-1/2 left-0 -translate-y-1/2 bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40"
->
-  ◀
-</button>
-<button
-  onClick={nextSlide}
-  disabled={currentIndex >= reviews.length - 1}
-  className="absolute top-1/2 right-0 -translate-y-1/2 bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40"
->
-  ▶
-</button>
+        {/* Controls */}
+        <div className="flex justify-between items-center mt-6 sm:mt-0 sm:absolute sm:top-1/2 sm:left-0 sm:right-0 sm:px-4">
+          <button
+            onClick={prevSlide}
+            disabled={currentIndex === 0}
+            className="bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40"
+          >
+            ◀
+          </button>
+          <button
+            onClick={nextSlide}
+            disabled={currentIndex >= reviews.length - 1}
+            className="bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40"
+          >
+            ▶
+          </button>
+        </div>
       </div>
     </section>
   );

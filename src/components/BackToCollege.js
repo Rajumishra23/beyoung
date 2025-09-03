@@ -70,7 +70,7 @@ export default function BackToCollege() {
         <div className="absolute top-1/2 left-0 -translate-y-1/2 px-2">
           <button
             onClick={prevSlide}
-            className="bg-black text-white px-3 py-1 rounded-full text-lg"
+            className="bg-white text-black px-3 py-1 rounded-full text-lg"
           >
             ←
           </button>
@@ -78,7 +78,7 @@ export default function BackToCollege() {
         <div className="absolute top-1/2 right-0 -translate-y-1/2 px-2">
           <button
             onClick={nextSlide}
-            className="bg-black text-white px-3 py-1 rounded-full text-lg"
+            className="bg-white text-black px-3 py-1 rounded-full text-lg"
           >
             →
           </button>

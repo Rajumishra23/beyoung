@@ -12,9 +12,9 @@ export default function WomenClothingSlider() {
   const sliderRef = useRef(null);
 
   const scrollLeft = () =>
-    sliderRef.current.scrollBy({ left: -200, behavior: "smooth" });
+    sliderRef.current.scrollBy({ left: sliderRef.current.offsetWidth / 2, behavior: "smooth" });
   const scrollRight = () =>
-    sliderRef.current.scrollBy({ left: 200, behavior: "smooth" });
+    sliderRef.current.scrollBy({ left: sliderRef.current.offsetWidth / 2, behavior: "smooth" });
 
   return (
     <section className="py-10 sm:py-12 px-4 sm:px-6 md:px-12 bg-white overflow-hidden">
@@ -39,10 +39,14 @@ export default function WomenClothingSlider() {
           {WomenCategories.map((item, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 w-1/2 sm:w-[220px] md:w-[250px] 
-                         bg-white rounded-md overflow-hidden 
-                         border border-gray-200 hover:border-gray-400 
-                         shadow-sm hover:shadow-md transition"
+              className="
+                flex-shrink-0
+                w-[calc(50%-8px)]  /* 2 cards fit with 8px gap on mobile */
+                sm:w-[220px] md:w-[250px] 
+                bg-white rounded-md overflow-hidden 
+                border border-gray-200 hover:border-gray-400 
+                shadow-sm hover:shadow-md transition
+              "
             >
               <div className="relative">
                 <img
@@ -58,9 +62,7 @@ export default function WomenClothingSlider() {
               </div>
 
               <div className="px-2 sm:px-4 py-3 sm:py-4 text-center">
-                <h3 className="text-sm sm:text-base font-semibold text-gray-900">
-                  {item.title}
-                </h3>
+                <h3 className="text-sm sm:text-base font-semibold text-gray-900">{item.title}</h3>
                 <p className="text-xs sm:text-sm mt-1 text-gray-600">{item.description}</p>
                 <div className="mt-2 sm:mt-3">
                   <span className="inline-block px-3 py-1 text-xs sm:text-sm font-medium 

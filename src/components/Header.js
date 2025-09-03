@@ -287,7 +287,7 @@ export default function Header() {
             <motion.div key={i} className="w-full flex-shrink-0 relative">
               <img src={banner.src} alt="" className="w-full h-full object-cover" />
               {/* Shift text slightly lower on mobile */}
-              <div className="absolute left-5 md:left-16 top-[60%] md:top-1/2 -translate-y-1/2 text-white space-y-2">
+              <div className="absolute left-5 md:left-16 top-[70%] md:top-1/2 -translate-y-1/2 text-white space-y-2">
                 <span className="bg-black/40 px-2 py-1 rounded">{banner.subtitle}</span>
                 <h2 className="text-2xl md:text-3xl font-bold">{banner.title}</h2>
                 <button className="bg-white text-black px-4 py-1 rounded-full">

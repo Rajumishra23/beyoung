@@ -10,7 +10,7 @@ const categories = [
 
 export default function FashionCategories() {
   const scrollRef = useRef(null);
-  const speed = 3; // increase speed for faster sliding
+  const speed = 3; // speed of auto-scroll
 
   // Preload images
   useEffect(() => {
@@ -25,18 +25,39 @@ export default function FashionCategories() {
     if (!slider) return;
 
     let reqId;
+    let paused = false;
+
+    const isMobile = window.innerWidth < 768;
 
     const autoScroll = () => {
-      slider.scrollLeft += speed;
-      const halfWidth = slider.scrollWidth / 2;
-      if (slider.scrollLeft >= halfWidth) {
-        slider.scrollLeft = 0;
+      if (!paused) {
+        slider.scrollLeft += speed;
+        const halfWidth = slider.scrollWidth / 2;
+        if (slider.scrollLeft >= halfWidth) {
+          slider.scrollLeft = 0;
+        }
       }
       reqId = requestAnimationFrame(autoScroll);
     };
 
     reqId = requestAnimationFrame(autoScroll);
-    return () => cancelAnimationFrame(reqId);
+
+    // Mobile touch events
+    const handleTouchStart = () => {
+      if (isMobile) paused = true;
+    };
+    const handleTouchEnd = () => {
+      if (isMobile) paused = false;
+    };
+
+    slider.addEventListener("touchstart", handleTouchStart);
+    slider.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      cancelAnimationFrame(reqId);
+      slider.removeEventListener("touchstart", handleTouchStart);
+      slider.removeEventListener("touchend", handleTouchEnd);
+    };
   }, []);
 
   return (
@@ -59,7 +80,7 @@ export default function FashionCategories() {
         <div className="relative flex-1 overflow-hidden">
           <div
             ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-hidden no-scrollbar select-none"
+            className="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar select-none touch-pan-x"
           >
             {categories.concat(categories).map((cat, index) => (
               <div

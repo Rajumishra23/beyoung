@@ -37,7 +37,7 @@ export default function MostWantedCategories() {
             <img
               src={item.image}
               alt={item.title}
-              className="w-full h-56 sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-72 sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
             />
 
             {/* Overlay Title */}

@@ -2,10 +2,32 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 
 const glasses = [
-  { name: "SmartBuy Collection", subName: "Noam CP110", image: "glasses.webp", price: "₹1,750", oldPrice: "₹3,500", discount: "-50%" },
-  { name: "Vuarnet", subName: "VL1918 RACING REGULAR Polarized 0008 1626", image: "glasses1.webp", price: "₹11,906" },
-  { name: "Ralph by Ralph Lauren", subName: "RA7158U 5001", image: "glasses2.webp", price: "₹8,834" },
-  { name: "Montana Eyewear", subName: "MP198 Polarized MP198", image: "glasses3.webp", price: "₹1,836" },
+  {
+    name: "SmartBuy Collection",
+    subName: "Noam CP110",
+    image: "glasses.webp",
+    price: "₹1,750",
+    oldPrice: "₹3,500",
+    discount: "-50%",
+  },
+  {
+    name: "Vuarnet",
+    subName: "VL1918 RACING REGULAR Polarized 0008 1626",
+    image: "glasses1.webp",
+    price: "₹11,906",
+  },
+  {
+    name: "Ralph by Ralph Lauren",
+    subName: "RA7158U 5001",
+    image: "glasses2.webp",
+    price: "₹8,834",
+  },
+  {
+    name: "Montana Eyewear",
+    subName: "MP198 Polarized MP198",
+    image: "glasses3.webp",
+    price: "₹1,836",
+  },
 ];
 
 export default function GlassSection() {
@@ -26,16 +48,12 @@ export default function GlassSection() {
         {/* Slider */}
         <div
           ref={sliderRef}
-          className="flex gap-4 sm:gap-6 flex-1 overflow-hidden"
+          className="flex gap-4 sm:gap-6 flex-1 overflow-x-auto scrollbar-hide"
         >
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
-              className="
-                min-w-[50%] sm:min-w-[220px] md:min-w-[240px] 
-                bg-white rounded-md overflow-hidden text-center relative
-                border border-gray-200 shadow-sm transition
-              "
+              className="min-w-[70%] sm:min-w-[220px] md:min-w-[240px] bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -53,19 +71,38 @@ export default function GlassSection() {
                 className="w-full h-[160px] sm:h-[200px] md:h-[220px] object-contain mx-auto"
               />
 
-              <div className="mt-3 px-2 pb-4">
-                <h3 className="text-sm md:text-base font-semibold text-gray-900">
+              {/* Product Info */}
+              <div className="mt-3 px-3 pb-4 space-y-1 text-left">
+                <h3
+                  className="text-base font-semibold text-black truncate"
+                  title={glass.name}
+                >
                   {glass.name}
                 </h3>
-                <p className="text-xs md:text-sm text-gray-500">{glass.subName}</p>
 
-                <div className="mt-2 flex items-center justify-center gap-2">
-                  <span className="text-lg md:text-xl font-bold text-orange-600">
-                    {glass.price}
-                  </span>
+                <p className="text-xs text-gray-500 font-medium tracking-wide">
+                  {glass.subName}
+                </p>
+
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="font-bold text-orange-600">{glass.price}</span>
                   {glass.oldPrice && (
-                    <span className="text-sm text-gray-400 line-through">{glass.oldPrice}</span>
+                    <span className="line-through text-gray-400 text-xs">
+                      {glass.oldPrice}
+                    </span>
                   )}
+                  {glass.discount && (
+                    <span className="text-green-600 font-medium text-xs">
+                      {glass.discount} OFF
+                    </span>
+                  )}
+                </div>
+
+                <div className="text-sm text-yellow-500 font-semibold">
+                  ⭐ {(4.2 + (index % 2) * 0.1).toFixed(1)}
+                  <span className="text-gray-500 text-xs ml-1">
+                    ({50 + index * 30} reviews)
+                  </span>
                 </div>
               </div>
             </motion.div>

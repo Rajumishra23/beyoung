@@ -83,13 +83,13 @@ export default function NewArrival() {
       </div>
 
       {/* Product Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {filteredProducts.map((item, index) => {
           const theme = categoryColors[item.category] || categoryColors["View All"];
           return (
             <div
               key={index}
-              className="relative group overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300"
+              className="relative group overflow-hidden rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[320px] mx-auto"
             >
               {/* Striped Background */}
               <div
@@ -103,28 +103,37 @@ export default function NewArrival() {
               <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${theme.oval} opacity-50`}></div>
 
               {/* Product Image */}
-<img
-  src={item.image}
-  alt={item.title}
-  className="relative z-10 w-full 
-             h-80 sm:h-96 md:h-[450px] lg:h-[550px] 
-             object-cover group-hover:scale-105 
-             transition-transform duration-500"
-/>
+              <img
+                src={item.image}
+                alt={item.title}
+                className="relative z-10 w-full h-56 sm:h-64 md:h-72 lg:h-96 xl:h-[500px] object-cover group-hover:scale-105 transition-transform duration-500"
+              />
 
-              {/* Product Info */}
-              <div className="relative z-20 p-4 bg-white">
-                <h3 className={`text-sm font-semibold ${theme.heading}`}>{item.title}</h3>
-                <p className="text-sm text-gray-600 mt-1">
-                  <span className="line-through mr-2">₹{item.price}</span>
-                  <span className="font-bold text-black">
-                    ₹{getDiscountedPrice(item.price, item.discount)}
-                  </span>
-                  <span className="text-green-500 ml-2">
-                    {item.discount}% OFF
-                  </span>
-                </p>
-              </div>
+            {/* Product Info */}
+<div className="relative z-20 px-4 py-3 bg-white text-left space-y-1">
+  <h3 className="text-base font-semibold text-black truncate" title={item.title}>
+    {item.title}
+  </h3>
+
+  <p className="text-xs text-gray-500 font-medium tracking-wide">
+    {item.category === "Shirts" ? "Everyday Classic" :
+     item.category === "Polo T-shirts" ? "Smart Casual" :
+     item.category === "Cargo Trousers" ? "Utility Fit" :
+     item.category === "Jeans" ? "Denim Essential" :
+     item.category === "T-shirts" ? "Relaxed Fit" : "Versatile Style"}
+  </p>
+
+  <div className="flex items-center gap-2 text-sm">
+    <span className="font-bold text-black">₹{getDiscountedPrice(item.price, item.discount)}</span>
+    <span className="line-through text-gray-400 text-xs">₹{item.price}</span>
+    <span className="text-green-600 font-medium text-xs">{item.discount}% OFF</span>
+  </div>
+
+  <div className="text-sm text-yellow-500 font-semibold">
+    ⭐ {(4 + (index % 2) + (item.discount % 3) * 0.1).toFixed(1)}
+    <span className="text-gray-500 text-xs ml-1">({100 + index * 17} reviews)</span>
+  </div>
+</div>
 
               {/* Wishlist Icon */}
               <button className="absolute top-3 right-3 text-gray-500 hover:text-black-500 z-30">
