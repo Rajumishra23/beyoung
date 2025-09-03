@@ -45,11 +45,11 @@ export default function WalletSection() {
         >
           {wallets.map((wallet, index) => (
             <div
-              key={index}
-              className="min-w-[180px] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[300px] 
-                         bg-white rounded-lg overflow-hidden shadow hover:shadow-lg 
-                         transition flex-shrink-0"
-            >
+  key={index}
+  className="min-w-[45%] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[300px] 
+             bg-white rounded-lg overflow-hidden shadow hover:shadow-lg 
+             transition flex-shrink-0"
+>
               <img
                 src={wallet.image}
                 alt={wallet.name}

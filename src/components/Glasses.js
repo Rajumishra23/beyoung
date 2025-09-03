@@ -46,10 +46,10 @@ export default function GlassSection() {
 
       <div className="relative max-w-7xl mx-auto flex items-center overflow-hidden">
         {/* Slider */}
-        <div
-          ref={sliderRef}
-          className="flex gap-4 sm:gap-6 flex-1 overflow-x-auto scrollbar-hide touch-none"
-        >
+       <div
+  ref={sliderRef}
+  className="flex gap-4 sm:gap-6 flex-1 overflow-x-auto scrollbar-hide pl-4 sm:pl-6 md:pl-0"
+>
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
@@ -113,25 +113,26 @@ export default function GlassSection() {
           ))}
         </div>
 
-        {/* Left Button */}
-        <button
-          onClick={scrollLeft}
-          className="absolute left-0 md:-left-5 top-1/2 transform -translate-y-1/2 
-                     flex items-center justify-center w-10 h-10 rounded-full bg-white 
-                     shadow-md hover:bg-gray-100 transition z-10"
-        >
-          ◀
-        </button>
+       {/* Left Button */}
+<button
+  onClick={scrollLeft}
+  className="absolute left-2 md:left-0 top-1/2 transform -translate-y-1/2 
+             flex items-center justify-center w-10 h-10 rounded-full bg-white 
+             shadow-md hover:bg-gray-100 transition z-10"
+>
+  ◀
+</button>
 
-        {/* Right Button */}
-        <button
-          onClick={scrollRight}
-          className="absolute right-0 md:-right-5 top-1/2 transform -translate-y-1/2 
-                     flex items-center justify-center w-10 h-10 rounded-full bg-white 
-                     shadow-md hover:bg-gray-100 transition z-10"
-        >
-          ▶
-        </button>
+{/* Right Button */}
+<button
+  onClick={scrollRight}
+  className="absolute right-2 md:right-0 top-1/2 transform -translate-y-1/2 
+             flex items-center justify-center w-10 h-10 rounded-full bg-white 
+             shadow-md hover:bg-gray-100 transition z-10"
+>
+  ▶
+</button>
+
       </div>
     </section>
   );

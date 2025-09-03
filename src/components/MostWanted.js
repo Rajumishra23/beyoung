@@ -27,7 +27,7 @@ export default function MostWantedCategories() {
         {categories.map((item, index) => (
           <motion.div
             key={index}
-            className="group relative cursor-pointer overflow-hidden rounded-lg shadow-sm"
+            className="group relative cursor-pointer overflow-hidden rounded-lg shadow-sm flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -40,9 +40,9 @@ export default function MostWantedCategories() {
               className="w-full h-72 sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
             />
 
-            {/* Overlay Title */}
+            {/* Title below image */}
             {item.title && (
-              <div className="absolute bottom-3 left-3 bg-black/60 text-white text-xs sm:text-sm font-semibold px-2 py-1 rounded">
+              <div className="w-full bg-white text-black text-center text-sm sm:text-base font-semibold py-2 border border-gray-300 rounded-md">
                 {item.title}
               </div>
             )}

@@ -38,24 +38,24 @@ export default function WatchSection() {
         >
           {watchCategories.map((item, idx) => (
             <div
-              key={idx}
-              className="flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] snap-start cursor-pointer group
-                         bg-white rounded-lg overflow-hidden 
-                         border border-green-500 hover:border-gray-400 
-                         shadow-md hover:shadow-lg transition"
-            >
-              <div className="relative w-full h-[220px] sm:h-[280px] md:h-[340px] overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.brand}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-              <div className="px-4 py-4 text-center">
-                <h3 className="text-sm sm:text-base font-semibold text-gray-900">{item.brand}</h3>
-                <p className="text-xs sm:text-sm text-gray-600 mt-1 font-medium">{item.discountText}</p>
-              </div>
-            </div>
+  key={idx}
+  className="flex-shrink-0 w-[70%] xs:w-[55%] sm:w-[240px] md:w-[280px] snap-start cursor-pointer group
+             bg-white rounded-lg overflow-hidden 
+             border border-green-500 hover:border-gray-400 
+             shadow-md hover:shadow-lg transition"
+>
+  <div className="relative w-full h-[200px] sm:h-[280px] md:h-[340px] overflow-hidden">
+    <img
+      src={item.image}
+      alt={item.brand}
+      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+    />
+  </div>
+  <div className="px-4 py-4 text-center">
+    <h3 className="text-sm sm:text-base font-semibold text-gray-900">{item.brand}</h3>
+    <p className="text-xs sm:text-sm text-gray-600 mt-1 font-medium">{item.discountText}</p>
+  </div>
+</div>
           ))}
         </div>
 

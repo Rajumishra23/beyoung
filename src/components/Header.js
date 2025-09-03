@@ -327,11 +327,12 @@ export default function Header() {
             },
           ].map((banner, i) => (
             <motion.div key={i} className="w-full flex-shrink-0 relative">
-              <img
-                src={banner.src}
-                alt=""
-                className="w-full h-[280px] sm:h-[250px] md:h-[520px] object-cover"
-              />
+             <img
+  src={banner.src}
+  alt=""
+  className="w-full h-[280px] sm:h-[250px] md:h-[520px] object-cover"
+/>
+
               <div className="absolute left-5 md:left-16 top-[70%] md:top-1/2 -translate-y-1/2 text-white space-y-2">
                 <span className="bg-black/40 px-2 py-1 rounded text-sm md:text-base">
                   {banner.subtitle}
