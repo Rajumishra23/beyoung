@@ -12,9 +12,9 @@ export default function WalletSection() {
   const sliderRef = useRef(null);
 
   const getScrollAmount = () => {
-    if (window.innerWidth < 640) return 180; // mobile card width
-    if (window.innerWidth < 1024) return 200; // tablet card width
-    return 220; // desktop card width
+    if (window.innerWidth < 640) return 180; // Mobile
+    if (window.innerWidth < 1024) return 200; // Tablet
+    return 220; // Desktop
   };
 
   const scrollLeft = () =>
@@ -29,7 +29,7 @@ export default function WalletSection() {
         Wallets That Speak Style
       </h2>
 
-      <div className="relative max-w-6xl mx-auto flex items-center">
+      <div className="relative w-full max-w-7xl mx-auto flex items-center">
         {/* Left Button */}
         <button
           onClick={scrollLeft}
@@ -41,17 +41,17 @@ export default function WalletSection() {
         {/* Slider */}
         <div
           ref={sliderRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
+          className="flex gap-4 sm:gap-5 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
         >
           {wallets.map((wallet, index) => (
             <div
               key={index}
-              className="min-w-[180px] sm:min-w-[200px] md:min-w-[220px] bg-white rounded-md overflow-hidden shadow hover:shadow-lg transition flex-shrink-0"
+              className="min-w-[140px] sm:min-w-[160px] md:min-w-[180px] lg:min-w-[200px] bg-white rounded-md overflow-hidden shadow hover:shadow-lg transition flex-shrink-0"
             >
               <img
                 src={wallet.image}
                 alt={wallet.name}
-                className="w-full h-[220px] sm:h-[250px] md:h-[300px] object-cover"
+                className="w-full h-[160px] sm:h-[200px] md:h-[220px] lg:h-[240px] object-cover"
               />
               <div className="p-3 border-t text-center">
                 <h3 className="text-sm sm:text-base font-semibold text-gray-900">
