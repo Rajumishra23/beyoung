@@ -8,6 +8,7 @@ const reviews = [
     rating: 4.7,
     avatar: "T1.webp",
     post: "Polo Shirt",
+    date: "2 Sept, 2025",
   },
   {
     name: "Mohit",
@@ -16,6 +17,7 @@ const reviews = [
     rating: 4.7,
     avatar: "T2.webp",
     post: "Denim Shirt",
+    date: "28 Aug, 2025",
   },
   {
     name: "Rohit Jain",
@@ -24,6 +26,7 @@ const reviews = [
     rating: 5.0,
     avatar: "T3.webp",
     post: "Combo T-Shirts",
+    date: "15 Aug, 2025",
   },
   {
     name: "Manoj",
@@ -31,11 +34,13 @@ const reviews = [
     rating: 3.9,
     avatar: "T4.webp",
     post: "Polo Shirt",
+    date: "10 Aug, 2025",
   },
 ];
 
 const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const testimonial = reviews[currentIndex];
 
   const nextSlide = () => {
     if (currentIndex < reviews.length - 1) {
@@ -49,10 +54,8 @@ const Testimonials = () => {
     }
   };
 
-  const testimonial = reviews[currentIndex];
-
   return (
-    <section className="bg-white text-black py-12 sm:py-16">
+    <section className="bg-white text-black py-10 sm:py-16">
       <div className="container mx-auto px-4 relative">
         {/* Heading */}
         <div className="text-center mb-10 px-4">
@@ -67,8 +70,7 @@ const Testimonials = () => {
         {/* Review Card */}
         <div className="overflow-x-auto sm:overflow-visible">
           <div
-            className="relative bg-white p-6 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition text-center 
-                       w-full max-w-[90%] sm:max-w-[80%] md:max-w-xl mx-auto"
+            className="relative bg-white p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition w-full max-w-[95%] sm:max-w-[80%] md:max-w-xl mx-auto"
             style={{
               backgroundImage: `url('bg.webp')`,
               backgroundSize: "cover",
@@ -77,7 +79,35 @@ const Testimonials = () => {
             }}
           >
             <div className="absolute inset-0 bg-white/85 rounded-xl z-0"></div>
-            <div className="relative z-10">
+
+            {/* Mobile Layout */}
+            <div className="relative z-10 block sm:hidden text-left flex flex-col gap-3">
+              <div className="flex justify-between items-center text-sm text-gray-600">
+                <span className="text-yellow-500 font-semibold">
+                  ⭐ {testimonial.rating.toFixed(1)}
+                </span>
+                <span className="text-xs text-gray-500">{testimonial.date}</span>
+              </div>
+
+              <p className="text-gray-800 italic leading-relaxed text-sm">
+                "{testimonial.review}"
+              </p>
+
+              <div>
+                <div className="font-semibold text-gray-900 text-base">
+                  {testimonial.name}
+                </div>
+                <div className="text-sm text-indigo-600">{testimonial.post}</div>
+              </div>
+
+              <div
+                className="w-full h-40 rounded-md bg-cover bg-center border border-gray-300 shadow"
+                style={{ backgroundImage: `url(${testimonial.avatar})` }}
+              ></div>
+            </div>
+
+            {/* Desktop Layout */}
+            <div className="relative z-10 hidden sm:block text-center">
               <div
                 className="w-16 sm:w-20 h-16 sm:h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300 shadow"
                 style={{ backgroundImage: `url(${testimonial.avatar})` }}
