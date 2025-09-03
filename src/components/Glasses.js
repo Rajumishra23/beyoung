@@ -45,15 +45,15 @@ export default function GlassSection() {
       </h2>
 
       <div className="relative max-w-7xl mx-auto flex items-center">
-        {/* Slider */}
+        {/* Slider for mobile, horizontal line for desktop */}
         <div
           ref={sliderRef}
-          className="flex gap-4 sm:gap-6 flex-1 overflow-x-auto scrollbar-hide"
+          className="flex gap-4 sm:gap-6 flex-1 overflow-x-auto scrollbar-hide md:overflow-visible md:flex-nowrap"
         >
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
-              className="flex-shrink-0 w-1/2 sm:w-[220px] md:w-[240px] bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
+              className="flex-shrink-0 w-1/2 sm:w-[220px] md:w-[1/4] bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -68,7 +68,7 @@ export default function GlassSection() {
               <img
                 src={glass.image}
                 alt={glass.name}
-                className="w-full h-[160px] sm:h-[200px] md:h-[220px] object-contain mx-auto"
+                className="w-full h-[160px] sm:h-[200px] md:h-[240px] object-contain mx-auto"
               />
 
               {/* Product Info */}
@@ -109,18 +109,17 @@ export default function GlassSection() {
           ))}
         </div>
 
-        {/* Left Button */}
+        {/* Hide buttons on desktop */}
         <button
           onClick={scrollLeft}
-          className="absolute left-0 md:-left-5 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:bg-gray-100 transition z-10"
+          className="absolute left-0 md:hidden top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:bg-gray-100 transition z-10"
         >
           ◀
         </button>
 
-        {/* Right Button */}
         <button
           onClick={scrollRight}
-          className="absolute right-0 md:-right-5 top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:bg-gray-100 transition z-10"
+          className="absolute right-0 md:hidden top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:bg-gray-100 transition z-10"
         >
           ▶
         </button>

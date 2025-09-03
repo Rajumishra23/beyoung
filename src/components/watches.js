@@ -38,8 +38,9 @@ export default function WatchSection() {
         >
           {watchCategories.map((item, idx) => (
             <div
+
   key={idx}
-  className="flex-shrink-0 w-[70%] xs:w-[55%] sm:w-[240px] md:w-[280px] snap-start cursor-pointer group
+  className="flex-shrink-0 w-[48%] sm:w-[240px] md:w-[280px] snap-start cursor-pointer group
              bg-white rounded-lg overflow-hidden 
              border border-green-500 hover:border-gray-400 
              shadow-md hover:shadow-lg transition"

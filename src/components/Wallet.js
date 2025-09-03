@@ -44,36 +44,36 @@ export default function WalletSection() {
           className="flex gap-5 sm:gap-6 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
         >
           {wallets.map((wallet, index) => (
-            <div
+       <div
   key={index}
-  className="min-w-[45%] sm:min-w-[220px] md:min-w-[260px] lg:min-w-[300px] 
-             bg-white rounded-lg overflow-hidden shadow hover:shadow-lg 
-             transition flex-shrink-0"
+  className="flex-shrink-0 w-[48%] sm:w-[220px] md:w-[260px] lg:w-[300px] 
+             bg-white rounded-lg overflow-hidden shadow hover:shadow-lg transition"
 >
-              <img
-                src={wallet.image}
-                alt={wallet.name}
-                className="w-full h-[200px] sm:h-[260px] md:h-[300px] lg:h-[340px] object-cover"
-              />
-              {/* Compact Text Box */}
-              <div className="p-2 sm:p-3 border-t text-center">
-                <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
-                  {wallet.name}
-                </h3>
-                <p className="text-[10px] sm:text-xs text-gray-500">{wallet.tag}</p>
-                <div className="mt-1 flex items-center justify-center gap-2">
-                  <span className="text-sm sm:text-base font-bold text-gray-900">
-                    {wallet.price}
-                  </span>
-                  <span className="text-[10px] sm:text-xs font-semibold text-red-500">
-                    {wallet.discount}
-                  </span>
-                </div>
-                <div className="mt-0.5 text-[10px] sm:text-xs text-gray-600">
-                  ⭐ {wallet.rating} | {wallet.reviews} reviews
-                </div>
-              </div>
-            </div>
+  <img
+    src={wallet.image}
+    alt={wallet.name}
+    className="w-full h-[200px] sm:h-[260px] md:h-[300px] lg:h-[340px] object-cover"
+  />
+  {/* Compact Text Box */}
+  <div className="p-2 sm:p-3 border-t text-center">
+    <h3 className="text-xs sm:text-sm font-semibold text-gray-900">
+      {wallet.name}
+    </h3>
+    <p className="text-[10px] sm:text-xs text-gray-500">{wallet.tag}</p>
+    <div className="mt-1 flex items-center justify-center gap-2">
+      <span className="text-sm sm:text-base font-bold text-gray-900">
+        {wallet.price}
+      </span>
+      <span className="text-[10px] sm:text-xs font-semibold text-red-500">
+        {wallet.discount}
+      </span>
+    </div>
+    <div className="mt-0.5 text-[10px] sm:text-xs text-gray-600">
+      ⭐ {wallet.rating} | {wallet.reviews} reviews
+    </div>
+  </div>
+</div>
+            
           ))}
         </div>
 
