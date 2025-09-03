@@ -18,6 +18,7 @@ import Watches from "./components/watches";
 import Wallet from "./components/Wallet";
 import Glasses from "./components/Glasses";
 import InstaImage from "./components/InstaImage";
+import CouponSlider from "./components/CouponSlider";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
       <Combo />
       <MenCategories/>
       <WomenCategories />
+      <CouponSlider/>
        <MostWanted />
       <Watches/>
       <BackToCollege />
