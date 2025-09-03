@@ -51,7 +51,7 @@ export default function ComboSection() {
             <motion.div
               key={index}
               className={`bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md border border-transparent flex-shrink-0
-                ${window.innerWidth < 640 ? "w-[85%]" : "min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%]"}
+                ${window.innerWidth < 640 ? "w-[80%]" : "min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%]"}
               `}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
