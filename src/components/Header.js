@@ -330,7 +330,7 @@ export default function Header() {
               <img
                 src={banner.src}
                 alt=""
-                className="w-full h-[280px] sm:h-[250px] md:h-[320px] object-cover"
+                className="w-full h-[280px] sm:h-[250px] md:h-[300px] object-cover"
               />
 
               {/* Desktop Text Overlay Removed */}
