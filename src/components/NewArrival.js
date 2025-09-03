@@ -109,8 +109,8 @@ export default function NewArrival() {
                 className="relative z-10 w-full h-56 sm:h-64 md:h-72 lg:h-96 xl:h-[500px] object-cover group-hover:scale-105 transition-transform duration-500"
               />
 
-            {/* Product Info */}
-<div className="relative z-20 px-4 py-3 bg-white text-left space-y-1">
+            {/* Product Info shifted downwards (responsive for mobile) */}
+<div className="relative z-20 px-4 py-3 bg-white text-left space-y-1 -mt-2 sm:-mt-6">
   <h3 className="text-base font-semibold text-black truncate" title={item.title}>
     {item.title}
   </h3>
@@ -134,6 +134,7 @@ export default function NewArrival() {
     <span className="text-gray-500 text-xs ml-1">({100 + index * 17} reviews)</span>
   </div>
 </div>
+
 
               {/* Wishlist Icon */}
               <button className="absolute top-3 right-3 text-gray-500 hover:text-black-500 z-30">

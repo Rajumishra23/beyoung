@@ -59,49 +59,44 @@ const Testimonials = () => {
       <div className="container mx-auto px-4 relative">
         {/* Heading */}
         <div className="text-center mb-10 px-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-wide mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wide mb-3">
             BEYOUNGSTERS <span className="text-indigo-500">APPROVED</span>
           </h1>
-          <p className="text-sm sm:text-base md:text-lg italic text-gray-700 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg italic max-w-2xl mx-auto leading-relaxed text-gray-700">
             “Real reviews from real people — style that speaks louder than words.”
           </p>
         </div>
 
         {/* Review Card */}
         <div className="overflow-x-auto sm:overflow-visible">
-          <div
-            className="relative bg-white p-5 rounded-xl border border-gray-200 shadow-md hover:shadow-xl transition w-full max-w-[95%] sm:max-w-[80%] md:max-w-xl mx-auto"
+          <div className="relative rounded-xl shadow-lg hover:shadow-2xl transition w-full max-w-[95%] sm:max-w-[80%] md:max-w-xl mx-auto p-5"
             style={{
-              backgroundImage: `url('bg.webp')`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
+              background: "linear-gradient(135deg, #6D5BBA 0%, #8D58BF 50%, #DE67E4 100%)",
+              color: "white",
             }}
           >
-            <div className="absolute inset-0 bg-white/85 rounded-xl z-0"></div>
-
             {/* Mobile Layout */}
             <div className="relative z-10 block sm:hidden text-left flex flex-col gap-3">
-              <div className="flex justify-between items-center text-sm text-gray-600">
-                <span className="text-yellow-500 font-semibold">
+              <div className="flex justify-between items-center text-sm text-white/90">
+                <span className="text-yellow-400 font-semibold">
                   ⭐ {testimonial.rating.toFixed(1)}
                 </span>
-                <span className="text-xs text-gray-500">{testimonial.date}</span>
+                <span className="text-xs">{testimonial.date}</span>
               </div>
 
-              <p className="text-gray-800 italic leading-relaxed text-sm">
+              <p className="text-white italic leading-relaxed text-sm">
                 "{testimonial.review}"
               </p>
 
               <div>
-                <div className="font-semibold text-gray-900 text-base">
+                <div className="font-semibold text-white text-base">
                   {testimonial.name}
                 </div>
-                <div className="text-sm text-indigo-600">{testimonial.post}</div>
+                <div className="text-sm text-yellow-300">{testimonial.post}</div>
               </div>
 
               <div
-                className="w-full h-56 sm:h-48 rounded-md bg-cover bg-center border border-gray-300 shadow"
+                className="w-full h-56 sm:h-48 rounded-md bg-cover bg-center border border-white/50 shadow"
                 style={{ backgroundImage: `url(${testimonial.avatar})` }}
               ></div>
             </div>
@@ -109,17 +104,17 @@ const Testimonials = () => {
             {/* Desktop Layout */}
             <div className="relative z-10 hidden sm:block text-center">
               <div
-                className="w-16 sm:w-20 h-16 sm:h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-gray-300 shadow"
+                className="w-16 sm:w-20 h-16 sm:h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-white/50 shadow"
                 style={{ backgroundImage: `url(${testimonial.avatar})` }}
               ></div>
-              <p className="text-gray-700 italic mb-4 leading-relaxed text-sm sm:text-base">
+              <p className="text-white italic mb-4 leading-relaxed text-sm sm:text-base">
                 "{testimonial.review}"
               </p>
-              <div className="font-semibold text-gray-900 text-base sm:text-lg">
+              <div className="font-semibold text-white text-base sm:text-lg">
                 {testimonial.name}
               </div>
-              <div className="text-sm text-indigo-600 mb-2">{testimonial.post}</div>
-              <div className="mt-2 text-yellow-500 text-lg">
+              <div className="text-sm text-yellow-300 mb-2">{testimonial.post}</div>
+              <div className="mt-2 text-yellow-400 text-lg">
                 {"⭐".repeat(Math.round(testimonial.rating))}
               </div>
             </div>
@@ -128,34 +123,34 @@ const Testimonials = () => {
 
         {/* Controls */}
         <div className="flex justify-between items-center mt-4 sm:mt-0 sm:absolute sm:top-1/2 sm:left-0 sm:right-0 sm:px-4">
-          {/* Mobile buttons outside image */}
+          {/* Mobile buttons */}
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="sm:hidden bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40 -translate-x-4"
+            className="sm:hidden bg-black/30 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40 -translate-x-4"
           >
             ◀
           </button>
           <button
             onClick={nextSlide}
             disabled={currentIndex >= reviews.length - 1}
-            className="sm:hidden bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40 translate-x-4"
+            className="sm:hidden bg-black/30 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40 translate-x-4"
           >
             ▶
           </button>
 
-          {/* Desktop buttons remain same */}
+          {/* Desktop buttons */}
           <button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="hidden sm:flex bg-black/70 text-white rounded-full w-8 h-8 items-center justify-center hover:bg-black transition disabled:opacity-40"
+            className="hidden sm:flex bg-black/30 text-white rounded-full w-8 h-8 items-center justify-center hover:bg-black transition disabled:opacity-40"
           >
             ◀
           </button>
           <button
             onClick={nextSlide}
             disabled={currentIndex >= reviews.length - 1}
-            className="hidden sm:flex bg-black/70 text-white rounded-full w-8 h-8 items-center justify-center hover:bg-black transition disabled:opacity-40"
+            className="hidden sm:flex bg-black/30 text-white rounded-full w-8 h-8 items-center justify-center hover:bg-black transition disabled:opacity-40"
           >
             ▶
           </button>

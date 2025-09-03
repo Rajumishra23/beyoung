@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 
 const images = [
   "first.webp",
-  "first1.webp",
+  "front4.webp",
   "first2.webp",
   "first3.webp",
+  "first1.webp",
 ];
 
 const CouponSlider = () => {
@@ -18,22 +19,22 @@ const CouponSlider = () => {
   }, []);
 
   return (
-    <section className="w-full bg-indigo-400 text-white py-6 px-4">
+    <section className="w-full bg-indigo-400 text-white py-3 sm:py-4 md:py-6 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Top Text */}
-        <div className="text-xl sm:text-2xl font-bold tracking-wide mb-2">
+        <div className="text-lg sm:text-xl md:text-2xl font-bold tracking-wide mb-2 text-center">
           SPECIAL COUPON CORNER
         </div>
 
         {/* Divider Line */}
-        <div className="h-[2px] w-full bg-white/20 mb-6"></div>
+        <div className="h-[2px] w-full bg-white/20 mb-3 sm:mb-4"></div>
 
         {/* Full-Width Image Slider */}
         <div className="w-full overflow-hidden rounded-lg">
           <img
             src={images[index]}
             alt={`Coupon ${index + 1}`}
-            className="w-full h-auto object-cover transition-all duration-500"
+            className="w-full h-28 sm:h-32 md:h-36 lg:h-40 object-cover transition-all duration-500"
           />
         </div>
       </div>
