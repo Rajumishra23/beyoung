@@ -20,11 +20,12 @@ export default function ComboSection() {
     const container = scrollRef.current;
     if (!container) return;
 
-    // responsive scroll amount (same width as card)
     const cardWidth =
-      window.innerWidth < 640 ? container.offsetWidth * 0.45 : // mobile ~2 items
-      window.innerWidth < 1024 ? container.offsetWidth * 0.3 : // tablet ~3 items
-      container.offsetWidth * 0.18; // desktop 5 items
+      window.innerWidth < 640
+        ? container.offsetWidth * 0.45
+        : window.innerWidth < 1024
+        ? container.offsetWidth * 0.3
+        : container.offsetWidth * 0.18;
 
     container.scrollBy({
       left: dir === "left" ? -cardWidth : cardWidth,
@@ -39,9 +40,7 @@ export default function ComboSection() {
         <h2 className="text-2xl sm:text-3xl font-extrabold tracking-wide text-gray-900">
           SUPER SAVING COMBOS
         </h2>
-        <p className="text-xs sm:text-sm text-gray-500 mt-1">
-          Loved by 4+ millions
-        </p>
+        <p className="text-xs sm:text-sm text-gray-500 mt-1">Loved by 4+ millions</p>
       </div>
 
       {/* Gallery with Buttons */}
@@ -49,12 +48,12 @@ export default function ComboSection() {
         {/* Scrollable Container */}
         <div
           ref={scrollRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth scrollbar-hide pb-2"
+          className="flex gap-4 sm:gap-6 overflow-hidden pb-2"
         >
           {combos.map((combo, index) => (
             <motion.div
               key={index}
-              className="group min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%] bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-transparent hover:border-orange-400"
+              className="min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%] bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md border border-transparent"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -64,7 +63,7 @@ export default function ComboSection() {
                 <img
                   src={combo.image}
                   alt={`combo-${index + 1}`}
-                  className="w-full h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px] object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px] object-cover"
                 />
                 {/* Gradient Overlay */}
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/50 to-transparent p-2 text-white text-[10px] sm:text-xs">

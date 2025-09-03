@@ -33,12 +33,12 @@ export default function MostWantedCategories() {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6, delay: index * 0.05 }}
           >
-          <img
-  src={item.image}
-  alt={item.title}
-  className="w-full h-48 sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
-/>
-
+            {/* Image */}
+            <img
+              src={item.image}
+              alt={item.title}
+              className="w-full h-56 sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
+            />
 
             {/* Overlay Title */}
             {item.title && (

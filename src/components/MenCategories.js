@@ -1,5 +1,4 @@
 import React, { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
 
 const categories = [
   { title: "HAWAIIAN FITS", discount: "Up to 60% off", image: "mens.webp" },
@@ -11,13 +10,22 @@ const categories = [
 
 export default function FashionCategories() {
   const scrollRef = useRef(null);
-  const speed = 0.7; // px/frame (~40px/sec)
+  const speed = 3; // increase speed for faster sliding
+
+  // Preload images
+  useEffect(() => {
+    categories.forEach((cat) => {
+      const img = new Image();
+      img.src = cat.image;
+    });
+  }, []);
 
   useEffect(() => {
     const slider = scrollRef.current;
     if (!slider) return;
 
     let reqId;
+
     const autoScroll = () => {
       slider.scrollLeft += speed;
       const halfWidth = slider.scrollWidth / 2;
@@ -51,16 +59,12 @@ export default function FashionCategories() {
         <div className="relative flex-1 overflow-hidden">
           <div
             ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-x-hidden no-scrollbar pb-4 pointer-events-none"
+            className="flex gap-4 sm:gap-6 overflow-hidden no-scrollbar select-none"
           >
             {categories.concat(categories).map((cat, index) => (
-              <motion.div
+              <div
                 key={index}
-                className="min-w-[160px] sm:min-w-[200px] md:min-w-[250px] bg-white border-2 border-orange-500 rounded-md shadow-sm flex-shrink-0 pointer-events-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.3 }} // fast transition
+                className="min-w-[160px] sm:min-w-[200px] md:min-w-[250px] bg-white border-2 border-orange-500 rounded-md shadow-sm flex-shrink-0"
               >
                 {/* Image */}
                 <div className="h-40 sm:h-56 md:h-[300px] w-full overflow-hidden">
@@ -81,7 +85,7 @@ export default function FashionCategories() {
                     {cat.discount}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

@@ -2,21 +2,9 @@ import React from "react";
 
 export default function TrustHighlights() {
   const highlights = [
-    {
-      image: "global.webp",
-      title: "Easy Returns",
-      subtitle: "and Refunds",
-    },
-    {
-      image: "global1.webp",
-      title: "Global Fashion",
-      subtitle: "Made in India",
-    },
-    {
-      image: "global2.webp",
-      title: "Trusted by",
-      subtitle: "50 Lakh+ Customers",
-    },
+    { image: "global.webp", title: "Easy Returns", subtitle: "and Refunds" },
+    { image: "global1.webp", title: "Global Fashion", subtitle: "Made in India" },
+    { image: "global2.webp", title: "Trusted by", subtitle: "50 Lakh+ Customers" },
   ];
 
   return (
@@ -25,16 +13,18 @@ export default function TrustHighlights() {
         {highlights.map((item, index) => (
           <div
             key={index}
-            className="p-6 bg-white shadow-md rounded-lg border border-gray-200 hover:border-gray-400 transition-transform duration-300 hover:scale-105"
+            className="p-6 bg-white shadow-md rounded-lg border border-gray-200 hover:border-gray-400 transition-transform duration-300 hover:scale-105 flex flex-col items-center"
           >
             {item.image && (
-              <img
-                src={item.image}
-                alt={item.title}
-                className="h-40 w-40 sm:h-48 sm:w-48 md:h-56 md:w-56 mx-auto mb-4 object-contain"
-              />
+              <div className="w-full flex-1 mb-4">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover rounded-md"
+                />
+              </div>
             )}
-            <h3 className="text-lg sm:text-xl font-bold text-gray-900">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 mt-2">
               {item.title}
             </h3>
             <p className="text-sm sm:text-base text-gray-600 mt-1">
