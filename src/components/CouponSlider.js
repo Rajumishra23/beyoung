@@ -23,7 +23,7 @@ const CouponSlider = () => {
 
       <div
         className="max-w-10xl mx-auto flex items-center rounded-lg overflow-hidden 
-        h-[240px] sm:h-[200px] md:h-[180px] lg:h-[180px]"
+        h-[240px] sm:h-[200px] md:h-[200px] lg:h-[200px]"
       >
         {/* Left Box */}
         <div
