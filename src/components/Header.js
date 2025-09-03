@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-
 const menuItems = {
   MEN: [
     { title: "Topwear", links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"] },
@@ -16,13 +15,10 @@ const menuItems = {
   WATCHES: [
     { title: "MEN'S WATCHES", links: ["Analog", "Digital", "Smartwatches"] },
     { title: "WOMEN'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
+     { title: "KID'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
   ],
-  ACCESSORIES: [
-    { title: "Items", links: ["Glasses", "Belts", "Bags"] },
-  ],
-  GIFTHAMPERS: [
-    {title: "Items", links:["Gift for couples", "Gift for her"]}
-  ]
+  ACCESSORIES: [{ title: "Items", links: ["Wallets","Glasses", "Belts", "Bags"] }],
+  GIFTHAMPERS: [{ title: "Items", links: ["Gift for couples", "Gift for her"] }],
 };
 
 export default function Header() {
@@ -40,10 +36,9 @@ export default function Header() {
     "Search for wallets...",
     "Search for belts...",
     "Search for bags...",
-    "Search for Bra...",
-    "Search for penties...",
   ];
 
+  // rotating placeholders
   useEffect(() => {
     const interval = setInterval(() => {
       setPlaceholderIndex((prev) => (prev + 1) % placeholders.length);
@@ -51,6 +46,7 @@ export default function Header() {
     return () => clearInterval(interval);
   }, []);
 
+  // auto sliding banner
   useEffect(() => {
     const slider = sliderRef.current;
     let scrollAmount = 0;
@@ -76,77 +72,56 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full top-0 z-50">
+    <>
+      {/* HEADER ONLY (sticky part) */}
+      <header className="w-full sticky top-0 z-50 bg-white shadow">
+        {/* Promo Bar */}
+        <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-400 text-white text-[11px] flex justify-between items-center px-4 py-2">
+          <p className="truncate w-[70%] md:w-auto">
+            Free Shipping Sitewide on Every Order, Don't Miss Out!!
+          </p>
 
-      {/* Promo Bar */}
-      <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-400 text-white text-[11px] flex justify-between items-center px-4 py-2 shadow-md">
-        <p className="truncate w-[70%] md:w-auto">
-          Free Shipping Sitewide on Every Order, Don't Miss Out!!
-        </p>
-
-        {/* Search Bar Desktop */}
-        <div className="hidden md:flex items-center gap-3 flex-1 max-w-xl mx-6">
-          <label htmlFor="search-input" className="sr-only">Search Products</label>
-          <div className="flex items-center bg-white text-black rounded-md flex-1 max-w-md border border-gray-400 shadow-sm">
-            <input
-              id="search-input"
-              type="text"
-              placeholder={placeholders[placeholderIndex]}
-              className="w-full px-3 py-2 rounded-md outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-300 placeholder-black placeholder-opacity-70 placeholder:text-base placeholder:font-semibold"
-            />
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-gray-600 mr-3 cursor-pointer"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z"
+          {/* Search Bar Desktop */}
+          <div className="hidden md:flex items-center gap-3 flex-1 max-w-xl mx-6">
+            <div className="flex items-center bg-white text-black rounded-md flex-1 max-w-md border border-gray-400 shadow-sm">
+              <input
+                type="text"
+                placeholder={placeholders[placeholderIndex]}
+                className="w-full px-3 py-2 rounded-md outline-none placeholder-black placeholder-opacity-70 placeholder:font-semibold"
               />
-            </svg>
+              🔍
+            </div>
+          </div>
+
+          {/* Blog + Auth Desktop */}
+          <div className="hidden md:flex items-center gap-4">
+            <a href="#" className="bg-white text-pink-600 font-semibold text-sm px-4 py-2 rounded-md border border-pink-500 hover:bg-pink-600 hover:text-white transition">
+              Blog
+            </a>
+            <div className="space-x-1 md:space-x-2">
+              <a href="#" className="hover:underline font-bold">LOG IN</a>
+              <span>/</span>
+              <a href="#" className="hover:underline font-bold">SIGNUP</a>
+            </div>
           </div>
         </div>
 
-        {/* Blog + Auth Links */}
-        <div className="hidden md:flex items-center gap-4">
-          <a
-            href="#"
-            className="bg-white text-pink-600 font-semibold text-sm px-4 py-2 rounded-md border border-pink-500 hover:bg-pink-600 hover:text-white transition"
-          >
-            Blog
-          </a>
-          <div className="space-x-1 md:space-x-2">
-            <a href="#" className="hover:underline font-bold">LOG IN</a>
-            <span>/</span>
-            <a href="#" className="hover:underline font-bold">SIGNUP</a>
-          </div>
-        </div>
-      </div>
-
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-white shadow h-16 w-full">
-  <div className="max-w-[1440px] mx-auto flex items-center justify-between px-9 py-5">
-
-          {/* Logo - Left */}
-          <div className="text-4xl font-bold tracking-wide cursor-pointer flex items-center">
-            DEMPSEY
-            <span className="relative inline-block w-3 h-3 bg-black rounded-full top-[-2px] ml-[2px]"></span>
+        {/* Navbar */}
+        <nav className="bg-white h-16 w-full flex items-center justify-between px-6 md:px-12">
+          {/* Logo */}
+          <div className="text-3xl font-bold tracking-wide cursor-pointer flex items-center">
+            DEMPSEY <span className="w-2 h-2 bg-black rounded-full ml-1"></span>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Menu */}
           <ul className="hidden md:flex gap-8 text-sm font-bold tracking-wide text-gray-800">
             {Object.keys(menuItems).map((category) => (
               <li key={category} className="group relative cursor-pointer hover:text-pink-600">
                 {category}
-                <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-48 z-50 pointer-events-auto">
+                <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-48 z-50">
                   {menuItems[category].map((section, idx) => (
                     <div key={idx} className="p-3 border-b last:border-b-0">
-                      <h4 className="font-semibold text-gray-800">{section.title}</h4>
+                      <h4 className="font-semibold">{section.title}</h4>
                       <ul className="mt-1 space-y-1 text-sm">
                         {section.links.map((link, i) => (
                           <li key={i} className="hover:text-pink-600 cursor-pointer">{link}</li>
@@ -157,87 +132,46 @@ export default function Header() {
                 </div>
               </li>
             ))}
-           {["NEW ARRIVALS", "COMBOS"].map((category) => (
-  <li key={category} className="cursor-pointer hover:text-pink-600">{category}</li>
-))}
-
+            {["NEW ARRIVALS", "COMBOS"].map((cat) => (
+              <li key={cat} className="cursor-pointer hover:text-pink-600">{cat}</li>
+            ))}
           </ul>
 
-          {/* Icons */}
+          {/* Desktop Icons */}
           <div className="hidden md:flex items-center gap-6">
-            {/* Profile */}
-            <div className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A9.005 9.005 0 0112 15c2.21 0 4.21.804 5.879 2.121M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span>Profile</span>
-            </div>
-
-            {/* Wishlist */}
-            <div className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 0.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-              <span>Wishlist</span>
-            </div>
-
-            {/* Bag */}
-            <div className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600 relative">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.5 6h13M10 21h4a2 2 0 002-2H8a2 2 0 002 2z"/>
-              </svg>
-              <span>Bag</span>
-              <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">2</span>
-            </div>
+            <span className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600">👤 Profile</span>
+            <span className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600">❤️ Wishlist</span>
+            <span className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600 relative">
+              🛒 Bag <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-[10px] px-1.5 rounded-full">2</span>
+            </span>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Button */}
           <button
-            className={`md:hidden font-bold text-3xl transition-colors duration-200 ${
-              mobileMenuOpen ? "text-red-600" : "text-gray-800"
-            }`}
+            className={`md:hidden text-3xl font-bold ${mobileMenuOpen ? "text-red-600" : "text-gray-800"}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? "×" : "☰"}
           </button>
+        </nav>
 
-        </div>
-
-        {/* Mobile Menu Dropdown */}
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-white shadow px-6 py-4 space-y-4">
-
-            {/* Mobile Search */}
-            <div className="flex items-center bg-gray-100 rounded-md border border-gray-300 px-2">
-              <input
-                type="text"
-                placeholder={placeholders[placeholderIndex]}
-                className="w-full px-2 py-2 rounded-md outline-none bg-transparent placeholder-black placeholder-opacity-70 placeholder:text-base placeholder:font-semibold"
-              />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 text-gray-600 cursor-pointer"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-4.35-4.35M16.65 16.65A7.5 7.5 0 1116.65 2a7.5 7.5 0 010 14.65z"
-                />
-              </svg>
+            {/* Search */}
+            <div className="flex items-center bg-gray-100 rounded-md border px-2">
+              <input type="text" placeholder={placeholders[placeholderIndex]} className="w-full px-2 py-2 bg-transparent outline-none"/>
+              🔍
             </div>
 
-            {/* Mobile Menu Items */}
+            {/* Dropdowns */}
             {Object.keys(menuItems).map((category) => (
               <div key={category}>
                 <button
                   className="w-full flex justify-between items-center text-gray-700 font-medium hover:text-pink-600"
                   onClick={() => toggleMobileDropdown(category)}
                 >
-                  {category} <span>▾</span>
+                  {category} <span>{mobileDropdowns[category] ? "−" : "+"}</span>
                 </button>
                 {mobileDropdowns[category] && (
                   <div className="pl-4 mt-2">
@@ -256,9 +190,9 @@ export default function Header() {
               </div>
             ))}
 
-            {/* Other static links */}
-            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((category) => (
-              <a key={category} href="#" className="block text-gray-700 font-medium hover:text-pink-600">{category}</a>
+            {/* Static Links */}
+            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((cat) => (
+              <a key={cat} href="#" className="block text-gray-700 font-medium hover:text-pink-600">{cat}</a>
             ))}
 
             {/* Blog + Auth */}
@@ -270,61 +204,27 @@ export default function Header() {
             </div>
           </div>
         )}
-      </nav>
-{/* Auto Sliding Banner with Framer Motion */}
-<div className="relative w-full overflow-hidden mt-0 -mt-px">
-  <motion.div
-    ref={sliderRef}
-    className="flex w-full aspect-[16/12] overflow-hidden m-0 p-0 gap-0"
-    style={{
-      scrollSnapType: "x mandatory",
-      WebkitOverflowScrolling: "touch",
-    }}
-  >
-    {[ 
-      { src: "tatas.webp", subtitle: "New Arrivals", title: "Upgrade Your Style Today", btn: "Shop Now" },
-      { src: "", subtitle: "Hot Picks", title: "Summer Essentials Ready", btn: "Shop Now" },
-      { src: "tatas2.webp", subtitle: "Limited Time", title: "Exclusive Deals Inside", btn: "Shop Now" },
-      { src: "tatas3.webp", subtitle: "Fresh Trends", title: "Trendy Collections Now", btn: "Shop Now" },
-    ].map((banner, index) => (
-      <motion.div
-        key={index}
-        className="w-full flex-shrink-0 relative scroll-snap-align-start"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-      >
-        <img
-          src={banner.src}
-          alt={`Banner ${index + 1}`}
-          className="w-full h-full object-cover block select-none pointer-events-none"
-          draggable="false"
-        />
+      </header>
 
-        <motion.div
-          className="absolute left-5 md:left-16 top-1/2 transform -translate-y-1/2 flex flex-col gap-2 max-w-md"
-          initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.3 }}
-        >
-          <span className="text-sm md:text-base uppercase tracking-wider text-gray-200 bg-black/30 px-2 py-1 rounded drop-shadow-sm">
-            {banner.subtitle}
-          </span>
-
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white bg-black/30 px-2 py-1 rounded drop-shadow-md leading-snug">
-            {banner.title}
-          </h2>
-
-          <button className="flex items-center gap-2 text-sm md:text-base bg-white text-black px-4 py-1 rounded-full shadow hover:bg-gray-50 font-semibold transition">
-            {banner.btn} →
-          </button>
+      {/* BANNER OUTSIDE HEADER */}
+      <section className="relative w-full overflow-hidden">
+        <motion.div ref={sliderRef} className="flex w-full aspect-[16/12] overflow-hidden">
+          {[
+            { src: "tatas.webp", subtitle: "New Arrivals", title: "Upgrade Your Style Today", btn: "Shop Now" },
+            { src: "tatas2.webp", subtitle: "Limited Time", title: "Exclusive Deals Inside", btn: "Shop Now" },
+            { src: "tatas3.webp", subtitle: "Fresh Trends", title: "Trendy Collections Now", btn: "Shop Now" },
+          ].map((banner, i) => (
+            <motion.div key={i} className="w-full flex-shrink-0 relative">
+              <img src={banner.src} alt="" className="w-full h-full object-cover"/>
+              <div className="absolute left-5 md:left-16 top-1/2 -translate-y-1/2 text-white space-y-2">
+                <span className="bg-black/40 px-2 py-1 rounded">{banner.subtitle}</span>
+                <h2 className="text-2xl md:text-3xl font-bold">{banner.title}</h2>
+                <button className="bg-white text-black px-4 py-1 rounded-full">{banner.btn} →</button>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
-      </motion.div>
-    ))}
-  </motion.div>
-</div>
-
-    </header>
+      </section>
+    </>
   );
 }

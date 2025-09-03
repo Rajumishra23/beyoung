@@ -14,11 +14,15 @@ const ProductGallery = () => {
   const scrollRef = useRef(null);
 
   const scrollLeft = () => {
-    scrollRef.current.scrollBy({ left: -250, behavior: "smooth" });
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
+    }
   };
 
   const scrollRight = () => {
-    scrollRef.current.scrollBy({ left: 250, behavior: "smooth" });
+    if (scrollRef.current) {
+      scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
+    }
   };
 
   return (
@@ -46,43 +50,47 @@ const ProductGallery = () => {
           {/* Scrollable Gallery */}
           <div
             ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide pb-2 scroll-smooth"
+            className="flex gap-4 sm:gap-6 overflow-hidden pb-2 scroll-smooth" // overflow-x-auto हटाया
           >
             {Productdata.concat(Productdata).map((item, idx) => (
-             <motion.div
-  key={idx}
-  className="w-40 sm:w-48 md:w-56 flex-shrink-0 cursor-pointer group"
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, amount: 0.2 }}
-  transition={{ duration: 0.6, delay: idx * 0.1 }}
->
-  {/* Card Wrapper with Border */}
-  <div className="bg-white border-2 border-gray-500 rounded-md shadow-sm overflow-hidden">
-    {/* Image */}
-    <div className="w-full h-[300px] sm:h-60 md:h-[300px] overflow-hidden">
-      <img
-        src={item.image}
-        alt={item.title}
-        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-      />
-    </div>
+              <motion.div
+                key={idx}
+                className="
+                  flex-shrink-0 cursor-pointer
+                  w-40 sm:w-48 md:w-56
+                "
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+              >
+                {/* Card Wrapper */}
+                <div className="bg-white border-2 border-green-300 rounded-md shadow-sm overflow-hidden">
+                  {/* Image */}
+                  <div className="w-full h-[250px] sm:h-60 md:h-[300px] overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                      draggable="false" // dragging disable
+                    />
+                  </div>
 
-    {/* Text */}
-    <div className="text-center py-2 sm:py-3 px-2">
-      <p className="text-xs sm:text-sm font-medium text-gray-800">
-        {item.title}
-      </p>
-      <p className="text-sm sm:text-base font-bold text-gray-900 mt-1">
-        UNDER ₹
-        <span className="line-through text-gray-500 text-xs sm:text-sm mx-1">
-          {item.oldPrice}
-        </span>
-        {item.price}
-      </p>
-    </div>
-  </div>
-</motion.div>
+                  {/* Text */}
+                  <div className="text-center py-2 sm:py-3 px-2">
+                    <p className="text-xs sm:text-sm font-medium text-gray-800">
+                      {item.title}
+                    </p>
+                    <p className="text-sm sm:text-base font-bold text-gray-900 mt-1">
+                      UNDER ₹
+                      <span className="line-through text-gray-500 text-xs sm:text-sm mx-1">
+                        {item.oldPrice}
+                      </span>
+                      {item.price}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             ))}
           </div>
 

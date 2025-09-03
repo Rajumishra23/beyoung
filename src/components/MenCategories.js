@@ -51,23 +51,24 @@ export default function FashionCategories() {
         <div className="relative flex-1 overflow-hidden">
           <div
             ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-x-hidden no-scrollbar pb-4"
+            className="flex gap-4 sm:gap-6 overflow-x-hidden no-scrollbar pb-4 pointer-events-none"
           >
             {categories.concat(categories).map((cat, index) => (
               <motion.div
                 key={index}
-                className="min-w-[160px] sm:min-w-[200px] md:min-w-[250px] bg-white border-2 border-orange-500 rounded-md shadow-sm flex-shrink-0"
-                initial={{ opacity: 0, y: 30 }}
+                className="min-w-[160px] sm:min-w-[200px] md:min-w-[250px] bg-white border-2 border-orange-500 rounded-md shadow-sm flex-shrink-0 pointer-events-auto"
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.3 }} // fast transition
               >
                 {/* Image */}
                 <div className="h-40 sm:h-56 md:h-[300px] w-full overflow-hidden">
                   <img
                     src={cat.image}
                     alt={cat.title}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    className="w-full h-full object-cover"
+                    draggable="false"
                   />
                 </div>
 

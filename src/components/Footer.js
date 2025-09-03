@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaInstagram,
   FaLinkedin,
@@ -9,10 +9,16 @@ import {
 } from "react-icons/fa";
 
 export default function Footer() {
+  const [openSection, setOpenSection] = useState(null);
+
+  const toggleSection = (section) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
   return (
     <footer className="bg-black text-white px-6 py-10">
       {/* Title Section */}
-      <div className="text-center md:text-left mb-2">
+      <div className="text-center md:text-left mb-6">
         <h2 className="text-2xl font-bold tracking-wide">DEMPSEY</h2>
       </div>
 
@@ -34,10 +40,24 @@ export default function Footer() {
       </div>
 
       {/* Footer Links */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10 text-center sm:text-left">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+        {/* SHOP */}
         <div>
-          <h4 className="font-bold mb-4">SHOP</h4>
-          <ul className="space-y-2 text-sm">
+          {/* Mobile dropdown btn */}
+          <button
+            className="md:hidden w-full flex justify-between items-center py-2 font-bold border-b border-gray-700"
+            onClick={() => toggleSection("SHOP")}
+          >
+            SHOP <span>{openSection === "SHOP" ? "−" : "+"}</span>
+          </button>
+          {/* Desktop heading */}
+          <h4 className="hidden md:block font-bold mb-4">SHOP</h4>
+          {/* Links */}
+          <ul
+            className={`space-y-2 text-sm ${
+              openSection === "SHOP" ? "block" : "hidden"
+            } md:block`}
+          >
             <li>Men's Clothing</li>
             <li>Women's Clothing</li>
             <li>Watches</li>
@@ -47,9 +67,21 @@ export default function Footer() {
             <li>Accessories</li>
           </ul>
         </div>
+
+        {/* CUSTOMER CARE */}
         <div>
-          <h4 className="font-bold mb-4">CUSTOMER CARE</h4>
-          <ul className="space-y-2 text-sm">
+          <button
+            className="md:hidden w-full flex justify-between items-center py-2 font-bold border-b border-gray-700"
+            onClick={() => toggleSection("CUSTOMER")}
+          >
+            CUSTOMER CARE <span>{openSection === "CUSTOMER" ? "−" : "+"}</span>
+          </button>
+          <h4 className="hidden md:block font-bold mb-4">CUSTOMER CARE</h4>
+          <ul
+            className={`space-y-2 text-sm ${
+              openSection === "CUSTOMER" ? "block" : "hidden"
+            } md:block`}
+          >
             <li>Track Order</li>
             <li>Returns & Exchanges</li>
             <li>Shipping Info</li>
@@ -57,9 +89,21 @@ export default function Footer() {
             <li>Contact Us</li>
           </ul>
         </div>
+
+        {/* COMPANY */}
         <div>
-          <h4 className="font-bold mb-4">COMPANY</h4>
-          <ul className="space-y-2 text-sm">
+          <button
+            className="md:hidden w-full flex justify-between items-center py-2 font-bold border-b border-gray-700"
+            onClick={() => toggleSection("COMPANY")}
+          >
+            COMPANY <span>{openSection === "COMPANY" ? "−" : "+"}</span>
+          </button>
+          <h4 className="hidden md:block font-bold mb-4">COMPANY</h4>
+          <ul
+            className={`space-y-2 text-sm ${
+              openSection === "COMPANY" ? "block" : "hidden"
+            } md:block`}
+          >
             <li>About Us</li>
             <li>Careers</li>
             <li>Press</li>
@@ -67,9 +111,21 @@ export default function Footer() {
             <li>Blog</li>
           </ul>
         </div>
+
+        {/* LEGAL */}
         <div>
-          <h4 className="font-bold mb-4">LEGAL</h4>
-          <ul className="space-y-2 text-sm">
+          <button
+            className="md:hidden w-full flex justify-between items-center py-2 font-bold border-b border-gray-700"
+            onClick={() => toggleSection("LEGAL")}
+          >
+            LEGAL <span>{openSection === "LEGAL" ? "−" : "+"}</span>
+          </button>
+          <h4 className="hidden md:block font-bold mb-4">LEGAL</h4>
+          <ul
+            className={`space-y-2 text-sm ${
+              openSection === "LEGAL" ? "block" : "hidden"
+            } md:block`}
+          >
             <li>Privacy Policy</li>
             <li>Terms & Conditions</li>
             <li>Accessibility</li>
