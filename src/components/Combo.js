@@ -20,9 +20,11 @@ export default function ComboSection() {
     const container = scrollRef.current;
     if (!container) return;
 
-    // responsive scroll amount
+    // responsive scroll amount (same width as card)
     const cardWidth =
-      window.innerWidth < 640 ? 160 : window.innerWidth < 1024 ? 220 : 250;
+      window.innerWidth < 640 ? container.offsetWidth * 0.45 : // mobile ~2 items
+      window.innerWidth < 1024 ? container.offsetWidth * 0.3 : // tablet ~3 items
+      container.offsetWidth * 0.18; // desktop 5 items
 
     container.scrollBy({
       left: dir === "left" ? -cardWidth : cardWidth,
@@ -52,7 +54,7 @@ export default function ComboSection() {
           {combos.map((combo, index) => (
             <motion.div
               key={index}
-              className="group min-w-[140px] sm:min-w-[200px] md:min-w-[230px] lg:min-w-[250px] bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-transparent hover:border-orange-400"
+              className="group min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%] bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-transparent hover:border-orange-400"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
