@@ -20,9 +20,8 @@ export default function ComboSection() {
     const container = scrollRef.current;
     if (!container) return;
 
-    // Scroll width based on first card
     const card = container.firstChild;
-    const cardWidth = card ? card.offsetWidth + 16 : 0; // 16 = gap
+    const cardWidth = card ? card.offsetWidth + 16 : 0; // gap = 16px
 
     container.scrollBy({
       left: dir === "left" ? -cardWidth : cardWidth,
@@ -49,7 +48,7 @@ export default function ComboSection() {
           {combos.map((combo, index) => (
             <motion.div
               key={index}
-              className="flex-shrink-0 w-[90%] sm:w-[30%] md:w-[22%] lg:w-[18%] snap-center bg-white rounded-xl shadow-md border border-transparent overflow-hidden mx-auto"
+              className="flex-shrink-0 w-[80%] sm:w-[30%] md:w-[22%] lg:w-[18%] snap-start bg-white rounded-xl shadow-md border border-transparent overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -58,7 +57,7 @@ export default function ComboSection() {
               <img
                 src={combo.image}
                 alt={`combo-${index + 1}`}
-                className="w-full h-[700px] sm:h-[200px] md:h-[240px] lg:h-[260px] object-cover"
+                className="w-full h-[650px] sm:h-[200px] md:h-[240px] lg:h-[260px] object-cover"
               />
             </motion.div>
           ))}
