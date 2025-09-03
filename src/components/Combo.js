@@ -22,7 +22,7 @@ export default function ComboSection() {
 
     const cardWidth =
       window.innerWidth < 640
-        ? container.offsetWidth
+        ? container.offsetWidth * 0.9 // slightly narrower on mobile
         : window.innerWidth < 1024
         ? container.offsetWidth * 0.3
         : container.offsetWidth * 0.18;
@@ -51,7 +51,7 @@ export default function ComboSection() {
             <motion.div
               key={index}
               className={`bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md border border-transparent flex-shrink-0
-                ${window.innerWidth < 640 ? "w-full" : "min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%]"}
+                ${window.innerWidth < 640 ? "w-[90%]" : "min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%]"}
               `}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ export default function ComboSection() {
                   src={combo.image}
                   alt={`combo-${index + 1}`}
                   className={`w-full object-cover
-                    ${window.innerWidth < 640 ? "h-[600px]" : "h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px]"}
+                    ${window.innerWidth < 640 ? "h-[650px]" : "h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px]"}
                   `}
                 />
               </div>

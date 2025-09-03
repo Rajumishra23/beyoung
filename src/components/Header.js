@@ -25,7 +25,6 @@ export default function Header() {
   const sliderRef = useRef(null);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [showMobileSearch, setShowMobileSearch] = useState(false);
   const [mobileDropdowns, setMobileDropdowns] = useState({});
 
   const placeholders = [
@@ -179,17 +178,8 @@ export default function Header() {
           {/* Logo Center */}
           <div className="mx-auto text-2xl font-bold cursor-pointer">DEMPSEY</div>
 
-          {/* Search + Cart Right */}
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-            {/* Search Icon */}
-            <button
-              className="text-xl"
-              onClick={() => setShowMobileSearch((prev) => !prev)}
-            >
-              🔍
-            </button>
-
-            {/* Cart */}
+          {/* Cart Right */}
+          <div className="absolute right-4 top-1/2 -translate-y-1/2">
             <div className="relative">
               🛒
               <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs font-bold px-1.5 py-0.5 rounded-full">
@@ -199,21 +189,73 @@ export default function Header() {
           </div>
         </nav>
 
-        {/* Mobile Search Bar */}
-        {showMobileSearch && (
-          <div className="md:hidden px-4 mt-2">
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white shadow px-4 py-4 space-y-4">
+            {/* Search */}
             <div className="flex items-center bg-gray-100 rounded-md border px-2">
               <input
                 type="text"
                 placeholder={placeholders[placeholderIndex]}
                 className="w-full px-2 py-2 bg-transparent outline-none"
               />
-              <button
-                className="text-xl"
-                onClick={() => setShowMobileSearch(false)}
+              🔍
+            </div>
+
+            {/* Dropdown Categories */}
+            {Object.keys(menuItems).map((category) => (
+              <div key={category}>
+                <button
+                  className="w-full flex justify-between items-center text-gray-700 font-medium hover:text-pink-600"
+                  onClick={() => toggleMobileDropdown(category)}
+                >
+                  {category} <span>{mobileDropdowns[category] ? "−" : "+"}</span>
+                </button>
+                {mobileDropdowns[category] && (
+                  <div className="pl-4 mt-2">
+                    {menuItems[category].map((section, idx) => (
+                      <div key={idx} className="mb-2">
+                        <h4 className="font-semibold">{section.title}</h4>
+                        <ul className="space-y-1 text-sm">
+                          {section.links.map((link, i) => (
+                            <li key={i} className="hover:text-pink-600 cursor-pointer">
+                              {link}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+
+            {/* Static Links */}
+            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((cat) => (
+              <a
+                key={cat}
+                href="#"
+                className="block text-gray-700 font-medium hover:text-pink-600"
               >
-                ✖
-              </button>
+                {cat}
+              </a>
+            ))}
+
+            {/* Blog + Auth */}
+            <a
+              href="#"
+              className="block bg-pink-600 text-white text-center py-2 rounded-md font-semibold"
+            >
+              Blog
+            </a>
+            <div className="flex justify-center gap-2">
+              <a href="#" className="hover:underline font-bold">
+                LOG IN
+              </a>
+              <span>/</span>
+              <a href="#" className="hover:underline font-bold">
+                SIGNUP
+              </a>
             </div>
           </div>
         )}
