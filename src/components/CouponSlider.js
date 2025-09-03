@@ -34,7 +34,7 @@ const CouponSlider = () => {
           <img
             src={images[index]}
             alt={`Coupon ${index + 1}`}
-            className="w-full h-28 sm:h-32 md:h-36 lg:h-40 object-cover transition-all duration-500"
+            className="w-full max-h-[180px] sm:max-h-[200px] md:max-h-[220px] lg:max-h-[240px] object-contain transition-all duration-500"
           />
         </div>
       </div>

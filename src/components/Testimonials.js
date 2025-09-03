@@ -120,41 +120,41 @@ const Testimonials = () => {
             </div>
           </div>
         </div>
+{/* Controls */}
+<div className="flex justify-between items-center mt-4 sm:mt-0 sm:absolute sm:top-1/2 sm:left-0 sm:right-0 sm:px-4">
+  {/* Mobile buttons */}
+  <button
+    onClick={prevSlide}
+    disabled={currentIndex === 0}
+    className="sm:hidden bg-white text-black rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200 transition disabled:opacity-40 -translate-x-4"
+  >
+    ◀
+  </button>
+  <button
+    onClick={nextSlide}
+    disabled={currentIndex >= reviews.length - 1}
+    className="sm:hidden bg-white text-black rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-200 transition disabled:opacity-40 translate-x-4"
+  >
+    ▶
+  </button>
 
-        {/* Controls */}
-        <div className="flex justify-between items-center mt-4 sm:mt-0 sm:absolute sm:top-1/2 sm:left-0 sm:right-0 sm:px-4">
-          {/* Mobile buttons */}
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className="sm:hidden bg-black/30 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40 -translate-x-4"
-          >
-            ◀
-          </button>
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex >= reviews.length - 1}
-            className="sm:hidden bg-black/30 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black transition disabled:opacity-40 translate-x-4"
-          >
-            ▶
-          </button>
+  {/* Desktop buttons */}
+  <button
+    onClick={prevSlide}
+    disabled={currentIndex === 0}
+    className="hidden sm:flex bg-white text-black rounded-full w-8 h-8 items-center justify-center hover:bg-gray-200 transition disabled:opacity-40"
+  >
+    ◀
+  </button>
+  <button
+    onClick={nextSlide}
+    disabled={currentIndex >= reviews.length - 1}
+    className="hidden sm:flex bg-white text-black rounded-full w-8 h-8 items-center justify-center hover:bg-gray-200 transition disabled:opacity-40"
+  >
+    ▶
+  </button>
+</div>
 
-          {/* Desktop buttons */}
-          <button
-            onClick={prevSlide}
-            disabled={currentIndex === 0}
-            className="hidden sm:flex bg-black/30 text-white rounded-full w-8 h-8 items-center justify-center hover:bg-black transition disabled:opacity-40"
-          >
-            ◀
-          </button>
-          <button
-            onClick={nextSlide}
-            disabled={currentIndex >= reviews.length - 1}
-            className="hidden sm:flex bg-black/30 text-white rounded-full w-8 h-8 items-center justify-center hover:bg-black transition disabled:opacity-40"
-          >
-            ▶
-          </button>
-        </div>
       </div>
     </section>
   );
