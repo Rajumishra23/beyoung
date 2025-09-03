@@ -28,6 +28,12 @@ const glasses = [
     image: "glasses3.webp",
     price: "₹1,836",
   },
+  {
+    name: "Vuarnet",
+    subName: "VL1918 RACING REGULAR Polarized 0008 1626",
+    image: "glasses1.webp",
+    price: "₹11,906",
+  },
 ];
 
 export default function GlassSection() {
