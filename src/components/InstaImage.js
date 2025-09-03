@@ -63,7 +63,7 @@ const InstaImage = () => {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative w-40 sm:w-56 md:w-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer 
+              className="relative w-56 sm:w-56 md:w-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer 
               border border-gray-200 shadow-md hover:shadow-xl transition"
             >
               <img

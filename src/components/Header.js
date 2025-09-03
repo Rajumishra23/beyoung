@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+ import { FaSearch } from "react-icons/fa"; // add this at the top of your file
 
 const menuItems = {
   MEN: [
@@ -199,24 +200,62 @@ export default function Header() {
           </div>
         </nav>
 
-        {/* Mobile Search Bar */}
-        {showMobileSearch && (
-          <div className="md:hidden px-4 mt-2">
-            <div className="flex items-center bg-gray-100 rounded-md border px-2">
-              <input
-                type="text"
-                placeholder={placeholders[placeholderIndex]}
-                className="w-full px-2 py-2 bg-transparent outline-none"
-              />
-              <button
-                className="text-xl"
-                onClick={() => setShowMobileSearch(false)}
-              >
-                ✖
-              </button>
-            </div>
-          </div>
-        )}
+       {/* Mobile Navbar */}
+<nav className="md:hidden flex items-center justify-between px-4 py-3 relative">
+  {/* Hamburger Left */}
+  <button
+    className="text-3xl font-bold absolute left-4 top-1/2 -translate-y-1/2"
+    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+  >
+    {mobileMenuOpen ? "×" : "☰"}
+  </button>
+
+  {/* Logo Center */}
+  <div className="mx-auto text-2xl font-bold cursor-pointer">DEMPSEY</div>
+
+  {/* Cart Right + Search Icon */}
+  <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+    {/* Search Icon */}
+   
+
+<button
+  className="text-xl"
+  onClick={() => setShowMobileSearch((prev) => !prev)}
+>
+  <FaSearch />
+</button>
+
+
+    {/* Cart */}
+    <div className="relative">
+      🛒
+      <span className="absolute -top-2 -right-2 bg-yellow-500 text-black text-xs font-bold px-1.5 py-0.5 rounded-full">
+        0
+      </span>
+    </div>
+  </div>
+</nav>
+
+{/* Mobile Search Bar - opens below navbar */}
+{showMobileSearch && (
+  <div className="md:hidden px-4 mt-2">
+    <div className="flex items-center bg-gray-100 rounded-md border px-2">
+      <input
+        type="text"
+        placeholder={placeholders[placeholderIndex]}
+        className="w-full px-2 py-2 bg-transparent outline-none"
+      />
+      <button
+        className="text-xl"
+        onClick={() => setShowMobileSearch(false)}
+      >
+        ✖
+      </button>
+    </div>
+  </div>
+)}
+
+        
       </header>
 
       {/* Banner */}

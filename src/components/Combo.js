@@ -20,10 +20,9 @@ export default function ComboSection() {
     const container = scrollRef.current;
     if (!container) return;
 
-    // Mobile: full container width, Desktop: partial card width
     const cardWidth =
       window.innerWidth < 640
-        ? container.offsetWidth // full width for one image
+        ? container.offsetWidth
         : window.innerWidth < 1024
         ? container.offsetWidth * 0.3
         : container.offsetWidth * 0.18;
@@ -47,10 +46,7 @@ export default function ComboSection() {
       {/* Gallery with Buttons */}
       <div className="relative w-full overflow-hidden">
         {/* Scrollable Container */}
-        <div
-          ref={scrollRef}
-          className="flex gap-4 sm:gap-6 overflow-hidden pb-2"
-        >
+        <div ref={scrollRef} className="flex gap-4 sm:gap-6 overflow-hidden pb-2">
           {combos.map((combo, index) => (
             <motion.div
               key={index}
@@ -66,9 +62,10 @@ export default function ComboSection() {
                 <img
                   src={combo.image}
                   alt={`combo-${index + 1}`}
-                  className={`${window.innerWidth < 640 ? "h-[400px]" : "h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px]"} w-full object-cover`}
+                  className={`w-full object-cover
+                    ${window.innerWidth < 640 ? "h-[600px]" : "h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px]"}
+                  `}
                 />
-               
               </div>
             </motion.div>
           ))}

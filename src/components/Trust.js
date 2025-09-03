@@ -29,19 +29,19 @@ export default function TrustHighlights() {
         </div>
 
         {/* Mobile Row */}
-        <div className="sm:hidden flex gap-4 overflow-x-auto scrollbar-hide">
+        <div className="sm:hidden flex gap-2 justify-between">
           {highlights.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-64 bg-white shadow-md rounded-lg border border-gray-200 hover:border-gray-400 transition-transform duration-300 flex flex-col items-center p-4"
+              className="flex-shrink-0 w-[30%] bg-white shadow-md rounded-lg border border-gray-200 hover:border-gray-400 transition-transform duration-300 flex flex-col items-center p-2"
             >
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-64 sm:h-72 md:h-80 object-cover rounded-md mb-4"
+                className="w-full h-28 object-cover rounded-md mb-2"
               />
-              <h3 className="text-base font-bold text-gray-900 text-center">{item.title}</h3>
-              <p className="text-sm text-gray-600 text-center mt-1">{item.subtitle}</p>
+              <h3 className="text-xs font-bold text-gray-900 text-center">{item.title}</h3>
+              <p className="text-[10px] text-gray-600 text-center mt-1">{item.subtitle}</p>
             </div>
           ))}
         </div>
