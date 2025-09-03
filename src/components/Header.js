@@ -327,11 +327,11 @@ export default function Header() {
             },
           ].map((banner, i) => (
             <motion.div key={i} className="w-full flex-shrink-0 relative">
-              <img
-                src={banner.src}
-                alt=""
-                className="w-full h-[280px] sm:h-[250px] md:h-[300px] object-cover"
-              />
+             <img
+  src={banner.src}
+  alt=""
+  className="w-full h-[280px] sm:h-[250px] md:h-[350px] lg:h-[400px] object-cover"
+/>
 
               {/* Desktop Text Overlay Removed */}
               <div className="absolute left-5 md:hidden top-[70%] md:top-1/2 -translate-y-1/2 text-white space-y-2">
