@@ -101,11 +101,11 @@ export default function ComboSection() {
                 key={index}
                 className="flex-shrink-0 w-[30%] md:w-[22%] lg:w-[18%] bg-white rounded-xl shadow-md border border-transparent overflow-hidden"
               >
-                <img
-                  src={combo.image}
-                  alt={`combo-${index + 1}`}
-                  className="w-full h-[240px] lg:h-[260px] object-cover"
-                />
+               <img
+  src={combo.image}
+  alt={`combo-${index + 1}`}
+  className="w-full h-[240px] md:h-[320px] lg:h-[360px] object-cover"
+/>
               </div>
             ))}
           </motion.div>
