@@ -67,7 +67,7 @@ export default function FashionCategories() {
                 className="min-w-[160px] sm:min-w-[200px] md:min-w-[250px] bg-white border-2 border-orange-500 rounded-md shadow-sm flex-shrink-0"
               >
                 {/* Image */}
-                <div className="h-40 sm:h-56 md:h-[300px] w-full overflow-hidden">
+                <div className="w-full overflow-hidden h-[250px] sm:h-56 md:h-[300px]">
                   <img
                     src={cat.image}
                     alt={cat.title}

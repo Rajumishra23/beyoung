@@ -48,7 +48,7 @@ export default function WomenClothingSlider() {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-[200px] sm:h-[300px] md:h-[350px] object-cover"
+                  className="w-full h-[300px] sm:h-[300px] md:h-[350px] object-cover"
                 />
                 {item.badge && (
                   <span className="absolute bottom-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">

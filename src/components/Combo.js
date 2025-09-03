@@ -20,9 +20,10 @@ export default function ComboSection() {
     const container = scrollRef.current;
     if (!container) return;
 
+    // Mobile: full container width, Desktop: partial card width
     const cardWidth =
       window.innerWidth < 640
-        ? container.offsetWidth * 0.45
+        ? container.offsetWidth // full width for one image
         : window.innerWidth < 1024
         ? container.offsetWidth * 0.3
         : container.offsetWidth * 0.18;
@@ -53,7 +54,9 @@ export default function ComboSection() {
           {combos.map((combo, index) => (
             <motion.div
               key={index}
-              className="min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%] bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md border border-transparent"
+              className={`bg-white rounded-lg sm:rounded-xl overflow-hidden shadow-md border border-transparent flex-shrink-0
+                ${window.innerWidth < 640 ? "w-full" : "min-w-[45%] sm:min-w-[30%] md:min-w-[22%] lg:min-w-[18%]"}
+              `}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -63,12 +66,9 @@ export default function ComboSection() {
                 <img
                   src={combo.image}
                   alt={`combo-${index + 1}`}
-                  className="w-full h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px] object-cover"
+                  className={`${window.innerWidth < 640 ? "h-[400px]" : "h-[150px] sm:h-[200px] md:h-[240px] lg:h-[260px]"} w-full object-cover`}
                 />
-                {/* Gradient Overlay */}
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/50 to-transparent p-2 text-white text-[10px] sm:text-xs">
-                  Combo #{index + 1}
-                </div>
+               
               </div>
             </motion.div>
           ))}
