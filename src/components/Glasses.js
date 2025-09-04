@@ -52,10 +52,10 @@ export default function GlassSection() {
 
       <div className="relative max-w-7xl mx-auto flex items-center">
         {/* Slider for mobile, horizontal line for desktop */}
-        <div
-          ref={sliderRef}
-          className="flex gap-4 sm:gap-6 flex-1 overflow-x-auto scrollbar-hide md:overflow-visible md:flex-nowrap"
-        >
+       <div
+  ref={sliderRef}
+  className="flex gap-4 sm:gap-6 flex-1 overflow-x-hidden md:overflow-visible md:flex-nowrap"
+>
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
