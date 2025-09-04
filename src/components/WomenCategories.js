@@ -11,30 +11,17 @@ const WomenCategories = [
 export default function WomenClothingSlider() {
   const sliderRef = useRef(null);
 
-  const scrollLeft = () =>
-    sliderRef.current.scrollBy({ left: -sliderRef.current.offsetWidth / 2, behavior: "smooth" });
-  const scrollRight = () =>
-    sliderRef.current.scrollBy({ left: sliderRef.current.offsetWidth / 2, behavior: "smooth" });
-
   return (
     <section className="py-8 sm:py-10 px-2 sm:px-4 md:px-8 bg-white overflow-hidden">
       <h2 className="text-xl sm:text-2xl font-extrabold text-center mb-6 sm:mb-8 text-gray-900 tracking-wide uppercase">
         Trending WOMEN&apos;S FAVOURITE
       </h2>
 
-      <div className="relative max-w-7xl mx-auto flex items-center">
-        {/* Scroll Buttons (desktop only) */}
-        <button
-          onClick={scrollLeft}
-          className="hidden md:flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-md absolute -left-2 lg:-left-4 z-10 hover:bg-gray-100 transition"
+      <div className="max-w-7xl mx-auto">
+        <div
+          ref={sliderRef}
+          className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide scroll-smooth"
         >
-          ◀
-        </button>
-
-       <div
-  ref={sliderRef}
-  className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide scroll-smooth flex-1"
->
           {WomenCategories.map((item, idx) => (
             <div
               key={idx}
@@ -65,13 +52,6 @@ export default function WomenClothingSlider() {
             </div>
           ))}
         </div>
-
-        <button
-          onClick={scrollRight}
-          className="hidden md:flex items-center justify-center w-9 h-9 rounded-full bg-white shadow-md absolute -right-2 lg:-right-4 z-10 hover:bg-gray-100 transition"
-        >
-          ▶
-        </button>
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ export default function NewArrival() {
     { title: "Olive Solid Pocket Shirt", price: 749, discount: 8, category: "Shirts", image: "A4.webp", tags: ["NEW ARRIVAL"] },
     { title: "Blue Checkered Shirt", price: 799, discount: 12, category: "Shirts", image: "A5.webp" },
     { title: "Red Slim Fit Shirt", price: 849, discount: 10, category: "Shirts", image: "A6.webp" },
-    { title: "Black Casual Shirt", price: 899, discount: 7, category: "Shirts", image: "A7.webp" , tags: [ "3 FOR ₹999"] },
+    { title: "Black Casual Shirt", price: 899, discount: 7, category: "Shirts", image: "A7.webp", tags: ["3 FOR ₹999"] },
     { title: "White Formal Shirt", price: 799, discount: 5, category: "Shirts", image: "A8.webp" },
     { title: "Green Polo Shirt", price: 749, discount: 10, category: "Polo T-shirts", image: "A9.webp" },
     { title: "Navy Blue Polo Shirt", price: 849, discount: 15, category: "Polo T-shirts", image: "A10.webp" },
@@ -120,11 +120,11 @@ export default function NewArrival() {
 
               {/* Product Info */}
               <div className="relative z-20 px-2 py-2 bg-white text-left space-y-1 -mt-2 sm:-mt-3">
-                <h3 className="text-[10px] sm:text-xs font-semibold text-black truncate">
+                <h3 className="text-[12px] sm:text-sm font-semibold text-black truncate">
                   {item.title}
                 </h3>
 
-                <p className="text-[8px] sm:text-[10px] text-gray-500 font-medium tracking-wide">
+                <p className="text-[10px] sm:text-xs text-gray-500 font-medium tracking-wide">
                   {item.category === "Shirts"
                     ? "Everyday Classic"
                     : item.category === "Polo T-shirts"
@@ -139,20 +139,20 @@ export default function NewArrival() {
                 </p>
 
                 <div className="flex items-center gap-1">
-                  <span className="text-[10px] font-bold text-black">
+                  <span className="text-[12px] sm:text-sm font-bold text-black">
                     ₹{getDiscountedPrice(item.price, item.discount)}
                   </span>
-                  <span className="line-through text-[8px] text-gray-400">
+                  <span className="line-through text-[10px] sm:text-xs text-gray-400">
                     ₹{item.price}
                   </span>
-                  <span className="text-[8px] text-green-600 font-medium">
+                  <span className="text-[10px] sm:text-xs text-green-600 font-medium">
                     {item.discount}% OFF
                   </span>
                 </div>
 
-                <div className="text-[8px] text-yellow-500 font-semibold">
+                <div className="text-[10px] sm:text-sm text-yellow-500 font-semibold">
                   ⭐ {(4 + (index % 2) + (item.discount % 3) * 0.1).toFixed(1)}
-                  <span className="text-gray-500 text-[7px] ml-1">
+                  <span className="text-gray-500 text-[9px] sm:text-xs ml-1">
                     ({100 + index * 17} reviews)
                   </span>
                 </div>

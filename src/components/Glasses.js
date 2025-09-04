@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const glasses = [
   {
@@ -39,6 +40,14 @@ const glasses = [
 export default function GlassSection() {
   const sliderRef = useRef(null);
 
+  const scrollLeft = () => {
+    sliderRef.current.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    sliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
+  };
+
   return (
     <section className="bg-gray-300 py-10 px-2 sm:px-4 md:px-10 overflow-hidden">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6">
@@ -46,10 +55,27 @@ export default function GlassSection() {
       </h2>
 
       <div className="relative max-w-7xl mx-auto">
-       <div
-  ref={sliderRef}
-  className="flex gap-4 sm:gap-6 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth snap-x snap-mandatory pb-2"
->
+        {/* Left Button */}
+        <button
+          onClick={scrollLeft}
+          className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-400 text-gray-600 hover:text-black hover:border-black p-2 rounded-full shadow"
+        >
+          <FaChevronLeft />
+        </button>
+
+        {/* Right Button */}
+        <button
+          onClick={scrollRight}
+          className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-400 text-gray-600 hover:text-black hover:border-black p-2 rounded-full shadow"
+        >
+          <FaChevronRight />
+        </button>
+
+        {/* Slider */}
+        <div
+          ref={sliderRef}
+          className="flex gap-4 sm:gap-6 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth snap-x snap-mandatory pb-2"
+        >
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
