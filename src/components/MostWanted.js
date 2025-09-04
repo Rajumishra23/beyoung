@@ -16,18 +16,18 @@ export default function MostWantedCategories() {
   ];
 
   return (
-    <section className="bg-white py-12 px-4 sm:px-6 lg:px-10">
+    <section className="bg-white py-10 px-2 sm:px-4 lg:px-6">
       {/* Heading */}
-      <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-bold mb-8 uppercase tracking-wide">
+      <h2 className="text-center text-xl sm:text-2xl md:text-3xl font-bold mb-6 uppercase tracking-wide">
         MOST Popular Collection
       </h2>
 
-      {/* Responsive Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6">
+      {/* Responsive Grid with tighter gaps */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
         {categories.map((item, index) => (
           <motion.div
             key={index}
-            className="group relative cursor-pointer overflow-hidden rounded-lg shadow-sm flex flex-col"
+            className="group relative cursor-pointer overflow-hidden rounded-md shadow-sm flex flex-col"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
@@ -37,12 +37,12 @@ export default function MostWantedCategories() {
             <img
               src={item.image}
               alt={item.title}
-              className="w-full h-72 sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
+              className="w-full h-64 sm:h-60 md:h-72 lg:h-[460px] object-cover transition-transform duration-300 group-hover:scale-105"
             />
 
             {/* Title below image */}
             {item.title && (
-              <div className="w-full bg-white text-black text-center text-sm sm:text-base font-semibold py-2 border border-gray-300 rounded-md">
+              <div className="w-full bg-white text-black text-center text-sm sm:text-base font-semibold py-1.5 border border-gray-300 rounded-md">
                 {item.title}
               </div>
             )}

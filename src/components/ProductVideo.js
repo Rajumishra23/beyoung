@@ -38,26 +38,26 @@ const ProductGallery = () => {
 
         {/* Gallery with Buttons */}
         <div className="relative">
-          {/* Left Button */}
+          {/* Left Button (Hide on mobile) */}
           <button
             onClick={scrollLeft}
-            className="absolute -left-3 sm:-left-6 top-1/2 -translate-y-1/2 z-20 
+            className="hidden sm:block absolute -left-3 sm:-left-6 top-1/2 -translate-y-1/2 z-20 
                        bg-white shadow-md p-2 sm:p-3 rounded-full hover:bg-gray-100 text-xs sm:text-base"
           >
             ◀
           </button>
 
           {/* Scrollable Gallery */}
-          <div
-            ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-hidden pb-2 scroll-smooth" // overflow-x-auto हटाया
-          >
+         <div
+  ref={scrollRef}
+  className="flex gap-1 sm:gap-2 overflow-x-auto overflow-y-hidden pb-2 scroll-smooth no-scrollbar"
+>
             {Productdata.concat(Productdata).map((item, idx) => (
               <motion.div
                 key={idx}
                 className="
                   flex-shrink-0 cursor-pointer
-                  w-40 sm:w-48 md:w-56
+                  w-36 sm:w-44 md:w-56
                 "
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -67,12 +67,12 @@ const ProductGallery = () => {
                 {/* Card Wrapper */}
                 <div className="bg-white border-2 border-green-300 rounded-md shadow-sm overflow-hidden">
                   {/* Image */}
-                  <div className="w-full h-[250px] sm:h-60 md:h-[300px] overflow-hidden">
+                  <div className="w-full h-[220px] sm:h-56 md:h-[300px] overflow-hidden">
                     <img
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover"
-                      draggable="false" // dragging disable
+                      draggable="false"
                     />
                   </div>
 
@@ -94,10 +94,10 @@ const ProductGallery = () => {
             ))}
           </div>
 
-          {/* Right Button */}
+          {/* Right Button (Hide on mobile) */}
           <button
             onClick={scrollRight}
-            className="absolute -right-3 sm:-right-6 top-1/2 -translate-y-1/2 z-20 
+            className="hidden sm:block absolute -right-3 sm:-right-6 top-1/2 -translate-y-1/2 z-20 
                        bg-white shadow-md p-2 sm:p-3 rounded-full hover:bg-gray-100 text-xs sm:text-base"
           >
             ▶

@@ -29,17 +29,19 @@ export default function BackToCollege() {
       </p>
 
       {/* Desktop Grid */}
-      <div className="hidden md:grid grid-cols-4 gap-4 sm:gap-6">
+      <div className="hidden md:grid grid-cols-4 gap-2 sm:gap-3">
         {collegeStyles.map((item, index) => (
           <div
             key={index}
             className="relative group cursor-pointer rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
           >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-96 object-cover"
-            />
+           {/* Desktop Grid Image */}
+<img
+  src={item.image}
+  alt={item.title}
+  className="w-full h-[500px] sm:h-[520px] object-cover"
+/>
+
             <div className="absolute bottom-3 left-3 bg-black bg-opacity-70 text-white text-xs font-bold px-2 py-1 rounded">
               {item.tag}
             </div>

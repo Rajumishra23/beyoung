@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const categories = [
   { title: "HAWAIIAN FITS", discount: "Up to 60% off", image: "mens.webp" },
@@ -10,53 +11,24 @@ const categories = [
 
 export default function FashionCategories() {
   const scrollRef = useRef(null);
-  const speed = 0.5; // smaller = smoother
 
-  // Preload images
-  useEffect(() => {
-    categories.forEach((cat) => {
-      const img = new Image();
-      img.src = cat.image;
+  const scroll = (direction) => {
+    if (!scrollRef.current) return;
+
+    const card = scrollRef.current.querySelector("div > div"); // ek card select karo
+    if (!card) return;
+
+    const cardWidth = card.offsetWidth + 16; // card width + gap (16px = gap-4)
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -cardWidth : cardWidth,
+      behavior: "smooth",
     });
-  }, []);
-
-  useEffect(() => {
-    const slider = scrollRef.current;
-    if (!slider) return;
-
-    let reqId;
-    let paused = false;
-    const isMobile = window.innerWidth < 768;
-
-    const autoScroll = () => {
-      if (!paused) {
-        slider.scrollLeft += speed;
-        // seamless reset
-        if (slider.scrollLeft >= slider.scrollWidth / 2) {
-          slider.scrollLeft -= slider.scrollWidth / 2;
-        }
-      }
-      reqId = requestAnimationFrame(autoScroll);
-    };
-
-    reqId = requestAnimationFrame(autoScroll);
-
-    const handleTouchStart = () => { if (isMobile) paused = true; };
-    const handleTouchEnd = () => { if (isMobile) paused = false; };
-
-    slider.addEventListener("touchstart", handleTouchStart);
-    slider.addEventListener("touchend", handleTouchEnd);
-
-    return () => {
-      cancelAnimationFrame(reqId);
-      slider.removeEventListener("touchstart", handleTouchStart);
-      slider.removeEventListener("touchend", handleTouchEnd);
-    };
-  }, []);
+  };
 
   return (
     <section className="bg-white py-12 overflow-hidden">
-      <div className="text-center mb-10 px-4">
+      {/* Heading */}
+      <div className="text-center mb-8 px-4">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
           <span className="text-black">MEN</span>
           <span className="text-red-600">&apos;S </span>
@@ -67,19 +39,28 @@ export default function FashionCategories() {
         </p>
       </div>
 
-      <div className="relative max-w-7xl mx-auto flex">
+      {/* Scrollable Cards */}
+      <div className="relative max-w-7xl mx-auto flex items-center">
+        {/* Left Button - Desktop only */}
+        <button
+          onClick={() => scroll("left")}
+          className="hidden md:flex absolute left-0 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+        >
+          <FaChevronLeft className="text-xl text-gray-800" />
+        </button>
+
         <div className="relative flex-1 overflow-hidden">
           <div
             ref={scrollRef}
-            className="flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar select-none touch-pan-x"
+            className="flex gap-4 overflow-x-auto overflow-y-hidden no-scrollbar touch-pan-x px-2"
           >
-            {/* duplicate list for seamless loop */}
-            {[...categories, ...categories].map((cat, index) => (
+            {categories.map((cat, index) => (
               <div
                 key={index}
-                className="min-w-[160px] sm:min-w-[200px] md:min-w-[250px] bg-white border-2 border-orange-500 rounded-md shadow-sm flex-shrink-0"
+                className="min-w-[160px] sm:min-w-[200px] md:min-w-[240px] bg-white border border-orange-400 rounded-md shadow-sm flex-shrink-0"
               >
-                <div className="w-full overflow-hidden h-[250px] sm:h-56 md:h-[300px]">
+                {/* Image */}
+                <div className="w-full h-[220px] sm:h-[260px] md:h-[300px] overflow-hidden rounded-t-md">
                   <img
                     src={cat.image}
                     alt={cat.title}
@@ -87,8 +68,10 @@ export default function FashionCategories() {
                     draggable="false"
                   />
                 </div>
-                <div className="text-center py-3 px-2">
-                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800">
+
+                {/* Text */}
+                <div className="text-center py-2 px-2">
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-gray-800 truncate">
                     {cat.title}
                   </h3>
                   <p className="text-xs sm:text-sm md:text-base font-bold text-gray-700 mt-1">
@@ -100,11 +83,13 @@ export default function FashionCategories() {
           </div>
         </div>
 
-        <div className="hidden md:flex items-center justify-center w-12 bg-gray-800 text-white font-bold text-sm tracking-wider">
-          <span className="transform -rotate-90 whitespace-nowrap">
-            UPTO ₹300 OFF
-          </span>
-        </div>
+        {/* Right Button - Desktop only */}
+        <button
+          onClick={() => scroll("right")}
+          className="hidden md:flex absolute right-0 z-10 bg-white p-2 rounded-full shadow-md hover:bg-gray-100"
+        >
+          <FaChevronRight className="text-xl text-gray-800" />
+        </button>
       </div>
     </section>
   );

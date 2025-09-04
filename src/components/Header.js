@@ -3,18 +3,9 @@ import { motion } from "framer-motion";
 
 const menuItems = {
   MEN: [
-    {
-      title: "Topwear:",
-      links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"],
-    },
-    {
-      title: "Bottomwear:",
-      links: ["Jeans", "Casual Trousers", "Shorts", "Joggers"],
-    },
-    {
-      title: "Footwear:",
-      links: ["Casual Shoes", "Sneakers", "Sports Shoes", "Formal Shoes"],
-    },
+    { title: "Topwear:", links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"] },
+    { title: "Bottomwear:", links: ["Jeans", "Casual Trousers", "Shorts", "Joggers"] },
+    { title: "Footwear:", links: ["Casual Shoes", "Sneakers", "Sports Shoes", "Formal Shoes"] },
   ],
   WOMEN: [
     { title: "Indian & Fusion Wear:", links: ["Kurtas & Suits", "Sarees", "Lehenga Cholis", "Dupattas"] },
@@ -23,23 +14,9 @@ const menuItems = {
     {
       title: "Lingerie & Innerwear:",
       links: [
-        "Bras",
-        "Panties",
-        "Shapewear",
-        "Sleepwear",
-        "Camisoles & Slips",
-        "Bridal Lingerie",
-        "Lounge Bras",
-        "Bodysuits",
-        "Corsets & Bustiers",
-        "Babydolls",
-        "Chemises",
-        "Stockings",
-        "Garter Belts",
-        "Thermals",
-        "Maternity Lingerie",
-        "Seamless Wear",
-        "Activewear Bras",
+        "Bras", "Panties", "Shapewear", "Sleepwear", "Camisoles & Slips", "Bridal Lingerie",
+        "Lounge Bras", "Bodysuits", "Corsets & Bustiers", "Babydolls", "Chemises", "Stockings",
+        "Garter Belts", "Thermals", "Maternity Lingerie", "Seamless Wear", "Activewear Bras",
       ],
     },
   ],
@@ -59,16 +36,9 @@ export default function Header() {
   const [mobileDropdowns, setMobileDropdowns] = useState({});
 
   const placeholders = [
-    "Search for shirts...",
-    "Search for watches...",
-    "Search for jeans...",
-    "Search for kurtas...",
-    "Search for smartwatches...",
-    "Search for wallets...",
-    "Search for belts...",
-    "Search for bags...",
-    "Search for bras...",
-    "Search for panties...",
+    "Search for shirts...", "Search for watches...", "Search for jeans...",
+    "Search for kurtas...", "Search for smartwatches...", "Search for wallets...",
+    "Search for belts...", "Search for bags...", "Search for bras...", "Search for panties...",
   ];
 
   // Rotating placeholders
@@ -133,13 +103,9 @@ export default function Header() {
             Blog
           </a>
           <div className="space-x-1 md:space-x-2">
-            <a href="#" className="hover:underline font-bold">
-              LOG IN
-            </a>
+            <a href="#" className="hover:underline font-bold">LOG IN</a>
             <span>/</span>
-            <a href="#" className="hover:underline font-bold">
-              SIGNUP
-            </a>
+            <a href="#" className="hover:underline font-bold">SIGNUP</a>
           </div>
         </div>
       </div>
@@ -156,50 +122,51 @@ export default function Header() {
           {/* Menu */}
           <ul className="flex gap-8 text-sm font-bold tracking-wide text-gray-800">
             {Object.keys(menuItems).map((category) => (
-              <li
-                key={category}
-                className="group relative cursor-pointer hover:text-pink-600"
-              >
+              <li key={category} className="group relative cursor-pointer hover:text-pink-600">
                 {category}
-                <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-56 z-50">
-                  {menuItems[category].map((section, idx) => (
-                    <div key={idx} className="p-3 border-b last:border-b-0">
-                      <h4 className="font-semibold text-black">{section.title}</h4>
-                      <ul className="mt-1 space-y-1 text-sm">
-                        {section.links.map((link, i) => (
-                          <li
-                            key={i}
-                            className="text-black hover:text-pink-600 cursor-pointer"
-                          >
-                            {link}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
-                </div>
+                {/* WOMEN → Mega Dropdown */}
+                {category === "WOMEN" ? (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover:grid grid-cols-2 lg:grid-cols-4 gap-6 bg-white shadow-lg border mt-1 px-6 py-4 w-[700px] z-50">
+                    {menuItems[category].map((section, idx) => (
+                      <div key={idx} className="min-w-[150px]">
+                        <h4 className="font-semibold text-black">{section.title}</h4>
+                        <ul className="mt-1 space-y-1 text-sm">
+                          {section.links.map((link, i) => (
+                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer">{link}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  /* Others → Simple dropdown */
+                  <div className="absolute top-full left-0 hidden group-hover:flex flex-col bg-white shadow-lg border mt-1 w-56 z-50">
+                    {menuItems[category].map((section, idx) => (
+                      <div key={idx} className="p-3 border-b last:border-b-0">
+                        <h4 className="font-semibold text-black">{section.title}</h4>
+                        <ul className="mt-1 space-y-1 text-sm">
+                          {section.links.map((link, i) => (
+                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer">{link}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </li>
             ))}
             {["NEW ARRIVALS", "COMBOS"].map((cat) => (
-              <li key={cat} className="cursor-pointer hover:text-pink-600">
-                {cat}
-              </li>
+              <li key={cat} className="cursor-pointer hover:text-pink-600">{cat}</li>
             ))}
           </ul>
 
           {/* Desktop Icons */}
           <div className="flex items-center gap-6">
-            <span className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600">
-              👤 Profile
-            </span>
-            <span className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600">
-              ❤️ Wishlist
-            </span>
+            <span className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600">👤 Profile</span>
+            <span className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600">❤️ Wishlist</span>
             <span className="flex flex-col items-center text-xs cursor-pointer hover:text-pink-600 relative">
               🛒 Bag{" "}
-              <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-[10px] px-1.5 rounded-full">
-                2
-              </span>
+              <span className="absolute -top-2 -right-2 bg-pink-600 text-white text-[10px] px-1.5 rounded-full">2</span>
             </span>
           </div>
         </nav>
@@ -208,7 +175,7 @@ export default function Header() {
         <nav className="md:hidden flex items-center justify-between px-4 py-3 relative">
           {/* Hamburger Left */}
           <button
-            className="text-5xl font-bold absolute left-4 top-1/2 -translate-y-1/2"
+            className="text-3xl font-bold absolute left-4 top-1/2 -translate-y-1/2"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? "×" : "☰"}
@@ -257,12 +224,7 @@ export default function Header() {
                         <h4 className="font-semibold text-black">{section.title}</h4>
                         <ul className="space-y-1 text-sm">
                           {section.links.map((link, i) => (
-                            <li
-                              key={i}
-                              className="text-black hover:text-pink-600 cursor-pointer"
-                            >
-                              {link}
-                            </li>
+                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer">{link}</li>
                           ))}
                         </ul>
                       </div>
@@ -274,30 +236,15 @@ export default function Header() {
 
             {/* Static Links */}
             {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((cat) => (
-              <a
-                key={cat}
-                href="#"
-                className="block text-gray-700 font-medium hover:text-pink-600"
-              >
-                {cat}
-              </a>
+              <a key={cat} href="#" className="block text-gray-700 font-medium hover:text-pink-600">{cat}</a>
             ))}
 
             {/* Blog + Auth */}
-            <a
-              href="#"
-              className="block bg-pink-600 text-white text-center py-2 rounded-md font-semibold"
-            >
-              Blog
-            </a>
+            <a href="#" className="block bg-pink-600 text-white text-center py-2 rounded-md font-semibold">Blog</a>
             <div className="flex justify-center gap-2">
-              <a href="#" className="hover:underline font-bold">
-                LOG IN
-              </a>
+              <a href="#" className="hover:underline font-bold">LOG IN</a>
               <span>/</span>
-              <a href="#" className="hover:underline font-bold">
-                SIGNUP
-              </a>
+              <a href="#" className="hover:underline font-bold">SIGNUP</a>
             </div>
           </div>
         )}
@@ -306,41 +253,21 @@ export default function Header() {
       {/* Banner */}
       <section className="relative w-full overflow-hidden">
         <motion.div ref={sliderRef} className="flex w-full overflow-hidden">
-          {[
-            {
-              src: "tatas.webp",
-              subtitle: "New Arrivals",
-              title: "Upgrade Your Style Today",
-              btn: "Shop Now",
-            },
-            {
-              src: "tatas2.webp",
-              subtitle: "Limited Time",
-              title: "Exclusive Deals Inside",
-              btn: "Shop Now",
-            },
-            {
-              src: "tatas3.webp",
-              subtitle: "Fresh Trends",
-              title: "Trendy Collections Now",
-              btn: "Shop Now",
-            },
+          {[ 
+            { src: "tatas.webp", subtitle: "New Arrivals", title: "Upgrade Your Style Today", btn: "Shop Now" },
+            { src: "tatas2.webp", subtitle: "Limited Time", title: "Exclusive Deals Inside", btn: "Shop Now" },
+            { src: "tatas3.webp", subtitle: "Fresh Trends", title: "Trendy Collections Now", btn: "Shop Now" }
           ].map((banner, i) => (
             <motion.div key={i} className="w-full flex-shrink-0 relative">
-             <img
-  src={banner.src}
-  alt=""
-  className="w-full h-[280px] sm:h-[250px] md:h-[350px] lg:h-[400px] object-cover"
-/>
-
-              {/* Desktop Text Overlay Removed */}
-              <div className="absolute left-5 md:hidden top-[70%] md:top-1/2 -translate-y-1/2 text-white space-y-2">
-                <span className="bg-black/40 px-2 py-1 rounded text-sm md:text-base">
-                  {banner.subtitle}
-                </span>
-                <h2 className="text-2xl md:text-4xl font-semibold md:font-extrabold drop-shadow-lg">
-                  {banner.title}
-                </h2>
+              <img
+                src={banner.src}
+                alt=""
+                className="w-full h-[300px] sm:h-[280px] md:h-[400px] lg:h-[500px] object-cover"
+              />
+              {/* Mobile Overlay */}
+              <div className="absolute left-5 md:hidden top-[70%] -translate-y-1/2 text-white space-y-2">
+                <span className="bg-black/40 px-2 py-1 rounded text-sm">{banner.subtitle}</span>
+                <h2 className="text-2xl font-semibold drop-shadow-lg">{banner.title}</h2>
                 <button className="bg-white text-black px-4 py-2 rounded-full shadow-md font-semibold hover:bg-gray-100 transition">
                   {banner.btn} →
                 </button>

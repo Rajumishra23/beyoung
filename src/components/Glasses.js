@@ -39,27 +39,21 @@ const glasses = [
 export default function GlassSection() {
   const sliderRef = useRef(null);
 
-  const scrollLeft = () =>
-    sliderRef.current.scrollBy({ left: -300, behavior: "smooth" });
-  const scrollRight = () =>
-    sliderRef.current.scrollBy({ left: 300, behavior: "smooth" });
-
   return (
-    <section className="bg-gray-300 py-12 px-4 md:px-12 overflow-hidden">
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-8">
+    <section className="bg-gray-300 py-10 px-2 sm:px-4 md:px-10 overflow-hidden">
+      <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6">
         👓 Frame Your Vision
       </h2>
 
-      <div className="relative max-w-7xl mx-auto flex items-center">
-        {/* Slider for mobile, horizontal line for desktop */}
+      <div className="relative max-w-7xl mx-auto">
        <div
   ref={sliderRef}
-  className="flex gap-4 sm:gap-6 flex-1 overflow-x-hidden md:overflow-visible md:flex-nowrap"
+  className="flex gap-4 sm:gap-6 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth snap-x snap-mandatory pb-2"
 >
           {glasses.map((glass, index) => (
             <motion.div
               key={index}
-              className="flex-shrink-0 w-1/2 sm:w-[220px] md:w-[1/4] bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
+              className="flex-shrink-0 w-[calc(60%-4px)] sm:w-[240px] md:w-[28%] snap-start bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
@@ -74,13 +68,12 @@ export default function GlassSection() {
               <img
                 src={glass.image}
                 alt={glass.name}
-                className="w-full h-[160px] sm:h-[200px] md:h-[240px] object-contain mx-auto"
+                className="w-full h-[180px] sm:h-[220px] md:h-[240px] object-cover"
               />
 
-              {/* Product Info */}
               <div className="mt-3 px-3 pb-4 space-y-1 text-left">
                 <h3
-                  className="text-base font-semibold text-black truncate"
+                  className="text-sm sm:text-base font-semibold text-black truncate"
                   title={glass.name}
                 >
                   {glass.name}
@@ -114,21 +107,6 @@ export default function GlassSection() {
             </motion.div>
           ))}
         </div>
-
-        {/* Hide buttons on desktop */}
-        <button
-          onClick={scrollLeft}
-          className="absolute left-0 md:hidden top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:bg-gray-100 transition z-10"
-        >
-          ◀
-        </button>
-
-        <button
-          onClick={scrollRight}
-          className="absolute right-0 md:hidden top-1/2 transform -translate-y-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md hover:bg-gray-100 transition z-10"
-        >
-          ▶
-        </button>
       </div>
     </section>
   );
