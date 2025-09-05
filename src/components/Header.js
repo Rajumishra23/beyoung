@@ -3,16 +3,16 @@ import { motion } from "framer-motion";
 
 const menuItems = {
   MEN: [
-    { title: "Topwear:", links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"] },
-    { title: "Bottomwear:", links: ["Jeans", "Casual Trousers", "Shorts", "Joggers"] },
-    { title: "Footwear:", links: ["Casual Shoes", "Sneakers", "Sports Shoes", "Formal Shoes"] },
+    { title: "Topwear", links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"] },
+    { title: "Bottomwear", links: ["Jeans", "Casual Trousers", "Shorts", "Joggers"] },
+    { title: "Footwear", links: ["Casual Shoes", "Sneakers", "Sports Shoes", "Formal Shoes"] },
   ],
   WOMEN: [
-    { title: "Indian & Fusion Wear:", links: ["Kurtas & Suits", "Sarees", "Lehenga Cholis", "Dupattas"] },
-    { title: "Western Wear:", links: ["Dresses", "Tops", "T-Shirts", "Jeans", "Jackets"] },
-    { title: "Footwear:", links: ["Flats", "Heels", "Boots", "Sports Shoes"] },
+    { title: "Indian & Fusion Wear", links: ["Kurtas & Suits", "Sarees", "Lehenga Cholis", "Dupattas"] },
+    { title: "Western Wear", links: ["Dresses", "Tops", "T-Shirts", "Jeans", "Jackets"] },
+    { title: "Footwear", links: ["Flats", "Heels", "Boots", "Sports Shoes"] },
     {
-      title: "Lingerie & Innerwear:",
+      title: "Lingerie & Innerwear",
       links: [
         "Bras", "Panties", "Shapewear", "Sleepwear", "Camisoles & Slips", "Bridal Lingerie",
         "Lounge Bras", "Bodysuits", "Corsets & Bustiers", "Babydolls", "Chemises", "Stockings",
@@ -21,12 +21,12 @@ const menuItems = {
     },
   ],
   WATCHES: [
-    { title: "MEN'S WATCHES:", links: ["Analog", "Digital", "Smartwatches"] },
-    { title: "WOMEN'S WATCHES:", links: ["Analog", "Smartwatches", "Fitness Bands"] },
-    { title: "KID'S WATCHES:", links: ["Analog", "Smartwatches", "Fitness Bands"] },
+    { title: "MEN'S WATCHES", links: ["Analog", "Digital", "Smartwatches"] },
+    { title: "WOMEN'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
+    { title: "KID'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
   ],
-  ACCESSORIES: [{ title: "Items:", links: ["Wallets", "Glasses", "Belts", "Bags"] }],
-  GIFTHAMPERS: [{ title: "Items:", links: ["Gift for couples", "Gift for her"] }],
+  ACCESSORIES: [{  links: ["Wallets", "Glasses", "Belts", "Bags"] }],
+  GIFTHAMPERS: [{ links: ["Gift for couples", "Gift for her"] }],
 };
 
 export default function Header() {
@@ -132,7 +132,7 @@ export default function Header() {
                         <h4 className="font-semibold text-black">{section.title}</h4>
                         <ul className="mt-1 space-y-1 text-sm">
                           {section.links.map((link, i) => (
-                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer">{link}</li>
+                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer font-normal">{link}</li>
                           ))}
                         </ul>
                       </div>
@@ -146,7 +146,7 @@ export default function Header() {
                         <h4 className="font-semibold text-black">{section.title}</h4>
                         <ul className="mt-1 space-y-1 text-sm">
                           {section.links.map((link, i) => (
-                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer">{link}</li>
+                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer font-normal">{link}</li>
                           ))}
                         </ul>
                       </div>
@@ -212,19 +212,19 @@ export default function Header() {
             {Object.keys(menuItems).map((category) => (
               <div key={category}>
                 <button
-                  className="w-full flex justify-between items-center text-black font-medium hover:text-pink-600"
+                  className="w-full flex justify-between items-center text-black font-bold hover:text-pink-600"
                   onClick={() => toggleMobileDropdown(category)}
                 >
                   {category} <span>{mobileDropdowns[category] ? "−" : "+"}</span>
                 </button>
                 {mobileDropdowns[category] && (
-                  <div className="pl-4 mt-2">
+                  <div className="pl-4 mt-2 space-y-2">
                     {menuItems[category].map((section, idx) => (
-                      <div key={idx} className="mb-2">
+                      <div key={idx}>
                         <h4 className="font-semibold text-black">{section.title}</h4>
-                        <ul className="space-y-1 text-sm">
+                        <ul className="mt-1 space-y-1 text-sm">
                           {section.links.map((link, i) => (
-                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer">{link}</li>
+                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer font-normal">{link}</li>
                           ))}
                         </ul>
                       </div>

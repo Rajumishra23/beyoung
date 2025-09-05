@@ -58,7 +58,7 @@ export default function BackToCollege() {
           <img
             src={collegeStyles[currentIndex].image}
             alt={collegeStyles[currentIndex].title}
-            className="w-full h-80 sm:h-96 object-cover transition-all duration-500"
+            className="w-full h-96 sm:h-96 object-cover transition-all duration-500"
           />
           <div className="absolute top-3 left-3 bg-yellow-400 text-black text-xs font-bold px-2 py-1 rounded">
             {collegeStyles[currentIndex].title}

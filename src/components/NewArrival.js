@@ -80,92 +80,85 @@ export default function NewArrival() {
           </button>
         ))}
       </div>
+{/* Product Grid */}
+<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+  {filteredProducts.map((item, index) => {
+    const theme = categoryColors[item.category] || categoryColors["View All"];
+    return (
+      <div
+        key={index}
+        className="relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[350px] mx-auto"
+      >
+        {/* Background */}
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `repeating-linear-gradient(90deg, ${theme.stripe} 0px, ${theme.stripe} 10px, transparent 10px, transparent 20px)`,
+          }}
+        ></div>
 
-      {/* Product Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 sm:gap-2 md:gap-3">
-        {filteredProducts.map((item, index) => {
-          const theme = categoryColors[item.category] || categoryColors["View All"];
-          return (
-            <div
-              key={index}
-              className="relative group overflow-hidden rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[320px] mx-auto"
-            >
-              {/* Background */}
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `repeating-linear-gradient(90deg, ${theme.stripe} 0px, ${theme.stripe} 10px, transparent 10px, transparent 20px)`,
-                }}
-              ></div>
+        {/* Oval Shape */}
+        <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${theme.oval} opacity-50`}></div>
 
-              {/* Oval Shape */}
-              <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${theme.oval} opacity-50`}></div>
+        {/* Tag Stickers */}
+        {item.tags?.map((tag, i) => (
+          <span
+            key={i}
+            className={`absolute ${i === 0 ? "top-2" : "top-10"} left-3 z-30 ${tagStyles[tag] || "bg-gray-600"} text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded shadow`}
+          >
+            {tag}
+          </span>
+        ))}
 
-              {/* Tag Stickers */}
-              {item.tags?.map((tag, i) => (
-                <span
-                  key={i}
-                  className={`absolute ${i === 0 ? "top-2" : "top-10"} left-3 z-30 ${tagStyles[tag] || "bg-gray-600"} text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded shadow`}
-                >
-                  {tag}
-                </span>
-              ))}
+        {/* Product Image (Taller) */}
+        <div className="relative z-10 w-full h-80 sm:h-96 md:h-[28rem] lg:h-[30rem] overflow-hidden">
+          <img
+            src={item.image}
+            alt={item.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
 
-              {/* Product Image */}
-              <img
-                src={item.image}
-                alt={item.title}
-                className="relative z-10 w-full h-64 sm:h-72 md:h-80 lg:h-[26rem] object-cover group-hover:scale-105 transition-transform duration-500"
-              />
+        {/* Product Info */}
+        <div className="relative z-20 px-2 py-2 bg-white text-left space-y-1">
+          <h3 className="text-[12px] sm:text-sm font-semibold text-black truncate">
+            {item.title}
+          </h3>
+          <p className="text-[10px] sm:text-xs text-gray-500 font-medium tracking-wide">
+            {item.category === "Shirts"
+              ? "Everyday Classic"
+              : item.category === "Polo T-shirts"
+              ? "Smart Casual"
+              : item.category === "Cargo Trousers"
+              ? "Utility Fit"
+              : item.category === "Jeans"
+              ? "Denim Essential"
+              : item.category === "T-shirts"
+              ? "Relaxed Fit"
+              : "Versatile Style"}
+          </p>
+          <div className="flex items-center gap-1">
+            <span className="text-[12px] sm:text-sm font-bold text-black">
+              ₹{getDiscountedPrice(item.price, item.discount)}
+            </span>
+            <span className="line-through text-[10px] sm:text-xs text-gray-400">
+              ₹{item.price}
+            </span>
+            <span className="text-[10px] sm:text-xs text-green-600 font-medium">
+              {item.discount}% OFF
+            </span>
+          </div>
+        </div>
 
-              {/* Product Info */}
-              <div className="relative z-20 px-2 py-2 bg-white text-left space-y-1 -mt-2 sm:-mt-3">
-                <h3 className="text-[12px] sm:text-sm font-semibold text-black truncate">
-                  {item.title}
-                </h3>
-
-                <p className="text-[10px] sm:text-xs text-gray-500 font-medium tracking-wide">
-                  {item.category === "Shirts"
-                    ? "Everyday Classic"
-                    : item.category === "Polo T-shirts"
-                    ? "Smart Casual"
-                    : item.category === "Cargo Trousers"
-                    ? "Utility Fit"
-                    : item.category === "Jeans"
-                    ? "Denim Essential"
-                    : item.category === "T-shirts"
-                    ? "Relaxed Fit"
-                    : "Versatile Style"}
-                </p>
-
-                <div className="flex items-center gap-1">
-                  <span className="text-[12px] sm:text-sm font-bold text-black">
-                    ₹{getDiscountedPrice(item.price, item.discount)}
-                  </span>
-                  <span className="line-through text-[10px] sm:text-xs text-gray-400">
-                    ₹{item.price}
-                  </span>
-                  <span className="text-[10px] sm:text-xs text-green-600 font-medium">
-                    {item.discount}% OFF
-                  </span>
-                </div>
-
-                <div className="text-[10px] sm:text-sm text-yellow-500 font-semibold">
-                  ⭐ {(4 + (index % 2) + (item.discount % 3) * 0.1).toFixed(1)}
-                  <span className="text-gray-500 text-[9px] sm:text-xs ml-1">
-                    ({100 + index * 17} reviews)
-                  </span>
-                </div>
-              </div>
-
-              {/* Wishlist */}
-              <button className="absolute top-3 right-3 text-gray-500 hover:text-black z-30">
-                <FaHeart />
-              </button>
-            </div>
-          );
-        })}
+        {/* Wishlist */}
+        <button className="absolute top-3 right-3 text-gray-500 hover:text-black z-30">
+          <FaHeart />
+        </button>
       </div>
+    );
+  })}
+</div>
+
     </section>
   );
 }
