@@ -56,7 +56,7 @@ const SpecialCouponBar = () => {
         </div>
 
         {/* Right Side Slider */}
-        <div className="flex-1 h-full bg-gradient-to-r from-blue-900 via-gray-800 to-blue-900 overflow-hidden relative">
+        <div className="flex-1 h-full bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 overflow-hidden relative">
           <div
             className="flex h-full transition-transform duration-500 ease-in-out w-full"
             style={{
@@ -66,14 +66,16 @@ const SpecialCouponBar = () => {
             {couponImages.map((img, i) => (
               <div
                 key={i}
-                className="flex items-center justify-center border-l border-gray-700 h-full w-full max-w-full"
+                className="flex items-center justify-center border-l border-green-700 h-full w-full max-w-full"
                 style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
               >
-                <img
-                  src={img}
-                  alt={`Coupon ${i + 1}`}
-                  className="max-h-[80%] max-w-[90%] object-contain transition-transform duration-300 hover:scale-105"
-                />
+           <img
+  src={img}
+  alt={`Coupon ${i + 1}`}
+  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+/>
+
+
               </div>
             ))}
           </div>
