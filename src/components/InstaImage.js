@@ -66,11 +66,12 @@ const InstaImage = () => {
               className="relative w-56 sm:w-56 md:w-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer 
               border border-gray-200 shadow-md hover:shadow-xl transition"
             >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-[400px] sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-110"
-              />
+            <img
+  src={item.image}
+  alt={item.title}
+  className="w-full max-w-[600px] h-[350px] sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
+/>
+
               {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
                 <FaInstagram className="text-white text-2xl md:text-3xl mb-2" />

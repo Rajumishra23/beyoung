@@ -26,7 +26,7 @@ export default function FashionCategories() {
   };
 
   return (
-    <section className="bg-white py-12">
+    <section className="bg-white py-12 overflow-x-hidden">
       {/* Heading */}
       <div className="text-center mb-8 px-4">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
