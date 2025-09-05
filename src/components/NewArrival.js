@@ -81,13 +81,13 @@ export default function NewArrival() {
         ))}
       </div>
 {/* Product Grid */}
-<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
   {filteredProducts.map((item, index) => {
     const theme = categoryColors[item.category] || categoryColors["View All"];
     return (
       <div
         key={index}
-        className="relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[350px] mx-auto"
+        className="relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[400px] mx-auto"
       >
         {/* Background */}
         <div
@@ -110,14 +110,14 @@ export default function NewArrival() {
           </span>
         ))}
 
-        {/* Product Image (Taller) */}
-        <div className="relative z-10 w-full h-80 sm:h-96 md:h-[28rem] lg:h-[30rem] overflow-hidden">
-          <img
-            src={item.image}
-            alt={item.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </div>
+       {/* Product Image (Taller & Wider) */}
+<div className="relative z-10 w-full max-w-[400px] h-96 sm:h-[28rem] md:h-[30rem] lg:h-[32rem] mx-auto overflow-hidden">
+  <img
+    src={item.image}
+    alt={item.title}
+    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+  />
+</div>
 
         {/* Product Info */}
         <div className="relative z-20 px-2 py-2 bg-white text-left space-y-1">
