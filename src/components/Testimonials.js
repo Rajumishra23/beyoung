@@ -94,20 +94,19 @@ export default function Testimonials() {
             ))}
           </div>
         </div>
-
-       {/* Desktop Static Card with Side Buttons */}
-<div className="hidden sm:flex justify-center items-center gap-6">
+{/* Unified Review Card for All Devices */}
+<div className="flex flex-col sm:flex-row justify-center items-center gap-6 px-4">
   {/* Prev Button */}
   <button
     onClick={handlePrev}
-    className="px-3 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+    className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition mb-4 sm:mb-0"
   >
     ⬅
   </button>
 
   {/* Review Card */}
   <div
-    className="max-w-xl w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5"
+    className="max-w-md w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5"
     style={{
       background: "linear-gradient(135deg, #6D5BBA 0%, #8D58BF 50%, #DE67E4 100%)",
       color: "white",
@@ -133,7 +132,7 @@ export default function Testimonials() {
   {/* Next Button */}
   <button
     onClick={handleNext}
-    className="px-3 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+    className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition mt-4 sm:mt-0"
   >
     ➡
   </button>

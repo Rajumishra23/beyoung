@@ -81,15 +81,16 @@ export default function NewArrival() {
         ))}
       </div>
 {/* Product Grid */}
-<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[6px] px-[2px]">
   {filteredProducts.map((item, index) => {
     const theme = categoryColors[item.category] || categoryColors["View All"];
     return (
       <div
-        key={index}
-        className="relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[400px] mx-auto"
-      >
-        {/* Background */}
+  key={index}
+  className="relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[420px] mx-auto bg-white rounded-md"
+>
+
+        {/* Background Stripe */}
         <div
           className="absolute inset-0"
           style={{
@@ -97,7 +98,7 @@ export default function NewArrival() {
           }}
         ></div>
 
-        {/* Oval Shape */}
+        {/* Oval Accent */}
         <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${theme.oval} opacity-50`}></div>
 
         {/* Tag Stickers */}
@@ -110,48 +111,48 @@ export default function NewArrival() {
           </span>
         ))}
 
-      {/* Product Image (Wider & Slightly Shorter) */}
-<div className="relative z-10 w-full max-w-[450px] h-80 sm:h-[24rem] md:h-[26rem] lg:h-[28rem] mx-auto overflow-hidden">
-  <img
-    src={item.image}
-    alt={item.title}
-    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-  />
-</div>
+        {/* Product Image */}
+        <div className="relative z-10 w-full h-[22rem] sm:h-[24rem] md:h-[26rem] lg:h-[28rem] overflow-hidden">
+          <img
+            src={item.image}
+            alt={item.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        </div>
 
-        {/* Product Info */}
-        <div className="relative z-20 px-2 py-2 bg-white text-left space-y-1">
-          <h3 className="text-[12px] sm:text-sm font-semibold text-black truncate">
-            {item.title}
-          </h3>
-          <p className="text-[10px] sm:text-xs text-gray-500 font-medium tracking-wide">
-            {item.category === "Shirts"
-              ? "Everyday Classic"
-              : item.category === "Polo T-shirts"
-              ? "Smart Casual"
-              : item.category === "Cargo Trousers"
-              ? "Utility Fit"
-              : item.category === "Jeans"
-              ? "Denim Essential"
-              : item.category === "T-shirts"
-              ? "Relaxed Fit"
-              : "Versatile Style"}
-          </p>
-          <div className="flex items-center gap-1">
-            <span className="text-[12px] sm:text-sm font-bold text-black">
+       {/* Product Info */}
+<div className="relative z-20 px-1 py-1 bg-white space-y-1">
+  <h3 className=" font-semibold text-black truncate">{item.title}</h3>
+  <p className="text-xs font-medium tracking-wide text-yellow-500">
+    {item.category === "Shirts"
+      ? "Everyday Classic"
+      : item.category === "Polo T-shirts"
+      ? "Smart Casual"
+      : item.category === "Cargo Trousers"
+      ? "Utility Fit"
+      : item.category === "Jeans"
+      ? "Denim Essential"
+      : item.category === "T-shirts"
+      ? "Relaxed Fit"
+      : "Versatile Style"}
+  </p>
+
+
+          <div className="flex items-center gap-2">
+            <span className="text-sm font-bold text-black">
               ₹{getDiscountedPrice(item.price, item.discount)}
             </span>
-            <span className="line-through text-[10px] sm:text-xs text-gray-400">
+            <span className="line-through text-xs text-gray-400">
               ₹{item.price}
             </span>
-            <span className="text-[10px] sm:text-xs text-green-600 font-medium">
+            <span className="text-xs text-green-600 font-medium">
               {item.discount}% OFF
             </span>
           </div>
         </div>
 
-        {/* Wishlist */}
-        <button className="absolute top-3 right-3 text-gray-500 hover:text-black z-30">
+        {/* Wishlist Icon */}
+        <button className="absolute top-3 right-3 text-white hover:text-black z-30">
           <FaHeart />
         </button>
       </div>

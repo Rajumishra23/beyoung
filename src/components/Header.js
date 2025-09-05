@@ -15,7 +15,7 @@ const menuItems = {
       title: "LINGERIE & INNERWEAR",
       links: [
         "Bras", "Panties", "Shapewear", "Sleepwear", "Bridal Lingerie",
-        , "Thermals", "Maternity Lingerie", "Seamless Wear", "Activewear Bras",
+        "Thermals", "Maternity Lingerie", "Seamless Wear", "Activewear Bras",
       ],
     },
   ],
@@ -24,7 +24,7 @@ const menuItems = {
     { title: "WOMEN'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
     { title: "KID'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
   ],
-  ACCESSORIES: [{  links: ["Wallets", "Glasses", "Belts", "Bags"] }],
+  ACCESSORIES: [{ links: ["Wallets", "Glasses", "Belts", "Bags"] }],
   GIFTHAMPERS: [{ links: ["Gift for couples", "Gift for her"] }],
 };
 
@@ -32,7 +32,7 @@ export default function Header() {
   const sliderRef = useRef(null);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [mobileDropdowns, setMobileDropdowns] = useState({});
+  const [openCategory, setOpenCategory] = useState(null); // ✅ new state
 
   const placeholders = [
     "Search for shirts...", "Search for watches...", "Search for jeans...",
@@ -66,11 +66,9 @@ export default function Header() {
     return () => clearInterval(slideInterval);
   }, []);
 
+  // ✅ Toggle function (only one open at a time)
   const toggleMobileDropdown = (category) => {
-    setMobileDropdowns((prev) => ({
-      ...prev,
-      [category]: !prev[category],
-    }));
+    setOpenCategory((prev) => (prev === category ? null : category));
   };
 
   return (
@@ -208,30 +206,44 @@ export default function Header() {
             </div>
 
             {/* Dropdown Categories */}
-            {Object.keys(menuItems).map((category) => (
-              <div key={category}>
-                <button
-                  className="w-full flex justify-between items-center text-black font-bold hover:text-pink-600"
-                  onClick={() => toggleMobileDropdown(category)}
+{Object.keys(menuItems).map((category) => (
+  <div key={category}>
+    <button
+      className="w-full flex justify-between items-center text-black font-bold hover:text-pink-600"
+      onClick={() => toggleMobileDropdown(category)}
+    >
+      {category} <span>{openCategory === category ? "−" : "+"}</span>
+    </button>
+
+    {openCategory === category && (
+      <div
+        className={`pl-4 mt-2 ${
+          category === "WOMEN"
+            ? "grid grid-cols-2 gap-4 max-h-64 overflow-y-auto pr-2"
+            : "space-y-2"
+        }`}
+      >
+        {menuItems[category].map((section, idx) => (
+          <div key={idx}>
+            {section.title && (
+              <h4 className="font-semibold text-black">{section.title}</h4>
+            )}
+            <ul className="mt-1 space-y-1 text-sm">
+              {section.links.map((link, i) => (
+                <li
+                  key={i}
+                  className="text-black hover:text-pink-600 cursor-pointer font-normal"
                 >
-                  {category} <span>{mobileDropdowns[category] ? "−" : "+"}</span>
-                </button>
-                {mobileDropdowns[category] && (
-                  <div className="pl-4 mt-2 space-y-2">
-                    {menuItems[category].map((section, idx) => (
-                      <div key={idx}>
-                        <h4 className="font-semibold text-black">{section.title}</h4>
-                        <ul className="mt-1 space-y-1 text-sm">
-                          {section.links.map((link, i) => (
-                            <li key={i} className="text-black hover:text-pink-600 cursor-pointer font-normal">{link}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                  {link}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+))}
 
             {/* Static Links */}
             {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((cat) => (
