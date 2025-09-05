@@ -110,8 +110,8 @@ export default function NewArrival() {
           </span>
         ))}
 
-       {/* Product Image (Taller & Wider) */}
-<div className="relative z-10 w-full max-w-[400px] h-96 sm:h-[28rem] md:h-[30rem] lg:h-[32rem] mx-auto overflow-hidden">
+      {/* Product Image (Wider & Slightly Shorter) */}
+<div className="relative z-10 w-full max-w-[450px] h-80 sm:h-[24rem] md:h-[26rem] lg:h-[28rem] mx-auto overflow-hidden">
   <img
     src={item.image}
     alt={item.title}

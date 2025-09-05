@@ -3,20 +3,19 @@ import { motion } from "framer-motion";
 
 const menuItems = {
   MEN: [
-    { title: "Topwear", links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"] },
-    { title: "Bottomwear", links: ["Jeans", "Casual Trousers", "Shorts", "Joggers"] },
-    { title: "Footwear", links: ["Casual Shoes", "Sneakers", "Sports Shoes", "Formal Shoes"] },
+    { title: "TOPWEAR", links: ["T-Shirts", "Casual Shirts", "Formal Shirts", "Sweatshirts", "Jackets"] },
+    { title: "BOTTEMWEAR", links: ["Jeans", "Casual Trousers", "Shorts", "Joggers"] },
+    { title: "FOOTWEAR", links: ["Casual Shoes", "Sneakers", "Sports Shoes", "Formal Shoes"] },
   ],
   WOMEN: [
-    { title: "Indian & Fusion Wear", links: ["Kurtas & Suits", "Sarees", "Lehenga Cholis", "Dupattas"] },
-    { title: "Western Wear", links: ["Dresses", "Tops", "T-Shirts", "Jeans", "Jackets"] },
-    { title: "Footwear", links: ["Flats", "Heels", "Boots", "Sports Shoes"] },
+    { title: "INDIAN & FUSIAN WEAR", links: ["Kurtas & Suits", "Sarees", "Lehenga Cholis", "Dupattas"] },
+    { title: "WESTERN WEAR", links: ["Dresses", "Tops", "T-Shirts", "Jeans", "Jackets"] },
+    { title: "FOOTWARE", links: ["Flats", "Heels", "Boots", "Sports Shoes"] },
     {
       title: "Lingerie & Innerwear",
       links: [
-        "Bras", "Panties", "Shapewear", "Sleepwear", "Camisoles & Slips", "Bridal Lingerie",
-        "Lounge Bras", "Bodysuits", "Corsets & Bustiers", "Babydolls", "Chemises", "Stockings",
-        "Garter Belts", "Thermals", "Maternity Lingerie", "Seamless Wear", "Activewear Bras",
+        "Bras", "Panties", "Shapewear", "Sleepwear", "Bridal Lingerie",
+        , "Thermals", "Maternity Lingerie", "Seamless Wear", "Activewear Bras",
       ],
     },
   ],
