@@ -63,82 +63,85 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* Mobile Scrollable Cards */}
+        {/* ✅ Mobile Scrollable Cards (screenshot जैसा look) */}
         <div className="block sm:hidden overflow-x-auto scroll-smooth snap-x snap-mandatory overflow-y-hidden">
-          <div className="flex gap-2 px-2">
+          <div className="flex gap-3 px-2">
             {reviews.map((testimonial, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 snap-start w-[90%] rounded-xl shadow-lg hover:shadow-2xl transition p-5"
-                style={{
-                  background: "linear-gradient(135deg, #6D5BBA 0%, #8D58BF 50%, #DE67E4 100%)",
-                  color: "white",
-                }}
+                className="flex-shrink-0 snap-start w-[90%] rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border"
               >
-                <div
-                  className="w-16 h-16 mx-auto rounded-full bg-cover bg-center mb-4 border border-white/50 shadow"
-                  style={{ backgroundImage: `url(${testimonial.avatar})` }}
-                ></div>
-                <p className="text-white italic mb-4 leading-relaxed text-sm">
+                {/* Rating + Date */}
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="bg-black text-yellow-400 px-2 py-1 rounded-full text-sm font-bold">
+                    ⭐ {testimonial.rating.toFixed(1)}
+                  </span>
+                  <span className="text-gray-500 text-sm">{testimonial.date}</span>
+                </div>
+
+                {/* Review Text */}
+                <p className="text-gray-800 mb-3 leading-relaxed text-sm">
                   "{testimonial.review}"
                 </p>
-                <div className="font-semibold text-white text-base text-center">
+
+                {/* Reviewer + Image */}
+                <div className="font-semibold text-black text-base mb-1">
                   {testimonial.name}
                 </div>
-                <div className="text-sm text-yellow-300 text-center mb-2">{testimonial.post}</div>
-                <div className="flex justify-center items-center gap-2 text-yellow-400 text-sm font-bold">
-                  ⭐ {testimonial.rating.toFixed(1)}
-                  <span className="text-white text-xs font-medium">{testimonial.date}</span>
-                </div>
+                <div className="text-sm text-gray-600 mb-3">{testimonial.post}</div>
+                <img
+                  src={testimonial.avatar}
+                  alt={testimonial.name}
+                  className="w-full h-40 rounded-lg object-cover"
+                />
               </div>
             ))}
           </div>
         </div>
-{/* Unified Review Card for All Devices */}
-<div className="flex flex-col sm:flex-row justify-center items-center gap-6 px-4">
-  {/* Prev Button */}
-  <button
-    onClick={handlePrev}
-    className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition mb-4 sm:mb-0"
-  >
-    ⬅
-  </button>
 
-  {/* Review Card */}
-  <div
-    className="max-w-md w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5"
-    style={{
-      background: "linear-gradient(135deg, #6D5BBA 0%, #8D58BF 50%, #DE67E4 100%)",
-      color: "white",
-    }}
-  >
-    <div
-      className="w-20 h-20 mx-auto rounded-full bg-cover bg-center mb-4 border border-white/50 shadow"
-      style={{ backgroundImage: `url(${testimonial.avatar})` }}
-    ></div>
-    <p className="text-white italic mb-4 leading-relaxed text-base">
-      "{testimonial.review}"
-    </p>
-    <div className="font-semibold text-white text-lg text-center">
-      {testimonial.name}
-    </div>
-    <div className="text-sm text-yellow-300 text-center mb-2">{testimonial.post}</div>
-    <div className="flex justify-center items-center gap-2 text-yellow-400 text-base font-bold">
-      ⭐ {testimonial.rating.toFixed(1)}
-      <span className="text-white text-sm font-medium">{testimonial.date}</span>
-    </div>
-  </div>
+        {/* ✅ Desktop View (unchanged) */}
+        <div className="hidden sm:flex flex-col sm:flex-row justify-center items-center gap-6 px-4">
+          {/* Prev Button */}
+          <button
+            onClick={handlePrev}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition mb-4 sm:mb-0"
+          >
+            ⬅
+          </button>
 
-  {/* Next Button */}
-  <button
-    onClick={handleNext}
-    className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition mt-4 sm:mt-0"
-  >
-    ➡
-  </button>
-</div>
+          {/* Review Card */}
+          <div className="max-w-md w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border">
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <span className="bg-black text-yellow-400 px-2 py-1 rounded-full text-sm font-bold">
+                ⭐ {testimonial.rating.toFixed(1)}
+              </span>
+              <span className="text-gray-500 text-sm">{testimonial.date}</span>
+            </div>
+            <p className="text-gray-800 italic mb-4 leading-relaxed text-base">
+              "{testimonial.review}"
+            </p>
+            <div className="font-semibold text-black text-lg text-center">
+              {testimonial.name}
+            </div>
+            <div className="text-sm text-gray-600 text-center mb-2">
+              {testimonial.post}
+            </div>
+            <img
+              src={testimonial.avatar}
+              alt={testimonial.name}
+              className="w-full h-400 rounded-lg object-cover"
+            />
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={handleNext}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition mt-4 sm:mt-0"
+          >
+            ➡
+          </button>
         </div>
-    
+      </div>
     </section>
   );
 }

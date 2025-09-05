@@ -123,7 +123,7 @@ export default function NewArrival() {
        {/* Product Info */}
 <div className="relative z-20 px-1 py-1 bg-white space-y-1">
   <h3 className=" font-semibold text-black truncate">{item.title}</h3>
-  <p className="text-xs font-medium tracking-wide text-yellow-500">
+  <p className="text-xs font-medium tracking-wide ">
     {item.category === "Shirts"
       ? "Everyday Classic"
       : item.category === "Polo T-shirts"
