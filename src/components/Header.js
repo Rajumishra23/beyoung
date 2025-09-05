@@ -12,7 +12,7 @@ const menuItems = {
     { title: "WESTERN WEAR", links: ["Dresses", "Tops", "T-Shirts", "Jeans", "Jackets"] },
     { title: "FOOTWARE", links: ["Flats", "Heels", "Boots", "Sports Shoes"] },
     {
-      title: "Lingerie & Innerwear",
+      title: "LINGERIE & INNERWEAR",
       links: [
         "Bras", "Panties", "Shapewear", "Sleepwear", "Bridal Lingerie",
         , "Thermals", "Maternity Lingerie", "Seamless Wear", "Activewear Bras",
