@@ -1,65 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const images = [
-  "first.webp",
-  "front4.webp",
-  "first2.webp",
-  "first3.webp",
-  "first1.webp",
+const couponImages = [
+  "first.webp",  // 1st coupon image path
+  "first1.webp", // 2nd coupon image path
+  "first2.webp", // 3rd coupon image path
+  "first3.webp", // 4th coupon image path
 ];
 
-const CouponSlider = () => {
+const SpecialCouponBar = () => {
   const [index, setIndex] = useState(0);
+  const [itemsPerSlide, setItemsPerSlide] = useState(1); // default desktop
 
+  // Screen size ke hisaab se items per slide set karo
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
-    return () => clearInterval(timer);
+    const updateItems = () => {
+      if (window.innerWidth < 640) {
+        setItemsPerSlide(2); // mobile pe 2 images
+      } else {
+        setItemsPerSlide(1); // desktop/tablet pe 1 image
+      }
+    };
+    updateItems();
+    window.addEventListener("resize", updateItems);
+    return () => window.removeEventListener("resize", updateItems);
   }, []);
 
+  // Auto slide
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % (couponImages.length - (itemsPerSlide - 1)));
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [itemsPerSlide]);
+
   return (
-    <section className="w-full bg-black-500 text-white py-3 px-2 border border-black-500 rounded-lg shadow-md">
-      <div
-        className="max-w-10xl mx-auto flex items-center rounded-lg overflow-hidden
-        h-[160px] sm:h-[180px] md:h-[200px] lg:h-[200px]"
-      >
-        {/* Left Box */}
-        <div
-          className="bg-gradient-to-b from-purple-700 to-indigo-900
-          h-[160px] sm:h-[180px] md:h-[200px] lg:h-[200px]
-          w-[160px] sm:w-[180px] md:w-[200px] flex flex-col items-center justify-center
-          text-center px-3 py-4"
-        >
-          <h3 className="text-base sm:text-lg md:text-xl font-extrabold tracking-wide text-white leading-tight">
-            SPECIAL
-          </h3>
-          <h3 className="text-base sm:text-lg md:text-xl font-extrabold tracking-wide text-white leading-tight">
-            COUPON
-          </h3>
-          <p className="mt-2 text-yellow-300 text-sm sm:text-base font-medium">
-            CORNER
-          </p>
-          <div className="mt-3 w-10 h-1 bg-yellow-400 rounded-full"></div>
+    <section className="w-full bg-black">
+      <div className="max-w-7xl mx-auto flex items-center h-[120px] sm:h-[140px] md:h-[160px] pl-0 overflow-hidden">
+        
+        {/* Left Image */}
+        <img
+          src="super.png" // <-- apna left banner image path
+          alt="Special Coupon Corner"
+          className="h-full w-auto object-contain"
+        />
+
+        {/* Right Side Slider */}
+        <div className="flex-1 h-full bg-white overflow-hidden relative">
+          <div
+            className="flex h-full transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${index * (100 / itemsPerSlide)}%)` }}
+          >
+            {couponImages.map((img, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center border-l border-gray-300 bg-black"
+                style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
+              >
+                <img
+                  src={img}
+                  alt={`Coupon ${i + 1}`}
+                  className="max-h-[90%] max-w-[90%] object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Divider */}
-        <div className="w-[1px] bg-white/20 h-full"></div>
-
-        {/* Slider Box */}
-        <div
-          className="flex-1 min-w-0 relative overflow-hidden bg-white flex items-center justify-center
-          h-[160px] sm:h-[180px] md:h-[200px] lg:h-[200px]"
-        >
-          <img
-            src={images[index]}
-            alt={`Coupon ${index + 1}`}
-            className="max-w-full max-h-full object-contain transition-all duration-500"
-          />
-        </div>
       </div>
     </section>
   );
 };
 
-export default CouponSlider;
+export default SpecialCouponBar;
