@@ -85,11 +85,14 @@ export default function GlassSection() {
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.05 }}
     >
-      <img
-        src={glass.image}
-        alt={glass.name}
-        className="w-full h-[220px] sm:h-[220px] md:h-[240px] object-cover"
-      />
+     <div className="w-[350px] sm:w-[400px] md:w-[500px]">
+  <img
+    src={glass.image}
+    alt={glass.name}
+    className="w-full h-[220px] sm:h-[220px] md:h-[240px] object-cover"
+  />
+</div>
+
 
 
               <div className="mt-3 px-3 pb-4 space-y-1 text-left">
