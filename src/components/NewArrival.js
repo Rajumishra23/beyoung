@@ -125,9 +125,9 @@ export default function NewArrival() {
 {/* Product Info */}
 <div className="relative z-20 px-2 py-2 bg-white space-y-1">
   {/* Title */}
-  <h3 className="font-semibold text-black truncate text-sm sm:text-base">
+  <h4 className="font-semibold text-black truncate text-sm sm:text-base">
     {item.title}
-  </h3>
+  </h4>
 
   {/* Subtitle */}
   <p className="text-xs font-medium tracking-wide">
