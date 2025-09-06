@@ -114,14 +114,16 @@ export default function NewArrival() {
           </span>
         ))}
 
-        {/* ✅ Product Image (Fixed for Mobile + Desktop) */}
-        <div className="relative z-10 w-full h-[12rem] sm:h-[16rem] md:h-[18rem] lg:h-[22rem] overflow-hidden">
-          <img
-            src={item.image}
-            alt={item.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </div>
+       {/* ✅ Product Image (Fixed for Mobile + Desktop) */}
+<div className="relative z-10 w-full h-[14rem] sm:h-[17rem] md:h-[19rem] lg:h-[30rem] overflow-hidden">
+  {/* Image */}
+  <img
+    src={item.image}
+    alt={item.title}
+    className="w-full h-[14rem] sm:h-[17rem] md:h-[19rem] lg:h-[24rem] object-cover transition-transform duration-300 group-hover:scale-105"
+  />
+</div>
+
 
         {/* Product Info */}
         <div className="relative z-20 px-2 py-2 bg-white space-y-1">

@@ -51,13 +51,13 @@ export default function Footer() {
           </button>
           <h4 className="hidden md:block font-bold mb-4">SHOP</h4>
           <ul className={`space-y-2 text-sm ${openSection === "SHOP" ? "block" : "hidden"} md:block`}>
-            <li>Men's Clothing</li>
-            <li>Women's Clothing</li>
+            <li>Men</li>
+            <li>Women</li>
             <li>Watches</li>
-            <li>Bags</li>
-            <li>Wallets</li>
-            <li>Glasses</li>
             <li>Accessories</li>
+            <li>Gift Hampers</li>
+            <li>New Arrival</li>
+            <li>Combos</li>
           </ul>
         </div>
 
@@ -118,29 +118,35 @@ export default function Footer() {
       {/* WHY & LOCATION */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-start mb-8 text-center md:text-left">
         {/* WHY CHOOSE US */}
-        <div className="pt-6">
-          <button
-            className="w-full flex justify-between items-center py-2 font-bold text-white"
-            onClick={() => toggleSection("WHY")}
-          >
-            <span className="text-lg">WHY CHOOSE US?</span>
-            <span className="text-xl">{openSection === "WHY" ? "−" : "+"}</span>
-          </button>
-          <div className={`mt-2 space-y-2 text-sm text-gray-400 ${openSection === "WHY" ? "block" : "hidden"}`}>
-            <p className="font-semibold">
-              Dempsey - An Affordable Online Shopping Site in India
-            </p>
-            <p>
-              Online shopping was rapidly gaining popularity, yet affordable and trendy options were limited...
-            </p>
-            <p>✔ Premium quality materials</p>
-            <p>✔ Fast delivery across India</p>
-            <p>✔ 24/7 customer support</p>
-            <p>✔ Trusted by 10K+ customers</p>
-            <p>✔ Built for creators, students & style rebels</p>
-            <span className="text-yellow-400 font-medium cursor-pointer">Read More +</span>
-          </div>
-        </div>
+<div className="pt-6">
+  <button
+    className="w-full flex justify-between items-center py-2 font-bold text-white border-b border-gray-700 md:border-none"
+    onClick={() => toggleSection("WHY")}
+  >
+    <span className="text-lg">WHY CHOOSE US?</span>
+    <span className="text-xl">{openSection === "WHY" ? "−" : "+"}</span>
+  </button>
+  <div
+    className={`mt-2 space-y-2 text-sm text-gray-400 ${
+      openSection === "WHY" ? "block" : "hidden"
+    }`}
+  >
+    <p className="font-semibold">
+      Dempsey - An Affordable Online Shopping Site in India
+    </p>
+    <p>
+      Online shopping was rapidly gaining popularity, yet affordable and trendy options were limited...
+    </p>
+    <p>✔ Premium quality materials</p>
+    <p>✔ Fast delivery across India</p>
+    <p>✔ 24/7 customer support</p>
+    <p>✔ Trusted by 10K+ customers</p>
+    <p>✔ Built for creators, students & style rebels</p>
+    <span className="text-yellow-400 font-medium cursor-pointer">
+      Read More +
+    </span>
+  </div>
+</div>
 
         {/* LOCATION */}
         <div className="pt-6">

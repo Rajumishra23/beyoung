@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 
 const reviews = [
   {
@@ -39,15 +39,16 @@ const reviews = [
 ];
 
 export default function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const testimonial = reviews[currentIndex];
+  const sliderRef = useRef(null);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? reviews.length - 1 : prev - 1));
+  const scrollLeft = () => {
+    const cardWidth = sliderRef.current?.children[0]?.offsetWidth + 16;
+    sliderRef.current?.scrollBy({ left: -cardWidth, behavior: "smooth" });
   };
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === reviews.length - 1 ? 0 : prev + 1));
+  const scrollRight = () => {
+    const cardWidth = sliderRef.current?.children[0]?.offsetWidth + 16;
+    sliderRef.current?.scrollBy({ left: cardWidth, behavior: "smooth" });
   };
 
   return (
@@ -63,84 +64,60 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* ✅ Mobile Scrollable Cards */}
-        <div className="block sm:hidden overflow-x-auto scroll-smooth snap-x snap-mandatory overflow-y-hidden">
-          <div className="flex gap-3 px-2">
+        {/* ✅ Scrollable Reviews */}
+        <div className="relative w-full flex items-center">
+          {/* Prev Button */}
+<button
+  onClick={scrollLeft}
+  className="hidden sm:flex items-center justify-center absolute -left-8 top-1/2 -translate-y-1/2
+             px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition shadow-lg z-10"
+>
+  ⬅
+</button>
+
+          {/* Slider */}
+          <div
+            ref={sliderRef}
+            className="flex gap-1 overflow-x-auto scroll-smooth no-scrollbar w-full sm:ml-[-32px]"
+          >
             {reviews.map((testimonial, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 snap-start w-[90%] rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border"
+                className="flex-shrink-0 w-[300px] sm:w-[250px] rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border"
               >
                 {/* Rating + Date */}
                 <div className="flex justify-between items-center mb-2">
                   <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-base font-bold">
                     ⭐ {testimonial.rating.toFixed(1)}
                   </span>
-                  <span className="text-gray-500 text-sm font-semibold">{testimonial.date}</span>
+                  <span className="text-gray-500 text-sm font-semibold">
+                    {testimonial.date}
+                  </span>
                 </div>
 
-               {/* Review Text */}
-<p className="text-gray-800 mb-3 leading-relaxed text-sm font-semibold">
-  "{testimonial.review}"
-</p>
+                <p className="text-gray-800 mb-3 leading-relaxed text-sm font-semibold">
+                  "{testimonial.review}"
+                </p>
 
-
-                {/* Reviewer + Image */}
                 <div className="font-semibold text-black text-base mb-1">
                   {testimonial.name}
                 </div>
                 <div className="text-sm text-gray-600 mb-3">{testimonial.post}</div>
+
                 <img
                   src={testimonial.avatar}
                   alt={testimonial.name}
-                  className="w-full h-40 rounded-lg object-cover"
+                  className="w-full h-52 rounded-lg object-cover"
                 />
               </div>
             ))}
           </div>
-        </div>
-
-        {/* ✅ Desktop View */}
-        <div className="hidden sm:flex flex-row justify-center items-center gap-6 px-4">
-          {/* Prev Button */}
-          <button
-            onClick={handlePrev}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
-          >
-            ⬅
-          </button>
-
-          {/* Single Review Card */}
-          <div className="max-w-md w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border">
-            {/* Rating + Date */}
-            <div className="flex justify-between items-center mb-2">
-              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-lg font-bold">
-                ⭐ {testimonial.rating.toFixed(1)}
-              </span>
-              <span className="text-gray-500 font-semibold text-sm">{testimonial.date}</span>
-            </div>
-
-            <div className="font-semibold text-black text-lg text-center">
-              {testimonial.name}
-            </div>
-            <div className="text-sm text-gray-600 text-center mb-2">
-              {testimonial.post}
-            </div>
-            <img
-              src={testimonial.avatar}
-              alt={testimonial.name}
-              className="w-full h-80 rounded-lg object-cover"
-            />
-            <p className="text-gray-800 mt-3 leading-relaxed text-sm font-semibold">
-  "{testimonial.review}"
-</p>
-
-          </div>
 
           {/* Next Button */}
           <button
-            onClick={handleNext}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+            onClick={scrollRight}
+            className="hidden sm:flex items-center justify-center absolute right-0 top-1/2 -translate-y-1/2
+               px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition shadow-lg z-10"
           >
             ➡
           </button>

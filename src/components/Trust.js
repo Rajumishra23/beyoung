@@ -10,8 +10,9 @@ export default function TrustHighlights() {
   return (
     <section className="bg-white py-10 px-4">
       <div className="max-w-6xl mx-auto">
+        
         {/* ✅ Desktop Grid */}
-        <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 gap-4 text-center">
+        <div className="hidden sm:grid grid-cols-2 md:grid-cols-3 gap-3 text-center">
           {highlights.map((item, index) => (
             <div
               key={index}
@@ -33,7 +34,7 @@ export default function TrustHighlights() {
           {highlights.map((item, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-[32%] bg-white shadow-md rounded-lg border border-gray-200 hover:border-gray-400 transition-transform duration-300 flex flex-col items-center p-2"
+              className="flex-shrink-0 w-[34%] bg-white shadow-md rounded-lg border border-gray-200 hover:border-gray-400 transition-transform duration-300 flex flex-col items-center p-2"
             >
               <img
                 src={item.image}
@@ -43,7 +44,7 @@ export default function TrustHighlights() {
               <h3 className="text-xs font-semibold text-gray-900 text-center leading-snug">
                 {item.title}
               </h3>
-              <p className="text-[10px] text-gray-600 text-center mt-1 leading-tight">
+              <p className="text-[20px] text-gray-600 text-center mt-1 leading-snug break-words">
                 {item.subtitle}
               </p>
             </div>
