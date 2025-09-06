@@ -243,7 +243,7 @@ export default function Header() {
 
             {/* Static Links */}
             {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((cat) => (
-              <a key={cat} href="#" className="block text-gray-700 font-medium hover:text-pink-600">{cat}</a>
+              <a key={cat} href="#" className="block text-gray-700  font-bold hover:text-pink-600">{cat}</a>
             ))}
 
             {/* Blog + Auth */}
