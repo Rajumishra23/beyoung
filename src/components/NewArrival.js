@@ -65,21 +65,22 @@ export default function NewArrival() {
       </div>
 
       {/* Category Filters */}
-      <div className="flex justify-center flex-wrap gap-3 mb-8">
-        {categories.map((cat, index) => (
-          <button
-            key={index}
-            onClick={() => setSelectedCategory(cat)}
-            className={`px-4 py-1 text-xs font-medium rounded-full border ${
-              selectedCategory === cat
-                ? "bg-black text-white"
-                : "bg-gray-100 text-black"
-            } hover:bg-black hover:text-white transition`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+<div className="flex justify-center flex-wrap gap-4 mb-10">
+  {categories.map((cat, index) => (
+    <button
+      key={index}
+      onClick={() => setSelectedCategory(cat)}
+      className={`px-5 py-2 text-base font-semibold rounded-full border ${
+        selectedCategory === cat
+          ? "bg-black text-yellow-500"
+          : "bg-gray-100 text-black"
+      } hover:bg-black hover:text-white transition`}
+    >
+      {cat}
+    </button>
+  ))}
+</div>
+
 {/* Product Grid */}
 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[6px] px-[2px]">
   {filteredProducts.map((item, index) => {
@@ -111,14 +112,15 @@ export default function NewArrival() {
           </span>
         ))}
 
-        {/* Product Image */}
-        <div className="relative z-10 w-full h-[22rem] sm:h-[24rem] md:h-[26rem] lg:h-[28rem] overflow-hidden">
-          <img
-            src={item.image}
-            alt={item.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
-        </div>
+       {/* Product Image */}
+<div className="relative z-10 w-full h-[18rem] sm:h-[20rem] md:h-[22rem] lg:h-[24rem] overflow-hidden mx-auto">
+  <img
+    src={item.image}
+    alt={item.title}
+    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+  />
+</div>
+
 
        {/* Product Info */}
 <div className="relative z-20 px-1 py-1 bg-white space-y-1">
