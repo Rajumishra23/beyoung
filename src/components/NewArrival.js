@@ -124,10 +124,11 @@ export default function NewArrival() {
 </div>
 {/* Product Info */}
 <div className="relative z-20 px-2 py-2 bg-white space-y-1">
-  {/* Title */}
-  <h4 className="font-semibold text-black truncate text-sm sm:text-base">
-    {item.title}
-  </h4>
+ {/* Title */}
+<h4 className="font-semibold text-black truncate text-[12px] sm:text-base">
+  {item.title}
+</h4>
+
 
   {/* Subtitle */}
   <p className="text-xs font-medium tracking-wide">
