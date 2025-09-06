@@ -2,9 +2,9 @@ import React from "react";
 
 export default function TrustHighlights() {
   const highlights = [
-    { image: "global.webp", title: "Easy Returns", subtitle: "and Refunds" },
-    { image: "global1.webp", title: "Global Fashion", subtitle: "Made in India" },
-    { image: "global2.webp", title: "Trusted by", subtitle: "50 Lakh+ Customers" },
+    { image: "global.webp",   },
+    { image: "global1.webp",   },
+    { image: "global2.webp",  },
   ];
 
   return (
@@ -21,7 +21,7 @@ export default function TrustHighlights() {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-48 sm:h-60 md:h-72 lg:h-80 object-cover rounded-md mb-3 mx-auto"
+                className="w-full h-300 sm:h-60 md:h-72 lg:h-80 object-cover rounded-md mb-3 mx-auto"
               />
               <h3 className="text-lg sm:text-xl font-bold text-gray-900">{item.title}</h3>
               <p className="text-sm sm:text-base text-gray-600 mt-1">{item.subtitle}</p>
