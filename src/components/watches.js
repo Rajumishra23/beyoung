@@ -43,13 +43,14 @@ export default function WatchSection() {
                          border border-green-500 hover:border-gray-400 
                          shadow-sm hover:shadow-md transition"
             >
-              <div className="relative w-full h-[180px] sm:h-[240px] md:h-[300px] overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.brand}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
+              <div className="relative w-full h-[220px] sm:h-[240px] md:h-[300px] overflow-hidden">
+  <img
+    src={item.image}
+    alt={item.brand}
+    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+  />
+</div>
+
               <div className="px-3 py-3 text-center">
                 <h3 className="text-sm sm:text-base font-semibold text-gray-900">{item.brand}</h3>
                 <p className="text-xs sm:text-sm text-gray-600 mt-1 font-medium">{item.discountText}</p>
