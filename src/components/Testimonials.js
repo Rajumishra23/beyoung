@@ -42,18 +42,18 @@ export default function Testimonials() {
   const sliderRef = useRef(null);
 
   const scrollLeft = () => {
-    const cardWidth = sliderRef.current?.children[0]?.offsetWidth + 16; // card + gap
+    const cardWidth = sliderRef.current?.children[0]?.offsetWidth + 24; // card + gap
     sliderRef.current?.scrollBy({ left: -cardWidth, behavior: "smooth" });
   };
 
   const scrollRight = () => {
-    const cardWidth = sliderRef.current?.children[0]?.offsetWidth + 16; // card + gap
+    const cardWidth = sliderRef.current?.children[0]?.offsetWidth + 24;
     sliderRef.current?.scrollBy({ left: cardWidth, behavior: "smooth" });
   };
 
   return (
     <section className="bg-white text-black py-10 sm:py-16">
-      <div className="container mx-auto px-4 relative">
+      <div className="container mx-auto px-4">
         {/* Heading */}
         <div className="text-center mb-10 px-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wide mb-3">
@@ -64,67 +64,97 @@ export default function Testimonials() {
           </p>
         </div>
 
-        {/* ✅ Scrollable Reviews (Desktop + Mobile same style) */}
-        <div className="flex items-center gap-4">
-         <div className="relative w-full flex items-center">
-  {/* Prev Button */}
-  <button
-    onClick={scrollLeft}
-    className="hidden sm:flex items-center justify-center absolute -left-6 top-1/2 -translate-y-1/2 
-               px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition shadow-lg z-10"
-  >
-    ⬅
-  </button>
+        {/* ✅ Desktop Scrollable Row with Buttons */}
+        <div className="hidden sm:flex items-center relative">
+          {/* Prev Button */}
+          <button
+            onClick={scrollLeft}
+            className="absolute -left-6 top-1/2 -translate-y-1/2 bg-indigo-600 text-white rounded-full p-3 shadow-lg hover:bg-indigo-700 z-10"
+          >
+            ⬅
+          </button>
 
-  {/* Slider */}
-<div
-  ref={sliderRef}
-  className="flex gap-4 overflow-x-auto scroll-smooth no-scrollbar w-full sm:ml-[-32px]"
->
-  {reviews.map((testimonial, index) => (
-    <div
-      key={index}
-      className="flex-shrink-0 w-[300px] sm:w-[250px] rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border"
-    >
+          {/* Slider */}
+          <div
+            ref={sliderRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar w-full"
+            style={{ scrollSnapType: "x mandatory" }}
+          >
+            {reviews.map((testimonial, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-[32%] rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border scroll-snap-align-start"
+              >
+                {/* Rating + Date */}
+                <div className="flex justify-between items-center mb-2">
+                  <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-base font-bold">
+                    ⭐ {testimonial.rating.toFixed(1)}
+                  </span>
+                  <span className="text-gray-500 text-sm font-semibold">
+                    {testimonial.date}
+                  </span>
+                </div>
 
-        {/* Rating + Date */}
-        <div className="flex justify-between items-center mb-2">
-          <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-base font-bold">
-            ⭐ {testimonial.rating.toFixed(1)}
-          </span>
-          <span className="text-gray-500 text-sm font-semibold">
-            {testimonial.date}
-          </span>
-        </div>
+                <p className="text-gray-800 mb-3 leading-relaxed text-sm font-semibold">
+                  "{testimonial.review}"
+                </p>
 
-        <p className="text-gray-800 mb-3 leading-relaxed text-sm font-semibold">
-          "{testimonial.review}"
-        </p>
+                <div className="font-semibold text-black text-base mb-1">
+                  {testimonial.name}
+                </div>
+                <div className="text-sm text-gray-600 mb-3">{testimonial.post}</div>
 
-        <div className="font-semibold text-black text-base mb-1">
-          {testimonial.name}
-        </div>
-        <div className="text-sm text-gray-600 mb-3">{testimonial.post}</div>
-
-        <img
-          src={testimonial.avatar}
-          alt={testimonial.name}
-          className="w-full h-52 rounded-lg object-cover"
-        />
-      </div>
-    ))}
-  </div>
-</div>
-
+                <img
+                  src={testimonial.avatar}
+                  alt={testimonial.name}
+                  className="w-full h-56 rounded-lg object-cover"
+                />
+              </div>
+            ))}
+          </div>
 
           {/* Next Button */}
           <button
             onClick={scrollRight}
-            className="hidden sm:flex items-center justify-center  
-               px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition shadow-lg z-10"
+            className="absolute -right-6 top-1/2 -translate-y-1/2 bg-indigo-600 text-white rounded-full p-3 shadow-lg hover:bg-indigo-700 z-10"
           >
             ➡
           </button>
+        </div>
+
+        {/* ✅ Mobile Slider (unchanged) */}
+        <div className="sm:hidden overflow-x-auto flex gap-4 scroll-smooth no-scrollbar px-2">
+          {reviews.map((testimonial, index) => (
+            <div
+              key={index}
+              className="flex-shrink-0 w-[80%] rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border"
+            >
+              {/* Rating + Date */}
+              <div className="flex justify-between items-center mb-2">
+                <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-base font-bold">
+                  ⭐ {testimonial.rating.toFixed(1)}
+                </span>
+                <span className="text-gray-500 text-sm font-semibold">
+                  {testimonial.date}
+                </span>
+              </div>
+
+              <p className="text-gray-800 mb-3 leading-relaxed text-sm font-semibold">
+                "{testimonial.review}"
+              </p>
+
+              <div className="font-semibold text-black text-base mb-1">
+                {testimonial.name}
+              </div>
+              <div className="text-sm text-gray-600 mb-3">{testimonial.post}</div>
+
+              <img
+                src={testimonial.avatar}
+                alt={testimonial.name}
+                className="w-full h-52 rounded-lg object-cover"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
