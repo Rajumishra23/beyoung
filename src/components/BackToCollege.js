@@ -39,7 +39,7 @@ export default function BackToCollege() {
 <img
   src={item.image}
   alt={item.title}
-  className="w-full h-[500px] sm:h-[520px] object-cover"
+  className="w-full h-[600px] sm:h-[520px] object-cover"
 />
 
             <div className="absolute bottom-3 left-3 bg-black bg-opacity-70 text-white text-xs font-bold px-2 py-1 rounded">

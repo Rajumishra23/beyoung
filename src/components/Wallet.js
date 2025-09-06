@@ -49,11 +49,12 @@ export default function WalletSection() {
               className="flex-shrink-0 w-[calc(50%-6px)] sm:w-[220px] md:w-[260px] lg:w-[300px] snap-start
                          bg-white rounded-md overflow-hidden shadow hover:shadow-lg transition"
             >
-              <img
-                src={wallet.image}
-                alt={wallet.name}
-                className="w-full h-[200px] sm:h-[240px] md:h-[280px] lg:h-[320px] object-cover"
-              />
+             <img
+  src={wallet.image}
+  alt={wallet.name}
+  className="w-full h-[260px] sm:h-[240px] md:h-[280px] lg:h-[320px] object-cover"
+/>
+
               <div className="p-2 sm:p-3 border-t text-center">
                 <h3 className="text-xs sm:text-sm font-semibold text-gray-900">{wallet.name}</h3>
                 <p className="text-[10px] sm:text-xs text-gray-500">{wallet.tag}</p>

@@ -91,11 +91,12 @@ export default function GlassSection() {
                 </span>
               )}
 
-              <img
-                src={glass.image}
-                alt={glass.name}
-                className="w-full h-[180px] sm:h-[220px] md:h-[240px] object-cover"
-              />
+             <img
+  src={glass.image}
+  alt={glass.name}
+  className="w-full h-[220px] sm:h-[220px] md:h-[240px] object-cover"
+/>
+
 
               <div className="mt-3 px-3 pb-4 space-y-1 text-left">
                 <h3
