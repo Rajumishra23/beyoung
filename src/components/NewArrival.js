@@ -114,16 +114,16 @@ export default function NewArrival() {
           </span>
         ))}
 
-       {/* ✅ Product Image (Fixed for Mobile + Desktop) */}
-<div className="relative z-10 w-full h-[14rem] sm:h-[17rem] md:h-[19rem] lg:h-[30rem] overflow-hidden">
-  {/* Image */}
-  <img
-    src={item.image}
-    alt={item.title}
-    className="w-full h-[14rem] sm:h-[17rem] md:h-[19rem] lg:h-[24rem] object-cover transition-transform duration-300 group-hover:scale-105"
-  />
-</div>
+        {/* ✅ Product Image (Fixed for Mobile + Desktop) */}
+        <div className="relative z-10 w-full h-[12rem] sm:h-[16rem] md:h-[18rem] lg:h-[22rem] overflow-hidden">
+           {/* Image */}
+           <img
+  src={item.image}
+  alt={item.title}
+  className="w-full h-72 sm:h-72 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
+/>
 
+        </div>
 
         {/* Product Info */}
         <div className="relative z-20 px-2 py-2 bg-white space-y-1">
@@ -149,9 +149,10 @@ export default function NewArrival() {
             <span className="line-through text-xs text-gray-400">
               ₹{item.price}
             </span>
-            <span className="text-xs text-green-600 font-medium">
-              {item.discount}% OFF
-            </span>
+           <span className="text-xs text-green-500 font-medium">
+  {item.discount}% OFF
+</span>
+
           </div>
         </div>
 
