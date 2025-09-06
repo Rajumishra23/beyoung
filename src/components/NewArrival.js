@@ -122,10 +122,14 @@ export default function NewArrival() {
     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
   />
 </div>
-
 {/* Product Info */}
 <div className="relative z-20 px-2 py-2 bg-white space-y-1">
-  <h3 className="font-semibold sm:font-semibold text-black truncate">{item.title}</h3>
+  {/* Title */}
+  <h3 className="font-semibold text-black truncate text-sm sm:text-base">
+    {item.title}
+  </h3>
+
+  {/* Subtitle */}
   <p className="text-xs font-medium tracking-wide">
     {item.category === "Shirts"
       ? "Everyday Classic"
