@@ -37,7 +37,6 @@ export default function ComboSection() {
         setCurrentIndex((prev) => prev - 1);
       }
       if (dir === "right" && currentIndex < combos.length - 5) {
-        // 5 items ek sath dikhenge (approx)
         setCurrentIndex((prev) => prev + 1);
       }
     }
@@ -60,7 +59,7 @@ export default function ComboSection() {
         <div className="relative w-full h-[500px] sm:hidden overflow-hidden">
           <motion.div
             key={currentIndex}
-            className="w-full h-full rounded-xl overflow-hidden"
+            className="w-full h-full rounded-xl overflow-hidden border-2 border-yellow-500 bg-[#fdf8f2]" // ✅ Golden border
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
@@ -93,19 +92,19 @@ export default function ComboSection() {
         <div className="relative w-full overflow-hidden">
           <motion.div
             className="flex gap-4 sm:gap-6"
-            animate={{ x: `-${currentIndex * 22}%` }} // Slide by index
+            animate={{ x: `-${currentIndex * 22}%` }}
             transition={{ type: "spring", stiffness: 70, damping: 20 }}
           >
             {combos.map((combo, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-[30%] md:w-[22%] lg:w-[18%] bg-white rounded-xl shadow-md border border-transparent overflow-hidden"
+                className="flex-shrink-0 w-[30%] md:w-[22%] lg:w-[18%] bg-white rounded-xl shadow-md border-2 border-yellow-500 bg-[#fdf8f2] overflow-hidden" // ✅ Golden border
               >
-               <img
-  src={combo.image}
-  alt={`combo-${index + 1}`}
-  className="w-full h-[240px] md:h-[320px] lg:h-[360px] object-cover"
-/>
+                <img
+                  src={combo.image}
+                  alt={`combo-${index + 1}`}
+                  className="w-full h-[240px] md:h-[320px] lg:h-[360px] object-cover"
+                />
               </div>
             ))}
           </motion.div>

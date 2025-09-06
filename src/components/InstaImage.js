@@ -69,7 +69,7 @@ const InstaImage = () => {
       <img
         src={item.image}
         alt={item.title}
-        className="w-full max-w-[600px] h-[350px] sm:h-64 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
+        className="w-full max-w-[500px] h-[250px] sm:h-64 md:h-80 lg:h-[400px] object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
       />
 
       {/* Hover Overlay */}
