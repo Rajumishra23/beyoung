@@ -6,7 +6,7 @@ const reviews = [
     review:
       "Ordered polo for the first time, the experience was good. Delivery was delayed by a day but the quality was nice. Loved the fabric.",
     rating: 4.7,
-    avatar: "T1.webp",
+    avatar: "client1.webp",
     post: "Polo Shirt",
     date: "2 Sept, 2025",
   },
@@ -15,24 +15,24 @@ const reviews = [
     review:
       "Got one shirt and I’m seriously impressed. The color looks great, the fabric feels premium, and the price was totally worth it.",
     rating: 4.7,
-    avatar: "T2.webp",
+    avatar: "client3.webp",
     post: "Denim Shirt",
     date: "28 Aug, 2025",
   },
   {
-    name: "Rohit Jain",
+    name: "SALONI VERMA",
     review:
       "Combos are really nice, especially liked that you can select different sizes and combos. Me and my brother got even more excited when we received them.",
     rating: 5.0,
-    avatar: "T3.webp",
+    avatar: "client4.webp",
     post: "Combo T-Shirts",
     date: "15 Aug, 2025",
   },
   {
-    name: "Manoj",
+    name: "SNEHA",
     review: "Bought polo t-shirt, the quality is decent and it feels good.",
     rating: 3.9,
-    avatar: "T4.webp",
+    avatar: "girl.webp",
     post: "Polo Shirt",
     date: "10 Aug, 2025",
   },
@@ -56,14 +56,14 @@ export default function Testimonials() {
         {/* Heading */}
         <div className="text-center mb-10 px-4">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-wide mb-3">
-            DEMPSEYS <span className="text-indigo-500">APPROVED</span>
+            DEMPSEYSTERS <span className="text-indigo-500">APPROVED</span>
           </h1>
           <p className="text-sm sm:text-base md:text-lg italic max-w-2xl mx-auto leading-relaxed text-gray-700">
             “Real reviews from real people — style that speaks louder than words.”
           </p>
         </div>
 
-        {/* ✅ Mobile Scrollable Cards (screenshot जैसा look) */}
+        {/* ✅ Mobile Scrollable Cards */}
         <div className="block sm:hidden overflow-x-auto scroll-smooth snap-x snap-mandatory overflow-y-hidden">
           <div className="flex gap-3 px-2">
             {reviews.map((testimonial, index) => (
@@ -72,17 +72,18 @@ export default function Testimonials() {
                 className="flex-shrink-0 snap-start w-[90%] rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border"
               >
                 {/* Rating + Date */}
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-black text-yellow-400 px-2 py-1 rounded-full text-sm font-bold">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-base font-bold">
                     ⭐ {testimonial.rating.toFixed(1)}
                   </span>
-                  <span className="text-gray-500 text-sm">{testimonial.date}</span>
+                  <span className="text-gray-500 text-sm font-semibold">{testimonial.date}</span>
                 </div>
 
-                {/* Review Text */}
-                <p className="text-gray-800 mb-3 leading-relaxed text-sm">
-                  "{testimonial.review}"
-                </p>
+               {/* Review Text */}
+<p className="text-gray-800 mb-3 leading-relaxed text-sm font-semibold">
+  "{testimonial.review}"
+</p>
+
 
                 {/* Reviewer + Image */}
                 <div className="font-semibold text-black text-base mb-1">
@@ -99,39 +100,51 @@ export default function Testimonials() {
           </div>
         </div>
 
-     {/* ✅ Desktop View */}
-<div className="hidden sm:flex flex-row justify-center items-center gap-6 px-4">
-  {/* Prev Button */}
-  <button
-    onClick={handlePrev}
-    className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
-  >
-    ⬅
-  </button>
+        {/* ✅ Desktop View */}
+        <div className="hidden sm:flex flex-row justify-center items-center gap-6 px-4">
+          {/* Prev Button */}
+          <button
+            onClick={handlePrev}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+          >
+            ⬅
+          </button>
 
-  {/* Single Review Card */}
-  <div className="max-w-md w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border">
-    <div className="font-semibold text-black text-lg text-center">
-      {testimonial.name}
-    </div>
-    <div className="text-sm text-gray-600 text-center mb-2">
-      {testimonial.post}
-    </div>
-    <img
-      src={testimonial.avatar}
-      alt={testimonial.name}
-      className="w-full h-80 rounded-lg object-cover" // ⬅ yahan height badha di (pehle h-64 thi)
-    />
-  </div>
+          {/* Single Review Card */}
+          <div className="max-w-md w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border">
+            {/* Rating + Date */}
+            <div className="flex justify-between items-center mb-2">
+              <span className="bg-black text-yellow-400 px-3 py-1 rounded-full text-lg font-bold">
+                ⭐ {testimonial.rating.toFixed(1)}
+              </span>
+              <span className="text-gray-500 font-semibold text-sm">{testimonial.date}</span>
+            </div>
 
-  {/* Next Button */}
-  <button
-    onClick={handleNext}
-    className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
-  >
-    ➡
-  </button>
-</div>
+            <div className="font-semibold text-black text-lg text-center">
+              {testimonial.name}
+            </div>
+            <div className="text-sm text-gray-600 text-center mb-2">
+              {testimonial.post}
+            </div>
+            <img
+              src={testimonial.avatar}
+              alt={testimonial.name}
+              className="w-full h-80 rounded-lg object-cover"
+            />
+            <p className="text-gray-800 mt-3 leading-relaxed text-sm font-semibold">
+  "{testimonial.review}"
+</p>
+
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={handleNext}
+            className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+          >
+            ➡
+          </button>
+        </div>
       </div>
     </section>
   );

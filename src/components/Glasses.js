@@ -72,30 +72,24 @@ export default function GlassSection() {
         </button>
 
         {/* Slider */}
-        <div
-          ref={sliderRef}
-          className="flex gap-4 sm:gap-6 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth snap-x snap-mandatory pb-2"
-        >
-          {glasses.map((glass, index) => (
-            <motion.div
-              key={index}
-              className="flex-shrink-0 w-[calc(60%-4px)] sm:w-[240px] md:w-[28%] snap-start bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.6, delay: index * 0.05 }}
-            >
-              {glass.discount && (
-                <span className="absolute top-3 left-3 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded">
-                  {glass.discount}
-                </span>
-              )}
-
-             <img
-  src={glass.image}
-  alt={glass.name}
-  className="w-full h-[220px] sm:h-[220px] md:h-[240px] object-cover"
-/>
+<div
+  ref={sliderRef}
+  className="flex gap-2 sm:gap-3 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth snap-x snap-mandatory pb-2"
+>
+  {glasses.map((glass, index) => (
+    <motion.div
+      key={index}
+      className="flex-shrink-0 w-[calc(33%-4px)] sm:w-[240px] md:w-[30%] snap-start bg-white rounded-md overflow-hidden relative border border-gray-200 shadow-sm transition"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.05 }}
+    >
+      <img
+        src={glass.image}
+        alt={glass.name}
+        className="w-full h-[220px] sm:h-[220px] md:h-[240px] object-cover"
+      />
 
 
               <div className="mt-3 px-3 pb-4 space-y-1 text-left">
