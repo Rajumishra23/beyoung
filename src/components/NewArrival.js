@@ -115,46 +115,43 @@ export default function NewArrival() {
         ))}
 
         {/* ✅ Product Image (Fixed for Mobile + Desktop) */}
-        <div className="relative z-10 w-full h-[12rem] sm:h-[16rem] md:h-[18rem] lg:h-[22rem] overflow-hidden">
-           {/* Image */}
-           <img
-  src={item.image}
-  alt={item.title}
-  className="w-full h-72 sm:h-72 md:h-80 lg:h-[500px] object-cover transition-transform duration-300 group-hover:scale-105"
-/>
+<div className="relative z-10 w-full h-[14rem] sm:h-[18rem] md:h-[20rem] lg:h-[24rem] overflow-hidden">
+  <img
+    src={item.image}
+    alt={item.title}
+    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+  />
+</div>
 
-        </div>
+{/* Product Info */}
+<div className="relative z-20 px-2 py-2 bg-white space-y-1">
+  <h3 className="font-semibold sm:font-semibold text-black truncate">{item.title}</h3>
+  <p className="text-xs font-medium tracking-wide">
+    {item.category === "Shirts"
+      ? "Everyday Classic"
+      : item.category === "Polo T-shirts"
+      ? "Smart Casual"
+      : item.category === "Cargo Trousers"
+      ? "Utility Fit"
+      : item.category === "Jeans"
+      ? "Denim Essential"
+      : item.category === "T-shirts"
+      ? "Relaxed Fit"
+      : "Versatile Style"}
+  </p>
 
-        {/* Product Info */}
-        <div className="relative z-20 px-2 py-2 bg-white space-y-1">
-          <h3 className="font-semibold text-black truncate">{item.title}</h3>
-          <p className="text-xs font-medium tracking-wide">
-            {item.category === "Shirts"
-              ? "Everyday Classic"
-              : item.category === "Polo T-shirts"
-              ? "Smart Casual"
-              : item.category === "Cargo Trousers"
-              ? "Utility Fit"
-              : item.category === "Jeans"
-              ? "Denim Essential"
-              : item.category === "T-shirts"
-              ? "Relaxed Fit"
-              : "Versatile Style"}
-          </p>
-
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-bold text-black">
-              ₹{getDiscountedPrice(item.price, item.discount)}
-            </span>
-            <span className="line-through text-xs text-gray-400">
-              ₹{item.price}
-            </span>
-           <span className="text-xs text-green-500 font-medium">
-  {item.discount}% OFF
-</span>
-
-          </div>
-        </div>
+  <div className="flex items-center gap-2">
+    <span className="text-sm font-bold text-black">
+      ₹{getDiscountedPrice(item.price, item.discount)}
+    </span>
+    <span className="line-through text-xs text-gray-400">
+      ₹{item.price}
+    </span>
+    <span className="text-xs text-green-500 font-medium">
+      {item.discount}% OFF
+    </span>
+  </div>
+</div>
 
         {/* Wishlist Icon */}
         <button className="absolute top-3 right-3 text-white hover:text-black z-30">
