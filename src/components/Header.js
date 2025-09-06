@@ -25,7 +25,7 @@ const menuItems = {
     { title: "KID'S WATCHES", links: ["Analog", "Smartwatches", "Fitness Bands"] },
   ],
   ACCESSORIES: [{ links: ["Wallets", "Glasses", "Belts", "Bags"] }],
-  GIFTHAMPERS: [{ links: ["Gift for couples", "Gift for her"] }],
+  "GIFT HAMPERS": [{ links: ["Gift for couples", "Gift for her"] }],
 };
 
 export default function Header() {
@@ -242,7 +242,7 @@ export default function Header() {
             ))}
 
             {/* Static Links */}
-            {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((cat) => (
+            {["NEW ARRIVALS", "COMBOS",].map((cat) => (
               <a key={cat} href="#" className="block text-gray-700  font-bold hover:text-pink-600">{cat}</a>
             ))}
 
