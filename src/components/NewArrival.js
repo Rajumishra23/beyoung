@@ -65,12 +65,12 @@ export default function NewArrival() {
       </div>
 
       {/* Category Filters */}
-<div className="flex justify-center flex-wrap gap-4 mb-10">
+<div className="flex justify-center flex-wrap gap-4 mb-9">
   {categories.map((cat, index) => (
     <button
       key={index}
       onClick={() => setSelectedCategory(cat)}
-      className={`px-5 py-2 text-base font-semibold rounded-full border ${
+      className={`px-4 py-2 text-base font-semibold rounded-full border ${
         selectedCategory === cat
           ? "bg-black text-yellow-500"
           : "bg-gray-100 text-black"
@@ -80,17 +80,15 @@ export default function NewArrival() {
     </button>
   ))}
 </div>
-
 {/* Product Grid */}
-<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[6px] px-[2px]">
+<div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
   {filteredProducts.map((item, index) => {
     const theme = categoryColors[item.category] || categoryColors["View All"];
     return (
       <div
-  key={index}
-  className="relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full max-w-[420px] mx-auto bg-white rounded-md"
->
-
+        key={index}
+        className="relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1 transition duration-300 w-full bg-white rounded-md"
+      >
         {/* Background Stripe */}
         <div
           className="absolute inset-0"
@@ -100,20 +98,24 @@ export default function NewArrival() {
         ></div>
 
         {/* Oval Accent */}
-        <div className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${theme.oval} opacity-50`}></div>
+        <div
+          className={`absolute -top-10 -right-10 w-40 h-40 rounded-full ${theme.oval} opacity-50`}
+        ></div>
 
         {/* Tag Stickers */}
         {item.tags?.map((tag, i) => (
           <span
             key={i}
-            className={`absolute ${i === 0 ? "top-2" : "top-10"} left-3 z-30 ${tagStyles[tag] || "bg-gray-600"} text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded shadow`}
+            className={`absolute ${
+              i === 0 ? "top-2" : "top-10"
+            } left-3 z-30 ${tagStyles[tag] || "bg-gray-600"} text-white text-[10px] sm:text-xs font-bold px-2 py-1 rounded shadow`}
           >
             {tag}
           </span>
         ))}
 
        {/* Product Image */}
-<div className="relative z-10 w-full h-[18rem] sm:h-[20rem] md:h-[22rem] lg:h-[24rem] overflow-hidden mx-auto">
+<div className="relative z-10 w-full max-w-[500px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] h-[16rem] sm:h-[18rem] md:h-[20rem] lg:h-[22rem] overflow-hidden mx-auto">
   <img
     src={item.image}
     alt={item.title}
@@ -121,24 +123,22 @@ export default function NewArrival() {
   />
 </div>
 
-
-       {/* Product Info */}
-<div className="relative z-20 px-1 py-1 bg-white space-y-1">
-  <h3 className=" font-semibold text-black truncate">{item.title}</h3>
-  <p className="text-xs font-medium tracking-wide ">
-    {item.category === "Shirts"
-      ? "Everyday Classic"
-      : item.category === "Polo T-shirts"
-      ? "Smart Casual"
-      : item.category === "Cargo Trousers"
-      ? "Utility Fit"
-      : item.category === "Jeans"
-      ? "Denim Essential"
-      : item.category === "T-shirts"
-      ? "Relaxed Fit"
-      : "Versatile Style"}
-  </p>
-
+        {/* Product Info */}
+        <div className="relative z-20 px-2 py-2 bg-white space-y-1">
+          <h3 className="font-semibold text-black truncate">{item.title}</h3>
+          <p className="text-xs font-medium tracking-wide">
+            {item.category === "Shirts"
+              ? "Everyday Classic"
+              : item.category === "Polo T-shirts"
+              ? "Smart Casual"
+              : item.category === "Cargo Trousers"
+              ? "Utility Fit"
+              : item.category === "Jeans"
+              ? "Denim Essential"
+              : item.category === "T-shirts"
+              ? "Relaxed Fit"
+              : "Versatile Style"}
+          </p>
 
           <div className="flex items-center gap-2">
             <span className="text-sm font-bold text-black">
@@ -161,6 +161,7 @@ export default function NewArrival() {
     );
   })}
 </div>
+
 
     </section>
   );
