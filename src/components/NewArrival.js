@@ -115,13 +115,16 @@ export default function NewArrival() {
         ))}
 
        {/* Product Image */}
-<div className="relative z-10 w-full max-w-[500px] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[800px] h-[16rem] sm:h-[18rem] md:h-[20rem] lg:h-[22rem] overflow-hidden mx-auto">
+<div className="relative z-10 w-full max-w-[95%] sm:max-w-[600px] md:max-w-[700px] lg:max-w-[820px] 
+                h-[16rem] sm:h-[18rem] md:h-[20rem] lg:h-[24rem] 
+                overflow-hidden mx-auto">
   <img
     src={item.image}
     alt={item.title}
     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
   />
 </div>
+
 
         {/* Product Info */}
         <div className="relative z-20 px-2 py-2 bg-white space-y-1">

@@ -99,48 +99,39 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* ✅ Desktop View (unchanged) */}
-        <div className="hidden sm:flex flex-col sm:flex-row justify-center items-center gap-6 px-4">
-          {/* Prev Button */}
-          <button
-            onClick={handlePrev}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition mb-4 sm:mb-0"
-          >
-            ⬅
-          </button>
+     {/* ✅ Desktop View */}
+<div className="hidden sm:flex flex-row justify-center items-center gap-6 px-4">
+  {/* Prev Button */}
+  <button
+    onClick={handlePrev}
+    className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+  >
+    ⬅
+  </button>
 
-          {/* Review Card */}
-          <div className="max-w-md w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <span className="bg-black text-yellow-400 px-2 py-1 rounded-full text-sm font-bold">
-                ⭐ {testimonial.rating.toFixed(1)}
-              </span>
-              <span className="text-gray-500 text-sm">{testimonial.date}</span>
-            </div>
-            <p className="text-gray-800 italic mb-4 leading-relaxed text-base">
-              "{testimonial.review}"
-            </p>
-            <div className="font-semibold text-black text-lg text-center">
-              {testimonial.name}
-            </div>
-            <div className="text-sm text-gray-600 text-center mb-2">
-              {testimonial.post}
-            </div>
-            <img
-              src={testimonial.avatar}
-              alt={testimonial.name}
-              className="w-full h-400 rounded-lg object-cover"
-            />
-          </div>
+  {/* Single Review Card */}
+  <div className="max-w-md w-full rounded-xl shadow-lg hover:shadow-2xl transition p-5 bg-white border">
+    <div className="font-semibold text-black text-lg text-center">
+      {testimonial.name}
+    </div>
+    <div className="text-sm text-gray-600 text-center mb-2">
+      {testimonial.post}
+    </div>
+    <img
+      src={testimonial.avatar}
+      alt={testimonial.name}
+      className="w-full h-80 rounded-lg object-cover" // ⬅ yahan height badha di (pehle h-64 thi)
+    />
+  </div>
 
-          {/* Next Button */}
-          <button
-            onClick={handleNext}
-            className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition mt-4 sm:mt-0"
-          >
-            ➡
-          </button>
-        </div>
+  {/* Next Button */}
+  <button
+    onClick={handleNext}
+    className="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition"
+  >
+    ➡
+  </button>
+</div>
       </div>
     </section>
   );

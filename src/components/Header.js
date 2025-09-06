@@ -29,10 +29,16 @@ const menuItems = {
 };
 
 export default function Header() {
-  const sliderRef = useRef(null);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openCategory, setOpenCategory] = useState(null); // ✅ new state
+  const [openCategory, setOpenCategory] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const banners = [
+    { src: "tatas.webp", subtitle: "New Arrivals", title: "Upgrade Your Style Today", btn: "Shop Now" },
+    { src: "tatas2.webp", subtitle: "Limited Time", title: "Exclusive Deals Inside", btn: "Shop Now" },
+    { src: "tatas3.webp", subtitle: "Fresh Trends", title: "Trendy Collections Now", btn: "Shop Now" }
+  ];
 
   const placeholders = [
     "Search for shirts...", "Search for watches...", "Search for jeans...",
@@ -48,25 +54,15 @@ export default function Header() {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto sliding banner
+  // Auto slide
   useEffect(() => {
-    const slider = sliderRef.current;
-    let scrollAmount = 0;
-    const slideInterval = setInterval(() => {
-      if (slider) {
-        scrollAmount += slider.offsetWidth;
-        if (scrollAmount >= slider.scrollWidth) {
-          scrollAmount = 0;
-          slider.scrollTo({ left: 0, behavior: "auto" });
-        } else {
-          slider.scrollTo({ left: scrollAmount, behavior: "smooth" });
-        }
-      }
-    }, 3000);
-    return () => clearInterval(slideInterval);
-  }, []);
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % banners.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [banners.length]);
 
-  // ✅ Toggle function (only one open at a time)
+  // Toggle Mobile Dropdown
   const toggleMobileDropdown = (category) => {
     setOpenCategory((prev) => (prev === category ? null : category));
   };
@@ -206,44 +202,44 @@ export default function Header() {
             </div>
 
             {/* Dropdown Categories */}
-{Object.keys(menuItems).map((category) => (
-  <div key={category}>
-    <button
-      className="w-full flex justify-between items-center text-black font-bold hover:text-pink-600"
-      onClick={() => toggleMobileDropdown(category)}
-    >
-      {category} <span>{openCategory === category ? "−" : "+"}</span>
-    </button>
-
-    {openCategory === category && (
-      <div
-        className={`pl-4 mt-2 ${
-          category === "WOMEN"
-            ? "grid grid-cols-2 gap-4 max-h-64 overflow-y-auto pr-2"
-            : "space-y-2"
-        }`}
-      >
-        {menuItems[category].map((section, idx) => (
-          <div key={idx}>
-            {section.title && (
-              <h4 className="font-semibold text-black">{section.title}</h4>
-            )}
-            <ul className="mt-1 space-y-1 text-sm">
-              {section.links.map((link, i) => (
-                <li
-                  key={i}
-                  className="text-black hover:text-pink-600 cursor-pointer font-normal"
+            {Object.keys(menuItems).map((category) => (
+              <div key={category}>
+                <button
+                  className="w-full flex justify-between items-center text-black font-bold hover:text-pink-600"
+                  onClick={() => toggleMobileDropdown(category)}
                 >
-                  {link}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    )}
-  </div>
-))}
+                  {category} <span>{openCategory === category ? "−" : "+"}</span>
+                </button>
+
+                {openCategory === category && (
+                  <div
+                    className={`pl-4 mt-2 ${
+                      category === "WOMEN"
+                        ? "grid grid-cols-2 gap-4 max-h-64 overflow-y-auto pr-2"
+                        : "space-y-2"
+                    }`}
+                  >
+                    {menuItems[category].map((section, idx) => (
+                      <div key={idx}>
+                        {section.title && (
+                          <h4 className="font-semibold text-black">{section.title}</h4>
+                        )}
+                        <ul className="mt-1 space-y-1 text-sm">
+                          {section.links.map((link, i) => (
+                            <li
+                              key={i}
+                              className="text-black hover:text-pink-600 cursor-pointer font-normal"
+                            >
+                              {link}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
 
             {/* Static Links */}
             {["NEW ARRIVALS", "COMBOS", "GIFT HAMPERS"].map((cat) => (
@@ -261,14 +257,14 @@ export default function Header() {
         )}
       </header>
 
-      {/* Banner */}
+      {/* Banner with dots */}
       <section className="relative w-full overflow-hidden">
-        <motion.div ref={sliderRef} className="flex w-full overflow-hidden">
-          {[ 
-            { src: "tatas.webp", subtitle: "New Arrivals", title: "Upgrade Your Style Today", btn: "Shop Now" },
-            { src: "tatas2.webp", subtitle: "Limited Time", title: "Exclusive Deals Inside", btn: "Shop Now" },
-            { src: "tatas3.webp", subtitle: "Fresh Trends", title: "Trendy Collections Now", btn: "Shop Now" }
-          ].map((banner, i) => (
+        <motion.div
+          className="flex w-full"
+          animate={{ x: `-${currentIndex * 100}%` }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        >
+          {banners.map((banner, i) => (
             <motion.div key={i} className="w-full flex-shrink-0 relative">
               <img
                 src={banner.src}
@@ -286,6 +282,19 @@ export default function Header() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Dots */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+          {banners.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                currentIndex === i ? "bg-white scale-110" : "bg-gray-400"
+              }`}
+            ></button>
+          ))}
+        </div>
       </section>
     </>
   );

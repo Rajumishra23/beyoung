@@ -35,7 +35,7 @@ const SpecialCouponBar = () => {
 
   return (
     <section className="w-full bg-black overflow-x-hidden">
-      <div className="max-w-7xl mx-auto flex items-center h-[160px] sm:h-[140px] md:h-[160px] overflow-hidden">
+      <div className="w-full flex items-center h-[160px] sm:h-[140px] md:h-[160px] overflow-hidden">
 
         {/* Left Heading Section */}
         <div className="w-[220px] sm:w-[250px] md:w-[280px] h-full bg-black flex items-center justify-center px-4 border-r border-yellow-400 shadow-[0_0_15px_rgba(255,255,0,0.3)]">
@@ -69,13 +69,11 @@ const SpecialCouponBar = () => {
                 className="flex items-center justify-center border-l border-green-700 h-full w-full max-w-full"
                 style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
               >
-           <img
-  src={img}
-  alt={`Coupon ${i + 1}`}
-  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-/>
-
-
+                <img
+                  src={img}
+                  alt={`Coupon ${i + 1}`}
+                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                />
               </div>
             ))}
           </div>
