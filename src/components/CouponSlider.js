@@ -56,7 +56,7 @@ export default function CouponSection() {
         if (direction === 1) {
           if (prevIndex >= maxIndex) {
             setDirection(-1);
-            setLeftSteps(3);
+            setLeftSteps(1); // start left count
             return prevIndex - 1;
           }
           return prevIndex + 1;
@@ -100,7 +100,7 @@ export default function CouponSection() {
           {coupons.map((coupon, index) => (
             <div
               key={index}
-              className={`bg-white rounded-lg shadow-md overflow-hidden border-4 border-white-900 flex-shrink-0 
+              className={`bg-white rounded-lg shadow-md overflow-hidden border-4 border-white-900 flex-shrink-0  
                 ${visibleCards === 1 ? "w-[280px]" : "w-[380px]"}`}
             >
               <img
