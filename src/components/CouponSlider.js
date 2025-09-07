@@ -1,87 +1,67 @@
 import React, { useState, useEffect } from "react";
+import { FaPercentage } from "react-icons/fa";
 
-const couponImages = [
-  "first.webp",
-  "first1.webp",
-  "first2.webp",
-  "first3.webp",
-];
+export default function CouponSection() {
+  const coupons = ["first.webp", "first1.webp", "first2.webp", "first3.webp", "first4.webp", "first5.webp"];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1); // 1 = right, -1 = left
 
-const SpecialCouponBar = () => {
-  const [index, setIndex] = useState(0);
-  const [itemsPerSlide, setItemsPerSlide] = useState(1);
-
-  useEffect(() => {
-    const updateItems = () => {
-      if (window.innerWidth < 640) {
-        setItemsPerSlide(2);
-      } else {
-        setItemsPerSlide(1);
-      }
-    };
-    updateItems();
-    window.addEventListener("resize", updateItems);
-    return () => window.removeEventListener("resize", updateItems);
-  }, []);
+  const cardWidth = 380;
+  const visibleCards = 2;
+  const maxIndex = coupons.length - visibleCards;
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex(
-        (prev) => (prev + 1) % (couponImages.length - (itemsPerSlide - 1))
-      );
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        if (direction === 1 && prevIndex >= maxIndex) {
+          setDirection(-1);
+          return prevIndex - 1;
+        }
+        if (direction === -1 && prevIndex <= 0) {
+          setDirection(1);
+          return prevIndex + 1;
+        }
+        return prevIndex + direction;
+      });
     }, 3000);
-    return () => clearInterval(timer);
-  }, [itemsPerSlide]);
+
+    return () => clearInterval(interval);
+  }, [direction, maxIndex]);
 
   return (
-    <section className="w-full bg-black overflow-x-hidden">
-      <div className="w-full flex items-center h-[160px] sm:h-[140px] md:h-[160px] overflow-hidden">
-
-        {/* Left Heading Section */}
-        <div className="w-[220px] sm:w-[250px] md:w-[280px] h-full bg-black flex items-center justify-center px-4 border-r border-yellow-400 shadow-[0_0_15px_rgba(255,255,0,0.3)]">
-          <div className="text-left">
-            <h2 className="font-extrabold text-sm sm:text-base md:text-lg leading-tight text-white tracking-wide">
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500">
-                SUPER COUPON
-              </span>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="text-white">CORNER</span>
-                <span className="text-yellow-400 text-xl animate-bounce">%</span>
-              </div>
-            </h2>
-            <p className="text-gray-400 text-[11px] sm:text-xs mt-2 italic">
-              Scroll for exclusive deals →
-            </p>
-          </div>
-        </div>
-
-        {/* Right Side Slider */}
-        <div className="flex-1 h-full bg-gradient-to-r from-blue-900 via-blue-800 to-blue-900 overflow-hidden relative">
-          <div
-            className="flex h-full transition-transform duration-500 ease-in-out w-full"
-            style={{
-              transform: `translateX(-${index * (100 / itemsPerSlide)}%)`,
-            }}
-          >
-            {couponImages.map((img, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-center border-l border-green-700 h-full w-full max-w-full"
-                style={{ flex: `0 0 ${100 / itemsPerSlide}%` }}
-              >
-                <img
-                  src={img}
-                  alt={`Coupon ${i + 1}`}
-                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
+    <div className="bg-black text-white flex items-center gap-6 p-6">
+      {/* Left Sidebar */}
+      <div className="flex flex-col items-center justify-center text-center px-4 min-w-[120px]">
+        <FaPercentage className="text-yellow-400 text-3xl mb-2" />
+        <span className="text-base font-bold tracking-widest">SPECIAL</span>
+        <span className="text-base font-bold tracking-widest">COUPON</span>
+        <span className="text-base font-bold tracking-widest">CORNER</span>
+        
       </div>
-    </section>
-  );
-};
 
-export default SpecialCouponBar;
+      {/* Coupon Slider */}
+      <div className="overflow-hidden w-[780px]">
+        <div
+          className="flex transition-transform duration-700 ease-in-out"
+          style={{ transform: `translateX(-${currentIndex * cardWidth}px)` }}
+        >
+          {coupons.map((coupon, index) => (
+            <div
+              key={index}
+              className={`bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0 w-[380px] 
+                ${index >= currentIndex && index < currentIndex + visibleCards ? "border-4 border-white" : ""}`}
+            >
+              <img
+                src={coupon}
+                alt={`Coupon ${index + 1}`}
+                className="w-full h-auto object-contain"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+     
+    </div>
+  );
+}
