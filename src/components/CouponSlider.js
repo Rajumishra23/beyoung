@@ -12,36 +12,55 @@ export default function CouponSection() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardWidth, setCardWidth] = useState(380);
+  const [direction, setDirection] = useState(1); // 1 = right, -1 = left
+  const [cardWidth, setCardWidth] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(2);
   const sliderRef = useRef(null);
 
-  // Determine card width based on screen size (mobile vs desktop)
+  // ✅ Calculate actual card width + gap dynamically + visibleCards
   useEffect(() => {
-    const updateWidth = () => {
-      if (window.innerWidth < 768) {
-        setCardWidth(280); // mobile card width
-      } else {
-        setCardWidth(380); // desktop card width
+    const updateSizes = () => {
+      if (sliderRef.current && sliderRef.current.children.length > 0) {
+        const firstCard = sliderRef.current.children[0];
+        const style = window.getComputedStyle(firstCard);
+        const gap = parseInt(style.marginRight) || 0;
+        setCardWidth(firstCard.offsetWidth + gap);
       }
+      setVisibleCards(window.innerWidth < 768 ? 1 : 2);
     };
-    updateWidth();
-    window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
+
+    updateSizes();
+    window.addEventListener("resize", updateSizes);
+    return () => window.removeEventListener("resize", updateSizes);
   }, []);
 
-  // Auto slide continuously
+  const maxIndex = coupons.length - visibleCards;
+
+  // ✅ Auto slide with pendulum effect
   useEffect(() => {
+    if (cardWidth === 0) return; // wait until width is calculated
+
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % coupons.length);
+      setCurrentIndex((prevIndex) => {
+        // Right end reached
+        if (direction === 1 && prevIndex >= maxIndex) {
+          setDirection(-1);
+          return prevIndex - 1;
+        }
+        // Left end reached
+        if (direction === -1 && prevIndex <= 0) {
+          setDirection(1);
+          return prevIndex + 1;
+        }
+        // Normal slide
+        return prevIndex + direction;
+      });
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [coupons.length]);
+  }, [direction, maxIndex, cardWidth]);
 
-  // Determine visible cards count
-  const visibleCards = window.innerWidth < 768 ? 1 : 2;
-
-  // Compute visible indices for border highlight
+  // ✅ Compute visible indices for border highlight
   const getVisibleIndices = () => {
     let indices = [];
     for (let i = 0; i < visibleCards; i++) {
@@ -69,12 +88,12 @@ export default function CouponSection() {
           className="flex transition-transform duration-700 ease-in-out gap-4 md:gap-6"
           style={{ transform: `translateX(-${currentIndex * cardWidth}px)` }}
         >
-          {[...coupons, ...coupons].map((coupon, index) => (
+          {coupons.map((coupon, index) => (
             <div
               key={index}
               className={`bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0 
-                ${window.innerWidth < 768 ? "w-[280px]" : "w-[380px]"} 
-                ${visibleIndices.includes(index % coupons.length) ? "border-4 border-white" : ""}`}
+                ${visibleCards === 1 ? "w-[280px]" : "w-[380px]"} 
+                ${visibleIndices.includes(index) ? "border-4 border-white" : ""}`}
             >
               <img
                 src={coupon}
