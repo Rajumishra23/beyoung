@@ -50,7 +50,7 @@ export default function CouponSection() {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
         // Mobile: limit left slide to 1 step, Desktop: 3 steps
-        const maxLeftSteps = visibleCards === 1 ? 1 : 3;
+        const maxLeftSteps = visibleCards === 1 ? 1 : 2;
 
         // Going right
         if (direction === 1) {
