@@ -3,20 +3,20 @@ import { FaPercentage } from "react-icons/fa";
 
 export default function CouponSection() {
   const coupons = [
-    "first.webp",
-    "first1.webp",
+    "first6.webp",
+    "first5.webp",
     "first2.webp",
     "first3.webp",
     "first4.webp",
-    "first5.webp",
-    "first6.webp",
+    "first.webp",
+    "first1.webp",
   ];
 
   const [cardWidth, setCardWidth] = useState(0);
   const [visibleCards, setVisibleCards] = useState(2);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1); // 1 = right, -1 = left
-  const [leftSteps, setLeftSteps] = useState(0);
+  const [rightSteps, setRightSteps] = useState(0); // ab right ke liye count
   const sliderRef = useRef(null);
 
   // ✅ Calculate card width + gap dynamically
@@ -43,34 +43,33 @@ export default function CouponSection() {
 
   const maxIndex = Math.max(coupons.length - visibleCards, 0);
 
-  // ✅ Auto slide with mobile-specific left limit
+  // ✅ Auto slide with desktop-specific RIGHT limit
   useEffect(() => {
     if (cardWidth === 0) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => {
-        // Mobile: limit left slide to 1 step, Desktop: 3 steps
-        const maxLeftSteps = visibleCards === 1 ? 1 : 2;
+        const maxRightSteps = visibleCards === 1 ? maxIndex : 2; // mobile = full, desktop = 2
 
-        // Going right
+        // Going right (desktop pe sirf 2 steps)
         if (direction === 1) {
-          if (prevIndex >= maxIndex) {
+          if (rightSteps >= maxRightSteps || prevIndex >= maxIndex) {
             setDirection(-1);
-            setLeftSteps(1); // start left count
             return prevIndex - 1;
+          } else {
+            setRightSteps(rightSteps + 1);
+            return prevIndex + 1;
           }
-          return prevIndex + 1;
         }
 
-        // Going left
+        // Going left (pura slide kare)
         if (direction === -1) {
-          if (leftSteps >= maxLeftSteps || prevIndex <= 0) {
+          if (prevIndex <= 0) {
             setDirection(1);
+            setRightSteps(1); // right count start
             return prevIndex + 1;
-          } else {
-            setLeftSteps(leftSteps + 1);
-            return prevIndex - 1;
           }
+          return prevIndex - 1;
         }
 
         return prevIndex;
@@ -78,7 +77,7 @@ export default function CouponSection() {
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [direction, maxIndex, cardWidth, leftSteps, visibleCards]);
+  }, [direction, maxIndex, cardWidth, rightSteps, visibleCards]);
 
   return (
     <div className="bg-black text-white flex flex-row items-center gap-4 md:gap-6 py-2 md:py-3 px-3 md:px-4 w-full">

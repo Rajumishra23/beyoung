@@ -69,7 +69,7 @@ const InstaImage = () => {
     <img
   src={item.image}
   alt={item.title}
-  className="w-[100%] max-w-[500px] h-[300px] sm:w-full sm:h-64 md:max-w-[600px] md:h-80 lg:max-w-[700px] lg:h-[450px] object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
+  className="w-[100%] max-w-[500px] h-[200px] sm:w-full sm:h-64 md:max-w-[600px] md:h-80 lg:max-w-[700px] lg:h-[450px] object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
 />
 
 
