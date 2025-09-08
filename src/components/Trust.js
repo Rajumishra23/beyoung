@@ -27,7 +27,7 @@ export default function TrustHighlights() {
   ))}
 </div>
 
-        {/* ✅ Mobile Row (unchanged) */}
+        {/* ✅ Mobile Row (now same fix as desktop) */}
         <div className="sm:hidden flex gap-1 justify-between">
           {highlights.map((item, index) => (
             <div
@@ -37,11 +37,12 @@ export default function TrustHighlights() {
               <img
                 src={item.image}
                 alt=""
-                className="w-full h-28 object-cover rounded-md mb-2"
+                className="w-full h-auto object-contain rounded-md"
               />
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

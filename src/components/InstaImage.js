@@ -52,38 +52,36 @@ const InstaImage = () => {
           </p>
         </div>
 
-       {/* Slider Row */}
-<div
-  ref={sliderRef}
-  className="flex gap-2 md:gap-3 overflow-x-hidden no-scrollbar py-4"
->
-  {InstaImages.concat(InstaImages).map((item, idx) => (
-    <a
-      key={idx}
-      href={item.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="relative w-56 sm:w-56 md:w-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer 
-      border border-gray-200 shadow-md hover:shadow-xl transition"
-    >
-    <img
-  src={item.image}
-  alt={item.title}
-  className="w-[100%] max-w-[500px] h-[200px] sm:w-full sm:h-64 md:max-w-[600px] md:h-80 lg:max-w-[700px] lg:h-[450px] object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
-/>
+        {/* Slider Row */}
+        <div
+          ref={sliderRef}
+          className="flex gap-2 md:gap-3 overflow-x-hidden no-scrollbar py-4"
+        >
+          {InstaImages.concat(InstaImages).map((item, idx) => (
+            <a
+              key={idx}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative w-56 sm:w-56 md:w-64 flex-shrink-0 rounded-xl overflow-hidden group cursor-pointer 
+              border border-gray-200 shadow-md hover:shadow-xl transition"
+            >
+              <img
+                src={item.image}
+                alt={item.title}
+                className="w-[100%] max-w-[500px] h-[260px] sm:w-full sm:h-72 md:max-w-[600px] md:h-80 lg:max-w-[800px] lg:h-[450px] object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
+              />
 
-
-
-      {/* Hover Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
-        <FaInstagram className="text-white text-2xl md:text-3xl mb-2" />
-        <span className="text-white text-sm md:text-base font-medium">
-          {item.title}
-        </span>
-      </div>
-    </a>
-  ))}
-</div>
+              {/* Hover Overlay */}
+              <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <FaInstagram className="text-white text-2xl md:text-3xl mb-2" />
+                <span className="text-white text-sm md:text-base font-medium">
+                  {item.title}
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </section>
   );
