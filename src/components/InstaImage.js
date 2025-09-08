@@ -69,7 +69,12 @@ const InstaImage = () => {
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-[100%] max-w-[500px] h-[260px] sm:w-full sm:h-72 md:max-w-[600px] md:h-80 lg:max-w-[800px] lg:h-[450px] object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
+                className="w-[100%] 
+                  h-[320px]                /* 📱 Mobile: height badha diya */
+                  sm:h-80                 /* 📲 Small screen */
+                  md:max-w-[650px] md:h-[400px]   /* 💻 Medium screen */
+                  lg:max-w-[950px] lg:h-[550px]   /* 🖥️ Desktop: width & height dono badha diye */
+                  object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
               />
 
               {/* Hover Overlay */}
