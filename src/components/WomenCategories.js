@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const WomenCategories = [
   { image: "women.webp", title: "Print Paradise", description: "For that extra serving of drama" },
@@ -6,21 +7,45 @@ const WomenCategories = [
   { image: "women2.webp", title: "Fusion Dresses From W", description: "For a look straight out of a Bollywood movie" },
   { image: "women3.webp", title: "Kurta Sets By BIBA", description: "We've found you the perfect match", badge: "BESTSELLER" },
   { image: "women4.webp", title: "Summer-Ready Ethnic", description: "Breezy dresses fit for virtual calls" },
+  { image: "women2.webp", title: "Fusion Dresses From W", description: "For a look straight out of a Bollywood movie" },
 ];
 
 export default function WomenClothingSlider() {
   const sliderRef = useRef(null);
 
+  // Left slide
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: -250, behavior: "smooth" });
+    }
+  };
+
+  // Right slide
+  const scrollRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: 250, behavior: "smooth" });
+    }
+  };
+
   return (
-    <section className="py-8 sm:py-10 px-2 sm:px-4 md:px-8 bg-white overflow-hidden">
+    <section className="py-8 sm:py-10 px-2 sm:px-4 md:px-8 bg-white overflow-hidden relative">
       <h2 className="text-xl sm:text-2xl font-extrabold text-center mb-6 sm:mb-8 text-gray-900 tracking-wide uppercase">
         Trending WOMEN&apos;S FAVOURITE
       </h2>
 
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto relative">
+        {/* Left Button - only desktop */}
+        <button
+          onClick={scrollLeft}
+          className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+        >
+          <FaChevronLeft className="text-gray-700" />
+        </button>
+
+        {/* Slider */}
         <div
           ref={sliderRef}
-          className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide scroll-smooth"
+          className="flex gap-2 sm:gap-3 overflow-x-auto scrollbar-hide scroll-smooth px-6"
         >
           {WomenCategories.map((item, idx) => (
             <div
@@ -52,6 +77,14 @@ export default function WomenClothingSlider() {
             </div>
           ))}
         </div>
+
+        {/* Right Button - only desktop */}
+        <button
+          onClick={scrollRight}
+          className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+        >
+          <FaChevronRight className="text-gray-700" />
+        </button>
       </div>
     </section>
   );
