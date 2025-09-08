@@ -73,7 +73,7 @@ const InstaImage = () => {
     h-[320px]                      /* 📱 Mobile: same */
     sm:h-80                        /* 📲 Small screen */
     md:max-w-[750px] md:h-[360px]  /* 💻 Medium: width zyada, height thoda kam */
-    lg:max-w-[1200px] lg:h-[280px] /* 🖥️ Desktop: width aur zyada, height aur kam */
+    lg:max-w-[1200px] lg:h-[380px] /* 🖥️ Desktop: width aur zyada, height aur kam */
     object-cover transition-transform duration-300 group-hover:scale-110 mx-auto"
 />
 
